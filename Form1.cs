@@ -152,17 +152,19 @@ namespace youtube_dl
                     }
 
                     foreach (var videoItem in videoListResponse.Items)
-                    {
-                        DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoItem.Snippet.Title, ID);
+                    { 
+                        Video video = new Video();
+                        video.ID = ID;
+                        video.name = filename;
+                        video.path = path;
+                        video.filetype = filetype;
+                        video.thumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
+                        video.title = videoItem.Snippet.Title;
+
+                        downloadQueue.Add(video);
+
+                        DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, video.title, ID);
                     }
-
-                    Video video = new Video();
-                    video.ID = ID;
-                    video.name = filename;
-                    video.path = path;
-                    video.filetype = filetype;
-
-                    downloadQueue.Add(video);
 
                     DownloadButton.Enabled = true;
 
@@ -175,20 +177,31 @@ namespace youtube_dl
 
                     break;
                 default:
-                    WebClient client = new WebClient();
-                    string HTML = client.DownloadString(UrlBox.Text);
+                    string HTML = "";
 
-                    string title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
-
-                    DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, title, ID);
+                    using (WebClient client = new WebClient())
+                    {
+                        try
+                        {
+                            HTML = client.DownloadString(UrlBox.Text);
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show("Not able to gather video title");
+                        }
+                    }
 
                     Video videoNonYoutube = new Video();
                     videoNonYoutube.ID = ID;
                     videoNonYoutube.name = filename;
                     videoNonYoutube.path = path;
                     videoNonYoutube.filetype = filetype;
+                    videoNonYoutube.thumbURL = null;
+                    videoNonYoutube.title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
 
                     downloadQueue.Add(videoNonYoutube);
+
+                    DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
 
                     DownloadButton.Enabled = true;
 
@@ -219,7 +232,7 @@ namespace youtube_dl
                 }
                 else
                 {
-                    arguments += UseDefaultFormatBox.Checked ? "" : "-f " + fileTypes[video.filetype];
+                    arguments += video.filetype == 13  ? "" : "-f " + fileTypes[video.filetype];
                     arguments += " -o \"" + video.path + video.name + "\"";
                     arguments += " " + video.ID;
 
@@ -292,24 +305,28 @@ namespace youtube_dl
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in DownloadGrid.SelectedRows)
+            DataGridViewRow row = DownloadGrid.SelectedRows[0];
+
+            downloadQueue.RemoveAt(row.Index);
+            DownloadGrid.Rows.RemoveAt(row.Index);
+        }
+
+        private void DownloadGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (DownloadGrid.RowCount > 0)
             {
-                downloadQueue.RemoveAt(row.Index);
-                DownloadGrid.Rows.RemoveAt(row.Index);
+                DataGridViewRow row = DownloadGrid.SelectedRows[0];
+                if (row.Index >= 0)
+                {
+                    Video video = downloadQueue[row.Index];
+
+                    ThumbnailBox.Image = video.GetThumbnail();
+                    TitleCard.Text = video.title.Length > 60 ? video.title.Substring(0,57) + "..." : video.title;
+                    IDCard.Text = video.ID;
+                    FiletypeCard.Text = FiletypeBox.Items[video.filetype].ToString();
+                    PathCard.Text = video.path;
+                }
             }
         }
-
-        private void UseDefaultFormatBox_CheckedChanged(object sender, EventArgs e)
-        {
-            FiletypeBox.Enabled = !UseDefaultFormatBox.Checked;
-        }
-    }
-
-    public class Video
-    {
-        public string ID { get; set; }
-        public string path { get; set; }
-        public string name { get; set; }
-        public int filetype { get; set; }
     }
 }

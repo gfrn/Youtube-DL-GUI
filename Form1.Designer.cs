@@ -34,6 +34,8 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.DownloadStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.downloadSpeedLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.FiletypeBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -51,24 +53,31 @@
             this.queueButton = new System.Windows.Forms.Button();
             this.downloadVideoWorker = new System.ComponentModel.BackgroundWorker();
             this.deleteButton = new System.Windows.Forms.Button();
-            this.UseDefaultFormatBox = new System.Windows.Forms.CheckBox();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ThumbnailBox = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TitleCard = new System.Windows.Forms.Label();
+            this.IDCard = new System.Windows.Forms.Label();
+            this.FiletypeCard = new System.Windows.Forms.Label();
+            this.PathCard = new System.Windows.Forms.Label();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThumbnailBox)).BeginInit();
             this.SuspendLayout();
             // 
             // UrlBox
             // 
-            this.UrlBox.Location = new System.Drawing.Point(188, 23);
+            this.UrlBox.Location = new System.Drawing.Point(81, 23);
             this.UrlBox.Name = "UrlBox";
-            this.UrlBox.Size = new System.Drawing.Size(396, 20);
+            this.UrlBox.Size = new System.Drawing.Size(503, 20);
             this.UrlBox.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(123, 26);
+            this.label1.Location = new System.Drawing.Point(12, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 1;
@@ -77,7 +86,7 @@
             // DownloadButton
             // 
             this.DownloadButton.Enabled = false;
-            this.DownloadButton.Location = new System.Drawing.Point(447, 435);
+            this.DownloadButton.Location = new System.Drawing.Point(447, 529);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(137, 23);
             this.DownloadButton.TabIndex = 2;
@@ -92,7 +101,7 @@
             this.downloadSpeedLabel,
             this.toolStripStatusLabel1,
             this.statusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 471);
+            this.statusStrip.Location = new System.Drawing.Point(0, 565);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(596, 22);
             this.statusStrip.TabIndex = 3;
@@ -111,6 +120,16 @@
             this.downloadSpeedLabel.Text = "0.0 MiB/s";
             this.downloadSpeedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // FiletypeBox
             // 
             this.FiletypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -127,16 +146,17 @@
             "flv - 400x240     ",
             "webm - 640x360     ",
             "mp4 - 640x360 (video and audio)",
-            "mp4 -1280x720 (video and audio)"});
-            this.FiletypeBox.Location = new System.Drawing.Point(188, 101);
+            "mp4 -1280x720 (video and audio)",
+            "default"});
+            this.FiletypeBox.Location = new System.Drawing.Point(81, 101);
             this.FiletypeBox.Name = "FiletypeBox";
-            this.FiletypeBox.Size = new System.Drawing.Size(286, 21);
+            this.FiletypeBox.Size = new System.Drawing.Size(502, 21);
             this.FiletypeBox.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(123, 105);
+            this.label2.Location = new System.Drawing.Point(12, 105);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 5;
@@ -144,7 +164,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 406);
+            this.progressBar1.Location = new System.Drawing.Point(12, 500);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(571, 23);
             this.progressBar1.TabIndex = 7;
@@ -160,10 +180,12 @@
             this.Title,
             this.VideoID});
             this.DownloadGrid.Location = new System.Drawing.Point(12, 141);
+            this.DownloadGrid.MultiSelect = false;
             this.DownloadGrid.Name = "DownloadGrid";
             this.DownloadGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DownloadGrid.Size = new System.Drawing.Size(571, 231);
             this.DownloadGrid.TabIndex = 8;
+            this.DownloadGrid.SelectionChanged += new System.EventHandler(this.DownloadGrid_SelectionChanged);
             // 
             // Number
             // 
@@ -185,9 +207,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(497, 47);
+            this.button1.Location = new System.Drawing.Point(480, 47);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 23);
+            this.button1.Size = new System.Drawing.Size(104, 23);
             this.button1.TabIndex = 9;
             this.button1.Text = "Select Folder";
             this.button1.UseVisualStyleBackColor = true;
@@ -196,7 +218,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(123, 52);
+            this.label3.Location = new System.Drawing.Point(12, 49);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 10;
@@ -204,15 +226,15 @@
             // 
             // destinationBox
             // 
-            this.destinationBox.Location = new System.Drawing.Point(188, 49);
+            this.destinationBox.Location = new System.Drawing.Point(81, 49);
             this.destinationBox.Name = "destinationBox";
-            this.destinationBox.Size = new System.Drawing.Size(303, 20);
+            this.destinationBox.Size = new System.Drawing.Size(393, 20);
             this.destinationBox.TabIndex = 11;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(123, 79);
+            this.label4.Location = new System.Drawing.Point(12, 79);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 12;
@@ -220,9 +242,9 @@
             // 
             // filenameBox
             // 
-            this.filenameBox.Location = new System.Drawing.Point(188, 75);
+            this.filenameBox.Location = new System.Drawing.Point(81, 75);
             this.filenameBox.Name = "filenameBox";
-            this.filenameBox.Size = new System.Drawing.Size(286, 20);
+            this.filenameBox.Size = new System.Drawing.Size(393, 20);
             this.filenameBox.TabIndex = 13;
             // 
             // useTitleCheckbox
@@ -240,7 +262,7 @@
             // 
             // queueButton
             // 
-            this.queueButton.Location = new System.Drawing.Point(12, 435);
+            this.queueButton.Location = new System.Drawing.Point(12, 529);
             this.queueButton.Name = "queueButton";
             this.queueButton.Size = new System.Drawing.Size(147, 23);
             this.queueButton.TabIndex = 16;
@@ -254,7 +276,7 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(166, 435);
+            this.deleteButton.Location = new System.Drawing.Point(188, 529);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(137, 23);
             this.deleteButton.TabIndex = 17;
@@ -262,27 +284,96 @@
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
-            // UseDefaultFormatBox
+            // ThumbnailBox
             // 
-            this.UseDefaultFormatBox.AutoSize = true;
-            this.UseDefaultFormatBox.Location = new System.Drawing.Point(480, 104);
-            this.UseDefaultFormatBox.Name = "UseDefaultFormatBox";
-            this.UseDefaultFormatBox.Size = new System.Drawing.Size(117, 17);
-            this.UseDefaultFormatBox.TabIndex = 6;
-            this.UseDefaultFormatBox.Text = "Use Default Format";
-            this.UseDefaultFormatBox.UseVisualStyleBackColor = true;
-            this.UseDefaultFormatBox.CheckedChanged += new System.EventHandler(this.UseDefaultFormatBox_CheckedChanged);
+            this.ThumbnailBox.Location = new System.Drawing.Point(15, 392);
+            this.ThumbnailBox.Name = "ThumbnailBox";
+            this.ThumbnailBox.Size = new System.Drawing.Size(148, 102);
+            this.ThumbnailBox.TabIndex = 18;
+            this.ThumbnailBox.TabStop = false;
             // 
-            // statusLabel
+            // label5
             // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(0, 17);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(169, 392);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Video Title:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(169, 417);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Video ID:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(169, 442);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 13);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Filetype:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(169, 469);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(102, 13);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Download Location:";
+            // 
+            // TitleCard
+            // 
+            this.TitleCard.AutoSize = true;
+            this.TitleCard.Location = new System.Drawing.Point(277, 392);
+            this.TitleCard.Name = "TitleCard";
+            this.TitleCard.Size = new System.Drawing.Size(0, 13);
+            this.TitleCard.TabIndex = 23;
+            // 
+            // IDCard
+            // 
+            this.IDCard.AutoSize = true;
+            this.IDCard.Location = new System.Drawing.Point(277, 417);
+            this.IDCard.Name = "IDCard";
+            this.IDCard.Size = new System.Drawing.Size(0, 13);
+            this.IDCard.TabIndex = 24;
+            // 
+            // FiletypeCard
+            // 
+            this.FiletypeCard.AutoSize = true;
+            this.FiletypeCard.Location = new System.Drawing.Point(277, 442);
+            this.FiletypeCard.Name = "FiletypeCard";
+            this.FiletypeCard.Size = new System.Drawing.Size(0, 13);
+            this.FiletypeCard.TabIndex = 25;
+            // 
+            // PathCard
+            // 
+            this.PathCard.AutoSize = true;
+            this.PathCard.Location = new System.Drawing.Point(277, 469);
+            this.PathCard.Name = "PathCard";
+            this.PathCard.Size = new System.Drawing.Size(0, 13);
+            this.PathCard.TabIndex = 26;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 493);
+            this.ClientSize = new System.Drawing.Size(596, 587);
+            this.Controls.Add(this.PathCard);
+            this.Controls.Add(this.FiletypeCard);
+            this.Controls.Add(this.IDCard);
+            this.Controls.Add(this.TitleCard);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.ThumbnailBox);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.queueButton);
             this.Controls.Add(this.useTitleCheckbox);
@@ -293,7 +384,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.DownloadGrid);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.UseDefaultFormatBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.FiletypeBox);
             this.Controls.Add(this.statusStrip);
@@ -309,6 +399,7 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ThumbnailBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,9 +430,17 @@
         private System.Windows.Forms.Button queueButton;
         private System.ComponentModel.BackgroundWorker downloadVideoWorker;
         private System.Windows.Forms.Button deleteButton;
-        private System.Windows.Forms.CheckBox UseDefaultFormatBox;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.PictureBox ThumbnailBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label TitleCard;
+        private System.Windows.Forms.Label IDCard;
+        private System.Windows.Forms.Label FiletypeCard;
+        private System.Windows.Forms.Label PathCard;
     }
 }
 
