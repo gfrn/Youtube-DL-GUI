@@ -4,10 +4,11 @@ A Youtube-DL GUI made in C#
 ## Why?
 Was pissed at online downloaders and wanted to make Youtube-DL as easy as possible to use.
 
-## Features I may add
+## Unimplemented new features
 - [x] Add thumbnail viewer
 - [ ] Add support for FFMPEG
 - [ ] Add more information to video info previewer
+- [ ] Add PT-BR translation
 
 ## How it looks so far
 ![Example form](https://i.imgur.com/ZK2cO0d.png)
