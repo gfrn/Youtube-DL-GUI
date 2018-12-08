@@ -46,5 +46,17 @@ namespace youtube_dl.Properties {
                 this["IndexFileType"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DisplayStatus {
+            get {
+                return ((bool)(this["DisplayStatus"]));
+            }
+            set {
+                this["DisplayStatus"] = value;
+            }
+        }
     }
 }

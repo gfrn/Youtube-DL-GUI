@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.UrlBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DownloadButton = new System.Windows.Forms.Button();
@@ -62,35 +63,32 @@
             this.IDCard = new System.Windows.Forms.Label();
             this.FiletypeCard = new System.Windows.Forms.Label();
             this.PathCard = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.portuguêsBrasileiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayDownloadStatusTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailBox)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // UrlBox
             // 
-            this.UrlBox.Location = new System.Drawing.Point(81, 23);
+            resources.ApplyResources(this.UrlBox, "UrlBox");
             this.UrlBox.Name = "UrlBox";
-            this.UrlBox.Size = new System.Drawing.Size(503, 20);
-            this.UrlBox.TabIndex = 0;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 23);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "URL/ID:";
             // 
             // DownloadButton
             // 
-            this.DownloadButton.Enabled = false;
-            this.DownloadButton.Location = new System.Drawing.Point(447, 529);
+            resources.ApplyResources(this.DownloadButton, "DownloadButton");
             this.DownloadButton.Name = "DownloadButton";
-            this.DownloadButton.Size = new System.Drawing.Size(137, 23);
-            this.DownloadButton.TabIndex = 2;
-            this.DownloadButton.Text = "Download";
             this.DownloadButton.UseVisualStyleBackColor = true;
             this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
             // 
@@ -101,73 +99,59 @@
             this.downloadSpeedLabel,
             this.toolStripStatusLabel1,
             this.statusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 565);
+            resources.ApplyResources(this.statusStrip, "statusStrip");
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(596, 22);
-            this.statusStrip.TabIndex = 3;
-            this.statusStrip.Text = "statusStrip";
             // 
             // DownloadStatus
             // 
             this.DownloadStatus.Name = "DownloadStatus";
-            this.DownloadStatus.Size = new System.Drawing.Size(80, 17);
-            this.DownloadStatus.Text = "No Download";
+            resources.ApplyResources(this.DownloadStatus, "DownloadStatus");
             // 
             // downloadSpeedLabel
             // 
             this.downloadSpeedLabel.Name = "downloadSpeedLabel";
-            this.downloadSpeedLabel.Size = new System.Drawing.Size(56, 17);
-            this.downloadSpeedLabel.Text = "0.0 MiB/s";
-            this.downloadSpeedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            resources.ApplyResources(this.downloadSpeedLabel, "downloadSpeedLabel");
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
             // 
             // statusLabel
             // 
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(0, 17);
+            resources.ApplyResources(this.statusLabel, "statusLabel");
             // 
             // FiletypeBox
             // 
             this.FiletypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FiletypeBox.FormattingEnabled = true;
             this.FiletypeBox.Items.AddRange(new object[] {
-            "m4a (audio only)",
-            "mp4 - 144p (video only)",
-            "mp4 - 240p (video only)",
-            "mp4 - 360p (video only)",
-            "mp4 - 480p (video only)",
-            "mp4 - 720p (video only)",
-            "3gp - 176x144     ",
-            "3gp - 320x240     ",
-            "flv - 400x240     ",
-            "webm - 640x360     ",
-            "mp4 - 640x360 (video and audio)",
-            "mp4 -1280x720 (video and audio)",
-            "default"});
-            this.FiletypeBox.Location = new System.Drawing.Point(81, 101);
+            resources.GetString("FiletypeBox.Items"),
+            resources.GetString("FiletypeBox.Items1"),
+            resources.GetString("FiletypeBox.Items2"),
+            resources.GetString("FiletypeBox.Items3"),
+            resources.GetString("FiletypeBox.Items4"),
+            resources.GetString("FiletypeBox.Items5"),
+            resources.GetString("FiletypeBox.Items6"),
+            resources.GetString("FiletypeBox.Items7"),
+            resources.GetString("FiletypeBox.Items8"),
+            resources.GetString("FiletypeBox.Items9"),
+            resources.GetString("FiletypeBox.Items10"),
+            resources.GetString("FiletypeBox.Items11"),
+            resources.GetString("FiletypeBox.Items12")});
+            resources.ApplyResources(this.FiletypeBox, "FiletypeBox");
             this.FiletypeBox.Name = "FiletypeBox";
-            this.FiletypeBox.Size = new System.Drawing.Size(502, 21);
-            this.FiletypeBox.TabIndex = 4;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 105);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "File Type:";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 500);
+            resources.ApplyResources(this.progressBar1, "progressBar1");
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(571, 23);
-            this.progressBar1.TabIndex = 7;
             // 
             // DownloadGrid
             // 
@@ -179,94 +163,67 @@
             this.Number,
             this.Title,
             this.VideoID});
-            this.DownloadGrid.Location = new System.Drawing.Point(12, 141);
+            resources.ApplyResources(this.DownloadGrid, "DownloadGrid");
             this.DownloadGrid.MultiSelect = false;
             this.DownloadGrid.Name = "DownloadGrid";
             this.DownloadGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DownloadGrid.Size = new System.Drawing.Size(571, 231);
-            this.DownloadGrid.TabIndex = 8;
             this.DownloadGrid.SelectionChanged += new System.EventHandler(this.DownloadGrid_SelectionChanged);
             // 
             // Number
             // 
-            this.Number.HeaderText = "#";
+            resources.ApplyResources(this.Number, "Number");
             this.Number.Name = "Number";
-            this.Number.Width = 20;
             // 
             // Title
             // 
-            this.Title.HeaderText = "Title";
+            resources.ApplyResources(this.Title, "Title");
             this.Title.Name = "Title";
-            this.Title.Width = 305;
             // 
             // VideoID
             // 
-            this.VideoID.HeaderText = "VideoID";
+            resources.ApplyResources(this.VideoID, "VideoID");
             this.VideoID.Name = "VideoID";
-            this.VideoID.Width = 200;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(480, 47);
+            resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Select Folder";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 49);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Destination:";
             // 
             // destinationBox
             // 
-            this.destinationBox.Location = new System.Drawing.Point(81, 49);
+            resources.ApplyResources(this.destinationBox, "destinationBox");
             this.destinationBox.Name = "destinationBox";
-            this.destinationBox.Size = new System.Drawing.Size(393, 20);
-            this.destinationBox.TabIndex = 11;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 79);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "File Name:";
             // 
             // filenameBox
             // 
-            this.filenameBox.Location = new System.Drawing.Point(81, 75);
+            resources.ApplyResources(this.filenameBox, "filenameBox");
             this.filenameBox.Name = "filenameBox";
-            this.filenameBox.Size = new System.Drawing.Size(393, 20);
-            this.filenameBox.TabIndex = 13;
             // 
             // useTitleCheckbox
             // 
-            this.useTitleCheckbox.AutoSize = true;
+            resources.ApplyResources(this.useTitleCheckbox, "useTitleCheckbox");
             this.useTitleCheckbox.Checked = true;
             this.useTitleCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.useTitleCheckbox.Location = new System.Drawing.Point(480, 78);
             this.useTitleCheckbox.Name = "useTitleCheckbox";
-            this.useTitleCheckbox.Size = new System.Drawing.Size(98, 17);
-            this.useTitleCheckbox.TabIndex = 14;
-            this.useTitleCheckbox.Text = "Use Video Title";
             this.useTitleCheckbox.UseVisualStyleBackColor = true;
             this.useTitleCheckbox.CheckedChanged += new System.EventHandler(this.useTitleCheckbox_CheckedChanged);
             // 
             // queueButton
             // 
-            this.queueButton.Location = new System.Drawing.Point(12, 529);
+            resources.ApplyResources(this.queueButton, "queueButton");
             this.queueButton.Name = "queueButton";
-            this.queueButton.Size = new System.Drawing.Size(147, 23);
-            this.queueButton.TabIndex = 16;
-            this.queueButton.Text = "Add to Queue";
             this.queueButton.UseVisualStyleBackColor = true;
             this.queueButton.Click += new System.EventHandler(this.queueButton_Click);
             // 
@@ -276,95 +233,102 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(188, 529);
+            resources.ApplyResources(this.deleteButton, "deleteButton");
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(137, 23);
-            this.deleteButton.TabIndex = 17;
-            this.deleteButton.Text = "Delete from Queue";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // ThumbnailBox
             // 
-            this.ThumbnailBox.Location = new System.Drawing.Point(15, 392);
+            resources.ApplyResources(this.ThumbnailBox, "ThumbnailBox");
             this.ThumbnailBox.Name = "ThumbnailBox";
-            this.ThumbnailBox.Size = new System.Drawing.Size(148, 102);
-            this.ThumbnailBox.TabIndex = 18;
             this.ThumbnailBox.TabStop = false;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(169, 392);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Video Title:";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(169, 417);
+            resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 13);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Video ID:";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(169, 442);
+            resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 13);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "Filetype:";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(169, 469);
+            resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(102, 13);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "Download Location:";
             // 
             // TitleCard
             // 
-            this.TitleCard.AutoSize = true;
-            this.TitleCard.Location = new System.Drawing.Point(277, 392);
+            resources.ApplyResources(this.TitleCard, "TitleCard");
             this.TitleCard.Name = "TitleCard";
-            this.TitleCard.Size = new System.Drawing.Size(0, 13);
-            this.TitleCard.TabIndex = 23;
             // 
             // IDCard
             // 
-            this.IDCard.AutoSize = true;
-            this.IDCard.Location = new System.Drawing.Point(277, 417);
+            resources.ApplyResources(this.IDCard, "IDCard");
             this.IDCard.Name = "IDCard";
-            this.IDCard.Size = new System.Drawing.Size(0, 13);
-            this.IDCard.TabIndex = 24;
             // 
             // FiletypeCard
             // 
-            this.FiletypeCard.AutoSize = true;
-            this.FiletypeCard.Location = new System.Drawing.Point(277, 442);
+            resources.ApplyResources(this.FiletypeCard, "FiletypeCard");
             this.FiletypeCard.Name = "FiletypeCard";
-            this.FiletypeCard.Size = new System.Drawing.Size(0, 13);
-            this.FiletypeCard.TabIndex = 25;
             // 
             // PathCard
             // 
-            this.PathCard.AutoSize = true;
-            this.PathCard.Location = new System.Drawing.Point(277, 469);
+            resources.ApplyResources(this.PathCard, "PathCard");
             this.PathCard.Name = "PathCard";
-            this.PathCard.Size = new System.Drawing.Size(0, 13);
-            this.PathCard.TabIndex = 26;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.menuStrip1.Name = "menuStrip1";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.languageToolStripMenuItem,
+            this.displayDownloadStatusTextToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
+            // 
+            // languageToolStripMenuItem
+            // 
+            this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.portuguêsBrasileiroToolStripMenuItem,
+            this.englishToolStripMenuItem});
+            this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
+            // 
+            // portuguêsBrasileiroToolStripMenuItem
+            // 
+            this.portuguêsBrasileiroToolStripMenuItem.Name = "portuguêsBrasileiroToolStripMenuItem";
+            resources.ApplyResources(this.portuguêsBrasileiroToolStripMenuItem, "portuguêsBrasileiroToolStripMenuItem");
+            this.portuguêsBrasileiroToolStripMenuItem.Click += new System.EventHandler(this.portuguêsBrasileiroToolStripMenuItem_Click);
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            // 
+            // displayDownloadStatusTextToolStripMenuItem
+            // 
+            this.displayDownloadStatusTextToolStripMenuItem.Name = "displayDownloadStatusTextToolStripMenuItem";
+            resources.ApplyResources(this.displayDownloadStatusTextToolStripMenuItem, "displayDownloadStatusTextToolStripMenuItem");
+            this.displayDownloadStatusTextToolStripMenuItem.Click += new System.EventHandler(this.displayDownloadStatusTextToolStripMenuItem_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 587);
             this.Controls.Add(this.PathCard);
             this.Controls.Add(this.FiletypeCard);
             this.Controls.Add(this.IDCard);
@@ -387,19 +351,20 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.FiletypeBox);
             this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.DownloadButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UrlBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
-            this.RightToLeftLayout = true;
-            this.Text = "Youtube-DL GUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailBox)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,9 +381,6 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.DataGridView DownloadGrid;
         private System.Windows.Forms.ToolStripStatusLabel DownloadStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VideoID;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox destinationBox;
@@ -441,6 +403,15 @@
         private System.Windows.Forms.Label IDCard;
         private System.Windows.Forms.Label FiletypeCard;
         private System.Windows.Forms.Label PathCard;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VideoID;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem portuguêsBrasileiroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayDownloadStatusTextToolStripMenuItem;
     }
 }
 

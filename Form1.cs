@@ -11,12 +11,13 @@ using System.Net;
 using youtube_dl.Properties;
 using System.Threading;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace youtube_dl
 {
     public partial class Form1 : Form
     {
-        public const string apiKey = "key"; // Temporary, will fix once safer solution becomes available
+        private const string apiKey = "key"; // Temporary, will fix once safer solution becomes available
         List<Video> downloadQueue = new List<Video>();
 
         static WaitHandle[] waitHandles = new WaitHandle[]
@@ -49,7 +50,7 @@ namespace youtube_dl
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            displayDownloadStatusTextToolStripMenuItem.Checked = Settings.Default.DisplayStatus;
             FiletypeBox.SelectedIndex = Settings.Default.IndexFileType;
             destinationBox.Text = Settings.Default.Destination == "" ? Application.StartupPath : Settings.Default.Destination;
         }
@@ -67,6 +68,21 @@ namespace youtube_dl
 
         };
 
+        private void SetCulture(string culture)
+        {
+            CultureInfo culture_info = new CultureInfo(culture);
+            
+            ComponentResourceManager component_resource_manager = new ComponentResourceManager(this.GetType());
+            
+            component_resource_manager.ApplyResources(
+                this, "$this", culture_info);
+            
+            foreach (Control ctl in this.Controls)
+            {
+                component_resource_manager.ApplyResources(
+                    ctl, ctl.Name, culture_info);
+            }
+        }
 
         private void downloadPlaylist(string ID, string filename, string path, int filetype)
         {
@@ -211,6 +227,15 @@ namespace youtube_dl
             UrlBox.Clear();
         }
 
+        private void clearCard()
+        {
+            ThumbnailBox.Image = null;
+            TitleCard.Text = "";
+            IDCard.Text = "";
+            FiletypeCard.Text = "";
+            PathCard.Text = "";
+        }
+
         private void downloadVideoWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BeginInvoke((Action)(() =>
@@ -263,7 +288,7 @@ namespace youtube_dl
 
                         BeginInvoke((Action)(() =>
                         {
-                            if(output != "null")
+                            if(output != "null" && displayDownloadStatusTextToolStripMenuItem.Checked)
                             {
                                 statusLabel.Text = output;
                             }
@@ -279,12 +304,13 @@ namespace youtube_dl
                     if(!completedDownload)
                     {
                         MessageBox.Show("An error has occured! Try using other file type or the default one this time.", "Error!");
-                        statusLabel.Text = "";
                     }
 
                     downloadSpeedLabel.Text = "0.0 MiB/s";
+                    statusLabel.Text = "";
                     BeginInvoke((Action)(() =>
                     {
+                        clearCard();
                         progressBar1.Value = 0;
                         DownloadGrid.Rows.RemoveAt(0);
                     }));
@@ -327,6 +353,21 @@ namespace youtube_dl
                     PathCard.Text = video.path;
                 }
             }
+        }
+
+        private void portuguêsBrasileiroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetCulture("pt-BR");
+        }
+
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetCulture("en-US");
+        }
+
+        private void displayDownloadStatusTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            displayDownloadStatusTextToolStripMenuItem.Checked = !displayDownloadStatusTextToolStripMenuItem.Checked;
         }
     }
 }
