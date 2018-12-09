@@ -32,7 +32,7 @@
             this.UrlBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DownloadButton = new System.Windows.Forms.Button();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.DownloadStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.downloadSpeedLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -69,7 +69,7 @@
             this.portuguêsBrasileiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayDownloadStatusTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip.SuspendLayout();
+            this.StatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -92,38 +92,39 @@
             this.DownloadButton.UseVisualStyleBackColor = true;
             this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
             // 
-            // statusStrip
+            // StatusStrip
             // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.StatusStrip, "StatusStrip");
+            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DownloadStatus,
             this.downloadSpeedLabel,
             this.toolStripStatusLabel1,
             this.statusLabel});
-            resources.ApplyResources(this.statusStrip, "statusStrip");
-            this.statusStrip.Name = "statusStrip";
+            this.StatusStrip.Name = "StatusStrip";
             // 
             // DownloadStatus
             // 
-            this.DownloadStatus.Name = "DownloadStatus";
             resources.ApplyResources(this.DownloadStatus, "DownloadStatus");
+            this.DownloadStatus.Name = "DownloadStatus";
             // 
             // downloadSpeedLabel
             // 
-            this.downloadSpeedLabel.Name = "downloadSpeedLabel";
             resources.ApplyResources(this.downloadSpeedLabel, "downloadSpeedLabel");
+            this.downloadSpeedLabel.Name = "downloadSpeedLabel";
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             // 
             // statusLabel
             // 
-            this.statusLabel.Name = "statusLabel";
             resources.ApplyResources(this.statusLabel, "statusLabel");
+            this.statusLabel.Name = "statusLabel";
             // 
             // FiletypeBox
             // 
+            resources.ApplyResources(this.FiletypeBox, "FiletypeBox");
             this.FiletypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FiletypeBox.FormattingEnabled = true;
             this.FiletypeBox.Items.AddRange(new object[] {
@@ -140,7 +141,6 @@
             resources.GetString("FiletypeBox.Items10"),
             resources.GetString("FiletypeBox.Items11"),
             resources.GetString("FiletypeBox.Items12")});
-            resources.ApplyResources(this.FiletypeBox, "FiletypeBox");
             this.FiletypeBox.Name = "FiletypeBox";
             // 
             // label2
@@ -155,6 +155,7 @@
             // 
             // DownloadGrid
             // 
+            resources.ApplyResources(this.DownloadGrid, "DownloadGrid");
             this.DownloadGrid.AllowUserToAddRows = false;
             this.DownloadGrid.AllowUserToDeleteRows = false;
             this.DownloadGrid.AllowUserToOrderColumns = true;
@@ -163,7 +164,6 @@
             this.Number,
             this.Title,
             this.VideoID});
-            resources.ApplyResources(this.DownloadGrid, "DownloadGrid");
             this.DownloadGrid.MultiSelect = false;
             this.DownloadGrid.Name = "DownloadGrid";
             this.DownloadGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -189,7 +189,7 @@
             resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // label3
             // 
@@ -218,25 +218,29 @@
             this.useTitleCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.useTitleCheckbox.Name = "useTitleCheckbox";
             this.useTitleCheckbox.UseVisualStyleBackColor = true;
-            this.useTitleCheckbox.CheckedChanged += new System.EventHandler(this.useTitleCheckbox_CheckedChanged);
+            this.useTitleCheckbox.CheckedChanged += new System.EventHandler(this.UseTitleCheckbox_CheckedChanged);
+            // 
+            // folderBrowserDialog
+            // 
+            resources.ApplyResources(this.folderBrowserDialog, "folderBrowserDialog");
             // 
             // queueButton
             // 
             resources.ApplyResources(this.queueButton, "queueButton");
             this.queueButton.Name = "queueButton";
             this.queueButton.UseVisualStyleBackColor = true;
-            this.queueButton.Click += new System.EventHandler(this.queueButton_Click);
+            this.queueButton.Click += new System.EventHandler(this.QueueButton_Click);
             // 
             // downloadVideoWorker
             // 
-            this.downloadVideoWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.downloadVideoWorker_DoWork);
+            this.downloadVideoWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DownloadVideoWorker_DoWork);
             // 
             // deleteButton
             // 
             resources.ApplyResources(this.deleteButton, "deleteButton");
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // ThumbnailBox
             // 
@@ -286,44 +290,44 @@
             // 
             // menuStrip1
             // 
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem});
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // settingsToolStripMenuItem
             // 
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem,
             this.displayDownloadStatusTextToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             // 
             // languageToolStripMenuItem
             // 
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.portuguêsBrasileiroToolStripMenuItem,
             this.englishToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
-            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             // 
             // portuguêsBrasileiroToolStripMenuItem
             // 
-            this.portuguêsBrasileiroToolStripMenuItem.Name = "portuguêsBrasileiroToolStripMenuItem";
             resources.ApplyResources(this.portuguêsBrasileiroToolStripMenuItem, "portuguêsBrasileiroToolStripMenuItem");
-            this.portuguêsBrasileiroToolStripMenuItem.Click += new System.EventHandler(this.portuguêsBrasileiroToolStripMenuItem_Click);
+            this.portuguêsBrasileiroToolStripMenuItem.Name = "portuguêsBrasileiroToolStripMenuItem";
+            this.portuguêsBrasileiroToolStripMenuItem.Click += new System.EventHandler(this.PortuguêsBrasileiroToolStripMenuItem_Click);
             // 
             // englishToolStripMenuItem
             // 
-            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
             resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
-            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.EnglishToolStripMenuItem_Click);
             // 
             // displayDownloadStatusTextToolStripMenuItem
             // 
-            this.displayDownloadStatusTextToolStripMenuItem.Name = "displayDownloadStatusTextToolStripMenuItem";
             resources.ApplyResources(this.displayDownloadStatusTextToolStripMenuItem, "displayDownloadStatusTextToolStripMenuItem");
-            this.displayDownloadStatusTextToolStripMenuItem.Click += new System.EventHandler(this.displayDownloadStatusTextToolStripMenuItem_Click);
+            this.displayDownloadStatusTextToolStripMenuItem.Name = "displayDownloadStatusTextToolStripMenuItem";
+            this.displayDownloadStatusTextToolStripMenuItem.Click += new System.EventHandler(this.DisplayDownloadStatusTextToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -350,7 +354,7 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.FiletypeBox);
-            this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.StatusStrip);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.DownloadButton);
             this.Controls.Add(this.label1);
@@ -359,8 +363,8 @@
             this.Name = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
+            this.StatusStrip.ResumeLayout(false);
+            this.StatusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -375,7 +379,7 @@
         private System.Windows.Forms.TextBox UrlBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button DownloadButton;
-        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.StatusStrip StatusStrip;
         private System.Windows.Forms.ComboBox FiletypeBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ProgressBar progressBar1;

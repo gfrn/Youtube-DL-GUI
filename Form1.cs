@@ -50,9 +50,25 @@ namespace youtube_dl
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (Settings.Default.Language != "")
+            {
+                SetCulture(Settings.Default.Language);
+            }
+
             displayDownloadStatusTextToolStripMenuItem.Checked = Settings.Default.DisplayStatus;
             FiletypeBox.SelectedIndex = Settings.Default.IndexFileType;
             destinationBox.Text = Settings.Default.Destination == "" ? Application.StartupPath : Settings.Default.Destination;
+
+            CultureInfo currentCulture = Thread.CurrentThread.CurrentUICulture;
+
+            switch (currentCulture.Name) {
+            case "pt-BR":
+                    portuguêsBrasileiroToolStripMenuItem.Checked = true;
+                break;
+            case "en-US":
+                    englishToolStripMenuItem.Checked = true;
+                    break;
+            }
         }
         
         Process ytbDL = new Process
@@ -70,21 +86,12 @@ namespace youtube_dl
 
         private void SetCulture(string culture)
         {
-            CultureInfo culture_info = new CultureInfo(culture);
-            
-            ComponentResourceManager component_resource_manager = new ComponentResourceManager(this.GetType());
-            
-            component_resource_manager.ApplyResources(
-                this, "$this", culture_info);
-            
-            foreach (Control ctl in this.Controls)
-            {
-                component_resource_manager.ApplyResources(
-                    ctl, ctl.Name, culture_info);
-            }
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
+            this.Controls.Clear();
+            this.InitializeComponent();
         }
 
-        private void downloadPlaylist(string ID, string filename, string path, int filetype)
+        private void DownloadPlaylist(string ID, string filename, string path, int filetype)
         {
             var nextPageToken = "";
             while (nextPageToken != null)
@@ -123,7 +130,7 @@ namespace youtube_dl
             DownloadButton.Enabled = false;
         }
 
-        private void useTitleCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void UseTitleCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             filenameBox.ReadOnly = useTitleCheckbox.Checked;
         }
@@ -132,11 +139,12 @@ namespace youtube_dl
         {
             Settings.Default.Destination = destinationBox.Text;
             Settings.Default.IndexFileType = FiletypeBox.SelectedIndex;
+            Settings.Default.DisplayStatus = displayDownloadStatusTextToolStripMenuItem.Checked;
 
             Settings.Default.Save(); // Saves user config
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             folderBrowserDialog.ShowDialog();
             if (Directory.Exists(folderBrowserDialog.SelectedPath))
@@ -146,7 +154,7 @@ namespace youtube_dl
         }
 
         // Adds selected video to download queue
-        private void queueButton_Click(object sender, EventArgs e)
+        private void QueueButton_Click(object sender, EventArgs e)
         {
             string ID = UrlBox.Text;
             string filename = useTitleCheckbox.Checked ? "/%(title)s.%(ext)s" : "/" + filenameBox.Text;
@@ -183,14 +191,17 @@ namespace youtube_dl
                     }
 
                     DownloadButton.Enabled = true;
-
+                    deleteButton.Enabled = true;
                     break;
                 case 72:
-                    Thread downloadPlaylistTask = new Thread(() => downloadPlaylist(ID, filename, path, filetype));
+                    Thread downloadPlaylistTask = new Thread(() => DownloadPlaylist(ID, filename, path, filetype));
                     downloadPlaylistTask.Start();
 
                     DownloadButton.Enabled = true;
-
+                    deleteButton.Enabled = true;
+                    break;
+                case 0:
+                    MessageBox.Show("Don't forget to add the URL!");
                     break;
                 default:
                     string HTML = "";
@@ -203,7 +214,7 @@ namespace youtube_dl
                         }
                         catch(Exception ex)
                         {
-                            MessageBox.Show("Not able to gather video title");
+                            MessageBox.Show("Not able to gather page title!");
                         }
                     }
 
@@ -220,14 +231,14 @@ namespace youtube_dl
                     DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
 
                     DownloadButton.Enabled = true;
-
+                    deleteButton.Enabled = true;
                     break;
             }
 
             UrlBox.Clear();
         }
 
-        private void clearCard()
+        private void ClearCard()
         {
             ThumbnailBox.Image = null;
             TitleCard.Text = "";
@@ -236,7 +247,7 @@ namespace youtube_dl
             PathCard.Text = "";
         }
 
-        private void downloadVideoWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void DownloadVideoWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BeginInvoke((Action)(() =>
             {
@@ -310,12 +321,12 @@ namespace youtube_dl
                     statusLabel.Text = "";
                     BeginInvoke((Action)(() =>
                     {
-                        clearCard();
+                        ClearCard();
                         progressBar1.Value = 0;
                         DownloadGrid.Rows.RemoveAt(0);
                     }));
 
-                    DownloadStatus.Text = "No Download";
+                    DownloadStatus.Text = Properties.strings.NoDownload;
 
                     arguments = "/c youtube-dl ";
                 }
@@ -329,7 +340,7 @@ namespace youtube_dl
             }));
         }
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = DownloadGrid.SelectedRows[0];
 
@@ -355,17 +366,19 @@ namespace youtube_dl
             }
         }
 
-        private void portuguêsBrasileiroToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PortuguêsBrasileiroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetCulture("pt-BR");
+            Settings.Default.Language = "pt-BR";
+            MessageBox.Show("Para efetivar esta mudança, feche e abra o programa de novo");
         }
 
-        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EnglishToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetCulture("en-US");
+            Settings.Default.Language = "en-US";
+            MessageBox.Show("In order to apply these changes, you'll need to restart the program");
         }
 
-        private void displayDownloadStatusTextToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DisplayDownloadStatusTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
             displayDownloadStatusTextToolStripMenuItem.Checked = !displayDownloadStatusTextToolStripMenuItem.Checked;
         }
