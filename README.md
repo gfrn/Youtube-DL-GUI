@@ -11,7 +11,7 @@ Was pissed at online downloaders and wanted to make Youtube-DL as easy as possib
 - [x] Add PT-BR translation
 
 ## How it looks so far
-![Example form](https://i.imgur.com/ZlBkvHb.png
+![Example form](https://i.imgur.com/ZlBkvHb.png)
 
 ## Other notes
 Please don't hesitate to notify me of any bugs or features you may feel that are missing. Your input is very valuable to me!
