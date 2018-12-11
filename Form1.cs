@@ -153,14 +153,8 @@ namespace youtube_dl
             }
         }
 
-        // Adds selected video to download queue
-        private void QueueButton_Click(object sender, EventArgs e)
+        private void AddVideo(string ID, string filename, string path, int filetype)
         {
-            string ID = UrlBox.Text;
-            string filename = useTitleCheckbox.Checked ? "/%(title)s.%(ext)s" : "/" + filenameBox.Text;
-            string path = destinationBox.Text;
-            int filetype = FiletypeBox.SelectedIndex;
-
             switch (ID.Length)
             {
                 case 43:
@@ -176,7 +170,7 @@ namespace youtube_dl
                     }
 
                     foreach (var videoItem in videoListResponse.Items)
-                    { 
+                    {
                         Video video = new Video();
                         video.ID = ID;
                         video.name = filename;
@@ -212,7 +206,7 @@ namespace youtube_dl
                         {
                             HTML = client.DownloadString(UrlBox.Text);
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             MessageBox.Show("Not able to gather page title!");
                         }
@@ -236,6 +230,17 @@ namespace youtube_dl
             }
 
             UrlBox.Clear();
+        }
+
+        // Adds selected video to download queue
+        private void QueueButton_Click(object sender, EventArgs e)
+        {
+            string ID = UrlBox.Text;
+            string filename = useTitleCheckbox.Checked ? "/%(title)s.%(ext)s" : "/" + filenameBox.Text;
+            string path = destinationBox.Text;
+            int filetype = FiletypeBox.SelectedIndex;
+
+            AddVideo(ID, filename, path, filetype);
         }
 
         private void ClearCard()
@@ -381,6 +386,20 @@ namespace youtube_dl
         private void DisplayDownloadStatusTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
             displayDownloadStatusTextToolStripMenuItem.Checked = !displayDownloadStatusTextToolStripMenuItem.Checked;
+        }
+
+        private void AddFromTextButton_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            string[] videos = File.ReadAllLines(openFileDialog1.FileName);
+            string filename = useTitleCheckbox.Checked ? "/%(title)s.%(ext)s" : "/" + filenameBox.Text;
+            string path = destinationBox.Text;
+            int filetype = FiletypeBox.SelectedIndex;
+
+            foreach (string video in videos)
+            {
+                AddVideo(video, filename, path, filetype);
+            }
         }
     }
 }

@@ -237,11 +237,11 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Destino do Download:</value>
   </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 20</value>
+  <data name="portuguêsBrasileiroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Configurações</value>
+  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>275, 22</value>
@@ -249,16 +249,22 @@
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>Idioma</value>
   </data>
-  <data name="portuguêsBrasileiroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
   <data name="displayDownloadStatusTextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>275, 22</value>
   </data>
   <data name="displayDownloadStatusTextToolStripMenuItem.Text" xml:space="preserve">
     <value>Mostrar Status do Download em Texto</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="AddFromTextButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 23</value>
+  </data>
+  <data name="AddFromTextButton.Text" xml:space="preserve">
+    <value>&amp;Importar de Arquivo de Texto</value>
   </data>
 </root>

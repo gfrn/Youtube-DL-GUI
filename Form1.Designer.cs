@@ -69,6 +69,8 @@
             this.portuguêsBrasileiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayDownloadStatusTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddFromTextButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.StatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailBox)).BeginInit();
@@ -329,10 +331,23 @@
             this.displayDownloadStatusTextToolStripMenuItem.Name = "displayDownloadStatusTextToolStripMenuItem";
             this.displayDownloadStatusTextToolStripMenuItem.Click += new System.EventHandler(this.DisplayDownloadStatusTextToolStripMenuItem_Click);
             // 
+            // AddFromTextButton
+            // 
+            resources.ApplyResources(this.AddFromTextButton, "AddFromTextButton");
+            this.AddFromTextButton.Name = "AddFromTextButton";
+            this.AddFromTextButton.UseVisualStyleBackColor = true;
+            this.AddFromTextButton.Click += new System.EventHandler(this.AddFromTextButton_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog";
+            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.AddFromTextButton);
             this.Controls.Add(this.PathCard);
             this.Controls.Add(this.FiletypeCard);
             this.Controls.Add(this.IDCard);
@@ -416,6 +431,8 @@
         private System.Windows.Forms.ToolStripMenuItem portuguêsBrasileiroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem displayDownloadStatusTextToolStripMenuItem;
+        private System.Windows.Forms.Button AddFromTextButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
