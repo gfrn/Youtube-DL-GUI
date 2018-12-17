@@ -19,53 +19,30 @@ namespace youtube_dl
     {
         private const string apiKey = "key"; // Temporary, will fix once safer solution becomes available
         List<Video> downloadQueue = new List<Video>();
-        YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = apiKey });
 
         static WaitHandle[] waitHandles = new WaitHandle[]
         {
             new AutoResetEvent(false)
         };
 
-        public string VerboseStatus
-        {
-            get { return statusLabel.Text; }
-            set { statusLabel.Text = value; }
-        }
+        YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = apiKey });
 
-        public string SimplifiedStatus
+        // Stores filetype IDs for Youtube-DL.
+        public Dictionary<int, string> fileTypes = new Dictionary<int, string>()
         {
-            get { return DownloadStatus.Text; }
-            set { DownloadStatus.Text = value; }
-        }
-
-        public int DownloadProgress
-        {
-            get { return progressBar1.Value; }
-            set { progressBar1.Value = value; }
-        }
-
-        public string DownloadSpeed
-        {
-            get { return downloadSpeedLabel.Text; }
-            set { downloadSpeedLabel.Text = value; }
-        }
-
-        public bool DisplayVerbose
-        {
-            get { return displayDownloadStatusTextToolStripMenuItem.Checked; }
-        }
-
-        public DataGridView DownloadGridView
-        {
-            get { return DownloadGrid; }
-            set { DownloadGrid = DownloadGridView; }
-        }
-
-        public string DownloadButtonText
-        {
-            get { return DownloadButton.Text; }
-            set { DownloadButton.Text = value; }
-        }
+            {0, "140"},
+            {1, "160"},
+            {2, "133"},
+            {3, "134"},
+            {4, "135"},
+            {5, "136"},
+            {6, "17"},
+            {7, "36"},
+            {8, "5"},
+            {9, "43"},
+            {10, "18"},
+            {11, "22"}
+        };
 
         public Form1()
         {
@@ -85,16 +62,27 @@ namespace youtube_dl
             CultureInfo currentCulture = Thread.CurrentThread.CurrentUICulture;
 
             switch (currentCulture.Name) {
-                case "pt-BR":
+            case "pt-BR":
                     portuguêsBrasileiroToolStripMenuItem.Checked = true;
-                    break;
-                case "en-US":
+                break;
+            case "en-US":
                     englishToolStripMenuItem.Checked = true;
                     break;
             }
-
-            CheckForUpdates();
         }
+        
+        Process ytbDL = new Process
+        {
+            StartInfo =
+        {
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            CreateNoWindow = true,
+            StandardOutputEncoding = Encoding.UTF8,
+            FileName = "cmd.exe"
+        }
+
+        };
 
         private void SetCulture(string culture)
         {
@@ -103,6 +91,7 @@ namespace youtube_dl
             this.InitializeComponent();
         }
 
+<<<<<<< HEAD
         private void CheckForUpdates()
         {
             string HTML = "";
@@ -139,6 +128,8 @@ namespace youtube_dl
                     DownloadStatus.Text = strings.NoDownload;      
         }
 
+=======
+>>>>>>> parent of 18d6c4a... Added download cancellation
         private void DownloadPlaylist(string ID, string filename, string path, int filetype)
         {
             var nextPageToken = "";
@@ -153,7 +144,7 @@ namespace youtube_dl
 
                 foreach (var playlistItem in playlistItemsListResponse.Items)
                 {
-                    Video videoFromPlaylist = new Video(this);
+                    Video videoFromPlaylist = new Video();
                     videoFromPlaylist.ID = "https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId;
                     videoFromPlaylist.name = filename;
                     videoFromPlaylist.path = path;
@@ -173,16 +164,9 @@ namespace youtube_dl
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
-            if (DownloadButton.Text == strings.Cancel)
-            {
-                Video video = new Video(this);
-                video.AbortDownloads();
-            }
-            else
-            {
-                downloadVideoWorker.RunWorkerAsync();
-                DownloadButton.Text = strings.Cancel;
-            }
+            downloadVideoWorker.RunWorkerAsync();
+
+            DownloadButton.Enabled = false;
         }
 
         private void UseTitleCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -220,13 +204,13 @@ namespace youtube_dl
 
                     if (videoListResponse.Items.Count < 1)
                     {
-                        MessageBox.Show(strings.InvalidVideo, strings.Error);
+                        MessageBox.Show("Invalid Video!");
                         break;
                     }
 
                     foreach (var videoItem in videoListResponse.Items)
                     {
-                        Video video = new Video(this);
+                        Video video = new Video();
                         video.ID = ID;
                         video.name = filename;
                         video.path = path;
@@ -250,7 +234,7 @@ namespace youtube_dl
                     deleteButton.Enabled = true;
                     break;
                 case 0:
-                    MessageBox.Show(strings.InvalidURL, strings.Error);
+                    MessageBox.Show("Don't forget to add the URL!");
                     break;
                 default:
                     string HTML = "";
@@ -263,11 +247,11 @@ namespace youtube_dl
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(strings.UnableGatherTitle, strings.Error);
+                            MessageBox.Show("Not able to gather page title!");
                         }
                     }
 
-                    Video videoNonYoutube = new Video(this);
+                    Video videoNonYoutube = new Video();
                     videoNonYoutube.ID = ID;
                     videoNonYoutube.name = filename;
                     videoNonYoutube.path = path;
@@ -298,7 +282,7 @@ namespace youtube_dl
             AddVideo(ID, filename, path, filetype);
         }
 
-        public void ClearCard()
+        private void ClearCard()
         {
             ThumbnailBox.Image = null;
             TitleCard.Text = "";
@@ -314,26 +298,94 @@ namespace youtube_dl
                 queueButton.Enabled = false;
                 deleteButton.Enabled = false;
             }));
-            
+
+            string arguments = "/c youtube-dl ";
             foreach (var video in downloadQueue)
             {
-                video.DownloadVideo();
+                string output = "";
+                bool completedDownload = false;
+                string progress = "";
+
+                if (!Directory.Exists(video.path))
+                {
+                    MessageBox.Show("Invalid path selected! Check if folder exists and try again!","Error!");
+                }
+                else
+                {
+                    arguments += video.filetype == 13  ? "" : "-f " + fileTypes[video.filetype];
+                    arguments += " -o \"" + video.path + video.name + "\"";
+                    arguments += " " + video.ID;
+
+                    ytbDL.StartInfo.Arguments = arguments;
+                    ytbDL.OutputDataReceived += new DataReceivedEventHandler(
+                    (s, f) =>
+                    {
+                        DownloadStatus.Text = "Starting Up...";
+                        output = f.Data ?? "null";
+
+                        if (output.Contains("[download]") && output.Contains("of"))
+                        {
+                            if (output.Contains("at") && output.Contains("MiB") && !output.Contains("Destination"))
+                            {
+                                string downloadSpeed = output.Substring(output.IndexOf("at") + 3, output.IndexOf("ETA") - output.IndexOf("at") - 3);
+                                downloadSpeedLabel.Text = downloadSpeed;
+                                progress = output.Substring(output.LastIndexOf("[download]") + 11, output.LastIndexOf("%") - 11);
+                                progress = progress.Contains(".") ? progress.Substring(0, progress.IndexOf(".")) : progress;
+                            }
+                            DownloadStatus.Text = "Downloading...";
+
+                            BeginInvoke((Action)(() =>
+                            {
+                                progressBar1.Value = progress != "" ? Int16.Parse(progress) : 0;
+                            }));
+                            completedDownload = true;
+                        }
+
+                        BeginInvoke((Action)(() =>
+                        {
+                            if(output != "null" && displayDownloadStatusTextToolStripMenuItem.Checked)
+                            {
+                                statusLabel.Text = output;
+                            }
+                        }));
+                    }
+                    );
+
+                    ytbDL.Start();
+                    ytbDL.BeginOutputReadLine();
+                    ytbDL.WaitForExit();
+                    ytbDL.CancelOutputRead();
+
+                    if(!completedDownload)
+                    {
+                        MessageBox.Show("An error has occured! Try using other file type or the default one this time.", "Error!");
+                    }
+
+                    downloadSpeedLabel.Text = "0.0 MiB/s";
+                    statusLabel.Text = "";
+                    BeginInvoke((Action)(() =>
+                    {
+                        ClearCard();
+                        progressBar1.Value = 0;
+                        DownloadGrid.Rows.RemoveAt(0);
+                    }));
+
+                    DownloadStatus.Text = Properties.strings.NoDownload;
+
+                    arguments = "/c youtube-dl ";
+                }
             }
             downloadQueue.Clear();
 
             BeginInvoke((Action)(() =>
             {
                 queueButton.Enabled = true;
-                
-                DownloadButton.Text = strings.Download;
+                deleteButton.Enabled = true;
             }));
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            Video video = new Video(this);
-            video.DownloadVideo();
-
             DataGridViewRow row = DownloadGrid.SelectedRows[0];
 
             downloadQueue.RemoveAt(row.Index);

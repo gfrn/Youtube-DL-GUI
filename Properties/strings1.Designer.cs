@@ -61,24 +61,6 @@ namespace youtube_dl.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Cancel.
-        /// </summary>
-        internal static string Cancel {
-            get {
-                return ResourceManager.GetString("Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Download.
-        /// </summary>
-        internal static string Download {
-            get {
-                return ResourceManager.GetString("Download", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Downloading....
         /// </summary>
         internal static string Downloading {
@@ -115,15 +97,6 @@ namespace youtube_dl.Properties {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Add a valid URL!.
-        /// </summary>
-        internal static string InvalidURL {
-            get {
-                return ResourceManager.GetString("InvalidURL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Invalid video!.
         /// </summary>
         internal static string InvalidVideo {
@@ -156,24 +129,6 @@ namespace youtube_dl.Properties {
         internal static string UnableGatherTitle {
             get {
                 return ResourceManager.GetString("UnableGatherTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Could not update; program was not given permission to modify files in installation folder.
-        /// </summary>
-        internal static string UnauthorizedAccess {
-            get {
-                return ResourceManager.GetString("UnauthorizedAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Updating youtube-dl....
-        /// </summary>
-        internal static string Updating {
-            get {
-                return ResourceManager.GetString("Updating", resourceCulture);
             }
         }
     }

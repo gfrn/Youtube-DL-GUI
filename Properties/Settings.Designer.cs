@@ -70,17 +70,5 @@ namespace youtube_dl.Properties {
                 this["Language"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2018.12.09")]
-        public string CurrentVersion {
-            get {
-                return ((string)(this["CurrentVersion"]));
-            }
-            set {
-                this["CurrentVersion"] = value;
-            }
-        }
     }
 }

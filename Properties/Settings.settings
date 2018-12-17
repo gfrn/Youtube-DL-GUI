@@ -14,8 +14,5 @@
     <Setting Name="Language" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="CurrentVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2018.12.09</Value>
-    </Setting>
   </Settings>
 </SettingsFile>
