@@ -17,7 +17,7 @@ namespace youtube_dl
 {
     public partial class Form1 : Form
     {
-        private const string apiKey = "AIzaSyDgKpwGxsEpKg02BgxamDG2j6swr7iYsVw"; // Temporary, will fix once safer solution becomes available
+        private const string apiKey = "key"; // Temporary, will fix once safer solution becomes available
         List<Video> downloadQueue = new List<Video>();
         YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = apiKey });
 
@@ -108,36 +108,35 @@ namespace youtube_dl
             string HTML = "";
             string lastVersion = "";
 
-            using(WebClient client = new WebClient())
+            try
             {
-                HTML = client.DownloadString("https://rg3.github.io/youtube-dl/download.html");
-
-                lastVersion = HTML.Substring(HTML.IndexOf("https://yt-dl.org/downloads/") + 28, 10);
-
-                if (lastVersion != Settings.Default.CurrentVersion)
+                using (WebClient client = new WebClient())
                 {
-                    DownloadStatus.Text = strings.Updating;
+                    HTML = client.DownloadString("https://rg3.github.io/youtube-dl/download.html");
 
-                    try
+                    lastVersion = HTML.Substring(HTML.IndexOf("https://yt-dl.org/downloads/") + 28, 10);
+
+                    if (lastVersion != Settings.Default.CurrentVersion)
                     {
+                        DownloadStatus.Text = strings.Updating;
+
+
                         if (File.Exists(Application.StartupPath + @"\youtube-dl.exe"))
                         {
                             File.Delete(Application.StartupPath + @"\youtube-dl.exe");
                         }
                         client.DownloadFile("https://yt-dl.org/downloads/" + lastVersion + @"\youtube-dl.exe", Application.StartupPath);
                     }
-                    catch (UnauthorizedAccessException)
-                    {
-                        MessageBox.Show(strings.UnauthorizedAccess, strings.Error);
-                    }
+                }
+            }
+            catch (WebException)
+            {
+                MessageBox.Show(strings.UnauthorizedAccess, strings.Error);
+            }
 
                     Settings.Default.CurrentVersion = lastVersion;
 
-                    DownloadStatus.Text = strings.NoDownload;
-                }
-                
-            }
-            
+                    DownloadStatus.Text = strings.NoDownload;      
         }
 
         private void DownloadPlaylist(string ID, string filename, string path, int filetype)
