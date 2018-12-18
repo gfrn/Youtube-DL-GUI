@@ -128,31 +128,58 @@
     <value>Nenhum Download</value>
   </data>
   <data name="FiletypeBox.Items" xml:space="preserve">
-    <value>m4a (somente áudio)</value>
+    <value>m4a - 130k (apenas áudio)</value>
   </data>
   <data name="FiletypeBox.Items1" xml:space="preserve">
-    <value>mp4 - 144p (somente vídeo)</value>
+    <value>mp3 (apenas áudio)</value>
   </data>
   <data name="FiletypeBox.Items2" xml:space="preserve">
-    <value>mp4 - 240p (somente vídeo)</value>
+    <value>flac (apenas áudio)</value>
   </data>
   <data name="FiletypeBox.Items3" xml:space="preserve">
-    <value>mp4 - 360p (somente vídeo)</value>
+    <value>mp4 - 144p (apenas vídeo)</value>
   </data>
   <data name="FiletypeBox.Items4" xml:space="preserve">
-    <value>mp4 - 480p (somente vídeo)</value>
+    <value>mp4 - 240p (apenas vídeo)</value>
   </data>
   <data name="FiletypeBox.Items5" xml:space="preserve">
-    <value>mp4 - 720p (somente vídeo)</value>
+    <value>mp4 - 360p (apenas vídeo)</value>
+  </data>
+  <data name="FiletypeBox.Items6" xml:space="preserve">
+    <value>mp4 - 480p (apenas vídeo)</value>
+  </data>
+  <data name="FiletypeBox.Items7" xml:space="preserve">
+    <value>mp4 - 720p (apenas vídeo)</value>
+  </data>
+  <data name="FiletypeBox.Items8" xml:space="preserve">
+    <value>mp4 - 720p (video only)</value>
+  </data>
+  <data name="FiletypeBox.Items9" xml:space="preserve">
+    <value>3gp - 176x144     </value>
   </data>
   <data name="FiletypeBox.Items10" xml:space="preserve">
-    <value>mp4 - 640x360 (vídeo e áudio)</value>
+    <value>3gp - 320x240     </value>
   </data>
   <data name="FiletypeBox.Items11" xml:space="preserve">
-    <value>mp4 -1280x720 (vídeo e áudio)</value>
+    <value>flv - 400x240     </value>
   </data>
   <data name="FiletypeBox.Items12" xml:space="preserve">
-    <value>padrão</value>
+    <value>mp4 - 640x360 (aúdio e vídeo)</value>
+  </data>
+  <data name="FiletypeBox.Items13" xml:space="preserve">
+    <value>mp4 -1280x720 (aúdio e vídeo)</value>
+  </data>
+  <data name="FiletypeBox.Items14" xml:space="preserve">
+    <value>mp4 -1280x720 (video and audio)</value>
+  </data>
+  <data name="FiletypeBox.Items15" xml:space="preserve">
+    <value>flv</value>
+  </data>
+  <data name="FiletypeBox.Items16" xml:space="preserve">
+    <value>avi</value>
+  </data>
+  <data name="FiletypeBox.Items17" xml:space="preserve">
+    <value>default</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 13</value>
@@ -236,12 +263,6 @@
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Destino do Download:</value>
-  </data>
-  <data name="portuguêsBrasileiroToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
   </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>275, 22</value>

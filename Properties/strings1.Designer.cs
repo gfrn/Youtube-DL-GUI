@@ -97,6 +97,15 @@ namespace youtube_dl.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Converting....
+        /// </summary>
+        internal static string FFMpeg {
+            get {
+                return ResourceManager.GetString("FFMpeg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Unable to download video! This filetype may not be available at the moment. Try using the default filetype!.
         /// </summary>
         internal static string InvalidFiletype {

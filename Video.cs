@@ -24,17 +24,22 @@ namespace youtube_dl
         private Dictionary<int, string> fileTypes = new Dictionary<int, string>()
         {
             {0, "140"},
-            {1, "160"},
-            {2, "133"},
-            {3, "134"},
-            {4, "135"},
-            {5, "136"},
-            {6, "17"},
-            {7, "36"},
-            {8, "5"},
-            {9, "43"},
-            {10, "18"},
-            {11, "22"}
+            {1, "mp3"},
+            {2, "flac" },
+            {3, "160"},
+            {4, "133"},
+            {5, "134"},
+            {6, "135"},
+            {7, "136"},
+            {8, "17"},
+            {9, "36"},
+            {10, "5"},
+            {11, "43"},
+            {12, "18"},
+            {13, "22"},
+            {14, "flv"},
+            {15, "avi" },
+            {16, "default" }
         };
 
         Process ytbDL = new Process
@@ -89,7 +94,20 @@ namespace youtube_dl
             }
             else
             {
-                arguments += filetype == 13 ? "" : "-f " + fileTypes[filetype];
+                switch(filetype)
+                {
+                    case 15:
+                        break;
+                    case int n when (n == 1 || n == 2):
+                        arguments += "--prefer-ffmpeg --extract-audio --audio-format " + fileTypes[filetype];
+                        break;
+                    case int n when (n == 14 || n == 15):
+                        arguments += "--recode-video " + fileTypes[filetype];
+                        break;
+                    default:
+                        arguments += "-f " + fileTypes[filetype];
+                        break;
+                }
                 arguments += " -o \"" + path + name + "\"";
                 arguments += " " + ID;
 
@@ -97,7 +115,6 @@ namespace youtube_dl
                 ytbDL.OutputDataReceived += new DataReceivedEventHandler(
                 (s, f) =>
                 {
-                    form.SimplifiedStatus = strings.StartingUp;
                     output = f.Data ?? "null";
 
                     if (output.Contains("[download]") && output.Contains("of"))
@@ -115,6 +132,10 @@ namespace youtube_dl
                             form.DownloadProgress = progress != "" ? Int16.Parse(progress) : 0;
                         }));
                         completedDownload = true;
+                    }
+                    else
+                    {
+                        form.SimplifiedStatus = output.Contains("[ffmpeg]") ? strings.FFMpeg : strings.StartingUp;
                     }
 
                     if (output != "null" && form.DisplayVerbose)

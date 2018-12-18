@@ -129,6 +129,9 @@
   <data name="Error" xml:space="preserve">
     <value>Error!</value>
   </data>
+  <data name="FFMpeg" xml:space="preserve">
+    <value>Converting...</value>
+  </data>
   <data name="InvalidFiletype" xml:space="preserve">
     <value>Unable to download video! This filetype may not be available at the moment. Try using the default filetype!</value>
   </data>

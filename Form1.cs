@@ -131,9 +131,12 @@ namespace youtube_dl
                     }
                 }
             }
-            catch (WebException)
+            catch (Exception ex)
             {
-                MessageBox.Show(strings.UnauthorizedAccess, strings.Error);
+                if (ex is UnauthorizedAccessException || ex is WebException)
+                {
+                    MessageBox.Show(strings.UnauthorizedAccess, strings.Error);
+                }
             }
 
         DownloadStatus.Text = strings.NoDownload;      
@@ -261,7 +264,7 @@ namespace youtube_dl
                         {
                             HTML = client.DownloadString(UrlBox.Text);
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             MessageBox.Show(strings.UnableGatherTitle, strings.Error);
                         }
@@ -331,13 +334,17 @@ namespace youtube_dl
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            Video video = new Video(this);
-            video.DownloadVideo();
-
             DataGridViewRow row = DownloadGrid.SelectedRows[0];
 
             downloadQueue.RemoveAt(row.Index);
             DownloadGrid.Rows.RemoveAt(row.Index);
+
+            if(downloadQueue.Count < 1)
+            {
+                deleteButton.Enabled = false;
+            }
+
+            ClearCard();
         }
 
         private void DownloadGrid_SelectionChanged(object sender, EventArgs e)
