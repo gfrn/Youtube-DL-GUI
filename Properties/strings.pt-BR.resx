@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="Download" xml:space="preserve">
-    <value>Download</value>
+    <value>Baixar</value>
   </data>
   <data name="Downloading" xml:space="preserve">
-    <value>Downloading...</value>
+    <value>Baixando...</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error!</value>
+    <value>Erro!</value>
   </data>
   <data name="InvalidFiletype" xml:space="preserve">
-    <value>Unable to download video! This filetype may not be available at the moment. Try using the default filetype!</value>
+    <value>Não foi possível baixar o vídeo! Este tipo de arquivo pode não estar disponível. Tente selecionar o tipo padrão.</value>
   </data>
   <data name="InvalidPath" xml:space="preserve">
-    <value>Invalid path selected! Select a valid path and try again!</value>
+    <value>Destino do download inválido selecionado! Selecione um caminho existente e tente novamente!</value>
   </data>
   <data name="InvalidURL" xml:space="preserve">
-    <value>Add a valid URL!</value>
+    <value>Adicione um URL válido!</value>
   </data>
   <data name="InvalidVideo" xml:space="preserve">
-    <value>Invalid video!</value>
+    <value>Vídeo inválido/indisponível!</value>
   </data>
   <data name="NoDownload" xml:space="preserve">
-    <value>No Download</value>
+    <value>Nenhum Download</value>
   </data>
   <data name="StartingUp" xml:space="preserve">
-    <value>Starting Up...</value>
+    <value>Começando...</value>
   </data>
   <data name="UnableGatherTitle" xml:space="preserve">
-    <value>Unable to gather video title!</value>
+    <value>Título do vídeo indisponível!</value>
   </data>
   <data name="UnauthorizedAccess" xml:space="preserve">
-    <value>Could not update; program was not given permission to modify files in installation folder</value>
+    <value>Não foi possível realizar a atualização; o programa não possui permissão para modificar arquivos no local de instalação</value>
   </data>
   <data name="Updating" xml:space="preserve">
-    <value>Updating youtube-dl...</value>
+    <value>Atualizando o youtube-dl...</value>
   </data>
 </root>
