@@ -1,0 +1,73 @@
+body {
+	background-image: linear-gradient(to bottom right, #2E4172, #061539);
+}
+
+.center-container {
+  position: relative;
+  height: 100%;
+}
+
+h2 {
+	margin-top: 0px;
+	font-size: 4em;
+	color: white;
+	font-family: Roboto;
+}
+
+p {
+	margin-top: -2em;
+	font-size: 1.2em;
+	color: white;
+	font-family: Roboto;
+}
+
+.download-link a{
+	font-size: 1.6em;
+	color: white;
+	font-family: Roboto;
+	text-decoration: none;
+}
+
+.download-link a:hover {
+	transition: 0.2s;
+	color: #a4a5aa;
+}
+
+i {
+	margin-top: 0.2em;
+	font-size: 2em;
+}
+
+#footer ul{
+	margin: 0;
+	padding: 1.8em;
+}
+
+#footer a
+{
+	color: #bfbdc9;
+	font-family: Roboto;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	transition: 0.2s;
+	color: #a4a5aa;
+}
+
+#footer ul li 
+{ 
+	display: inline;
+}
+
+.center-box {	
+	background-color: rgba(255, 255, 255, 0.3);
+	width: 50em;
+	height: 19em;
+	overflow: auto;
+	margin: auto;
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+	text-align: center;
+	border-radius:7px;
+}
