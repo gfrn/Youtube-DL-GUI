@@ -1,15 +1,12 @@
 # Youtube-DL-GUI
 A Youtube-DL GUI made in C#
 
-## Downloads:
-Download latest version [here](https://diskpro.github.io/Youtube-DL-GUI/)
-
 ## Why?
 Was pissed at online downloaders and wanted to make Youtube-DL as easy as possible to use.
 
-## New features
+## Unimplemented new features
 - [x] Add thumbnail viewer
-- [x] Add support for FFMPEG
+- [ ] Add support for FFMPEG
 - [ ] Add more information to video info previewer
 - [x] Add PT-BR translation
 

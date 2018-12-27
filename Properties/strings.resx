@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AskToUpdateGUI" xml:space="preserve">
+    <value>New version detected. Would you like to update? </value>
+  </data>
+  <data name="AskToUpdateYoutubeDL" xml:space="preserve">
+    <value>New version of youtube-dl detected. Would you like to update? For that, the program needs to restart and the process might take several minutes.</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>Current version: </value>
   </data>
   <data name="Download" xml:space="preserve">
     <value>Download</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="InvalidVideo" xml:space="preserve">
     <value>Invalid video!</value>
+  </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>New version: </value>
   </data>
   <data name="NoDownload" xml:space="preserve">
     <value>No Download</value>

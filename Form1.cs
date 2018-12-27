@@ -12,6 +12,8 @@ using youtube_dl.Properties;
 using System.Threading;
 using System.ComponentModel;
 using System.Globalization;
+using System.Security.Principal;
+using System.Reflection;
 
 namespace youtube_dl
 {
@@ -103,31 +105,78 @@ namespace youtube_dl
             this.InitializeComponent();
         }
 
+        private bool IsRunningAsAdmin()
+        {
+            return (new WindowsPrincipal(WindowsIdentity.GetCurrent()))
+                      .IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
         private void CheckForUpdates()
         {
-            string HTML = "";
-            string lastVersion = "";
+            string guiVersion = Application.ProductVersion;
+            string lastVersionYoutubeDL = "";
+            string lastVersionGUI = "";
 
             try
             {
                 using (WebClient client = new WebClient())
                 {
-                    HTML = client.DownloadString("https://rg3.github.io/youtube-dl/download.html");
+                    lastVersionGUI = client.DownloadString("https://diskpro.github.io/Youtube-DL-GUI/update/LATEST_VERSION");
 
-                    lastVersion = HTML.Substring(HTML.IndexOf("https://yt-dl.org/downloads/") + 28, 10);
-
-                    if (lastVersion != Settings.Default.CurrentVersion)
+                    if (guiVersion != lastVersionGUI)
                     {
-                        DownloadStatus.Text = strings.Updating;
-
-
-                        if (File.Exists(Application.StartupPath + @"\youtube-dl.exe"))
+                        DialogResult userDialogResult = MessageBox.Show(strings.AskToUpdateGUI + "\n" + strings.CurrentVersion + guiVersion + "\n" + strings.NewVersion + lastVersionGUI, "", MessageBoxButtons.YesNo);
+                        if (userDialogResult == DialogResult.Yes)
                         {
-                            File.Delete(Application.StartupPath + @"\youtube-dl.exe");
+                            Process.Start("https://diskpro.github.io/Youtube-DL-GUI/");
                         }
-                        client.DownloadFile("https://yt-dl.org/downloads/" + lastVersion + @"\youtube-dl.exe", Application.StartupPath);
+                    }
+                    else
+                    {
+                        lastVersionYoutubeDL = client.DownloadString("https://rg3.github.io/youtube-dl/update/LATEST_VERSION");
 
-                        Settings.Default.CurrentVersion = lastVersion;
+                        if (lastVersionYoutubeDL != Settings.Default.CurrentVersionYoutubeDL)
+                        {
+                            if (!IsRunningAsAdmin())
+                            {
+                                ProcessStartInfo ytDLGUI = new ProcessStartInfo();
+                                ytDLGUI.UseShellExecute = true;
+                                ytDLGUI.WorkingDirectory = Environment.CurrentDirectory;
+                                ytDLGUI.FileName = Application.ExecutablePath;
+                                ytDLGUI.Verb = "runas";
+
+                                DialogResult userDialogResult = MessageBox.Show(strings.AskToUpdateYoutubeDL + "\n" + strings.CurrentVersion + Settings.Default.CurrentVersionYoutubeDL + "\n" + strings.NewVersion + lastVersionYoutubeDL, "", MessageBoxButtons.YesNo);
+
+                                if (userDialogResult == DialogResult.Yes)
+                                {
+                                    try
+                                    {
+                                        Process.Start(ytDLGUI);
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show(strings.UnauthorizedAccess, strings.Error);
+                                    }
+
+                                    Application.Exit();
+                                }
+                            }
+                            else
+                            {
+                                if (lastVersionYoutubeDL != Settings.Default.CurrentVersionYoutubeDL)
+                                {
+                                    DownloadStatus.Text = strings.Updating;
+
+                                    if (File.Exists(Application.StartupPath + @"\youtube-dl.exe"))
+                                    {
+                                        File.Delete(Application.StartupPath + @"\youtube-dl.exe");
+                                    }
+                                    client.DownloadFile("https://yt-dl.org/downloads/" + lastVersionYoutubeDL + @"\youtube-dl.exe", Application.StartupPath + @"\youtube-dl.exe");
+
+                                    Settings.Default.CurrentVersionYoutubeDL = lastVersionYoutubeDL;
+                                }
+                            }
+                        }
                     }
                 }
             }

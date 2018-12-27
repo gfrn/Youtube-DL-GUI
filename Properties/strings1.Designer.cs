@@ -61,11 +61,38 @@ namespace youtube_dl.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a New version detected. Would you like to update? .
+        /// </summary>
+        internal static string AskToUpdateGUI {
+            get {
+                return ResourceManager.GetString("AskToUpdateGUI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a New version of youtube-dl detected. Would you like to update? For that, the program needs to restart and the process might take several minutes..
+        /// </summary>
+        internal static string AskToUpdateYoutubeDL {
+            get {
+                return ResourceManager.GetString("AskToUpdateYoutubeDL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Cancel.
         /// </summary>
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Current version: .
+        /// </summary>
+        internal static string CurrentVersion {
+            get {
+                return ResourceManager.GetString("CurrentVersion", resourceCulture);
             }
         }
         
@@ -138,6 +165,15 @@ namespace youtube_dl.Properties {
         internal static string InvalidVideo {
             get {
                 return ResourceManager.GetString("InvalidVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a New version: .
+        /// </summary>
+        internal static string NewVersion {
+            get {
+                return ResourceManager.GetString("NewVersion", resourceCulture);
             }
         }
         

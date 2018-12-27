@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AskToUpdateGUI" xml:space="preserve">
+    <value>Nova versão do programa detectada. Gostaria de atualizar?</value>
+  </data>
+  <data name="AskToUpdateYoutubeDL" xml:space="preserve">
+    <value>Nova versão do youtube-dl detectada. Gostaria de atualizar? Para atualizar, o programa precisa ser reiniciado com permissões de administrador. O processo pode demorar alguns minutos.</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
+  </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>Versão atual: </value>
   </data>
   <data name="Download" xml:space="preserve">
     <value>Baixar</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="InvalidVideo" xml:space="preserve">
     <value>Vídeo inválido/indisponível!</value>
+  </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>Nova versão: </value>
   </data>
   <data name="NoDownload" xml:space="preserve">
     <value>Nenhum Download</value>
