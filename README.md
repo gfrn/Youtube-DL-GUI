@@ -6,7 +6,7 @@ Was pissed at online downloaders and wanted to make Youtube-DL as easy as possib
 
 ## Unimplemented new features
 - [x] Add thumbnail viewer
-- [ ] Add support for FFMPEG
+- [x] Add support for FFMPEG
 - [ ] Add more information to video info previewer
 - [x] Add PT-BR translation
 
