@@ -1,4 +1,4 @@
-# Youtube-DL-GUI
+# Youtube-DL GUI
 A Youtube-DL GUI made in C#
 
 ## Why?
