@@ -1,6 +1,8 @@
 # Youtube-DL GUI
 A Youtube-DL GUI made in C#
 
+## [Download](https://diskpro.github.io/Youtube-DL-GUI/)
+
 ## Why?
 Was pissed at online downloaders and wanted to make Youtube-DL as easy as possible to use.
 
