@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.UrlBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,6 +45,9 @@
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VideoID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.destinationBox = new System.Windows.Forms.TextBox();
@@ -53,7 +57,6 @@
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.queueButton = new System.Windows.Forms.Button();
             this.downloadVideoWorker = new System.ComponentModel.BackgroundWorker();
-            this.deleteButton = new System.Windows.Forms.Button();
             this.ThumbnailBox = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -68,11 +71,22 @@
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.portuguêsBrasileiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.displayDownloadStatusTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayVerboseStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alertOnFinishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddFromTextButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.EditIDBox = new System.Windows.Forms.TextBox();
+            this.EditDestinationButton = new System.Windows.Forms.Button();
+            this.EditFiletypeBox = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.EditFilenameBox = new System.Windows.Forms.TextBox();
+            this.FilenameCard = new System.Windows.Forms.Label();
+            this.UseTitleInEditCheckbox = new System.Windows.Forms.CheckBox();
             this.StatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -96,37 +110,36 @@
             // 
             // StatusStrip
             // 
-            resources.ApplyResources(this.StatusStrip, "StatusStrip");
             this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DownloadStatus,
             this.downloadSpeedLabel,
             this.toolStripStatusLabel1,
             this.statusLabel});
+            resources.ApplyResources(this.StatusStrip, "StatusStrip");
             this.StatusStrip.Name = "StatusStrip";
             // 
             // DownloadStatus
             // 
-            resources.ApplyResources(this.DownloadStatus, "DownloadStatus");
             this.DownloadStatus.Name = "DownloadStatus";
+            resources.ApplyResources(this.DownloadStatus, "DownloadStatus");
             // 
             // downloadSpeedLabel
             // 
-            resources.ApplyResources(this.downloadSpeedLabel, "downloadSpeedLabel");
             this.downloadSpeedLabel.Name = "downloadSpeedLabel";
+            resources.ApplyResources(this.downloadSpeedLabel, "downloadSpeedLabel");
             // 
             // toolStripStatusLabel1
             // 
-            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
             // 
             // statusLabel
             // 
-            resources.ApplyResources(this.statusLabel, "statusLabel");
             this.statusLabel.Name = "statusLabel";
+            resources.ApplyResources(this.statusLabel, "statusLabel");
             // 
             // FiletypeBox
             // 
-            resources.ApplyResources(this.FiletypeBox, "FiletypeBox");
             this.FiletypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.FiletypeBox.FormattingEnabled = true;
             this.FiletypeBox.Items.AddRange(new object[] {
@@ -146,8 +159,8 @@
             resources.GetString("FiletypeBox.Items13"),
             resources.GetString("FiletypeBox.Items14"),
             resources.GetString("FiletypeBox.Items15"),
-            resources.GetString("FiletypeBox.Items16"),
-            resources.GetString("FiletypeBox.Items17")});
+            resources.GetString("FiletypeBox.Items16")});
+            resources.ApplyResources(this.FiletypeBox, "FiletypeBox");
             this.FiletypeBox.Name = "FiletypeBox";
             // 
             // label2
@@ -162,34 +175,61 @@
             // 
             // DownloadGrid
             // 
-            resources.ApplyResources(this.DownloadGrid, "DownloadGrid");
             this.DownloadGrid.AllowUserToAddRows = false;
-            this.DownloadGrid.AllowUserToDeleteRows = false;
             this.DownloadGrid.AllowUserToOrderColumns = true;
+            this.DownloadGrid.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.DownloadGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DownloadGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Number,
             this.Title,
             this.VideoID});
+            this.DownloadGrid.ContextMenuStrip = this.contextMenuStrip;
+            resources.ApplyResources(this.DownloadGrid, "DownloadGrid");
             this.DownloadGrid.MultiSelect = false;
             this.DownloadGrid.Name = "DownloadGrid";
+            this.DownloadGrid.ReadOnly = true;
             this.DownloadGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DownloadGrid.SelectionChanged += new System.EventHandler(this.DownloadGrid_SelectionChanged);
+            this.DownloadGrid.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DownloadGrid_UserDeletedRow);
+            this.DownloadGrid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DownloadGrid_MouseUp);
             // 
             // Number
             // 
             resources.ApplyResources(this.Number, "Number");
             this.Number.Name = "Number";
+            this.Number.ReadOnly = true;
             // 
             // Title
             // 
             resources.ApplyResources(this.Title, "Title");
             this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
             // 
             // VideoID
             // 
             resources.ApplyResources(this.VideoID, "VideoID");
             this.VideoID.Name = "VideoID";
+            this.VideoID.ReadOnly = true;
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteContextMenuItem,
+            this.editStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            resources.ApplyResources(this.contextMenuStrip, "contextMenuStrip");
+            // 
+            // deleteContextMenuItem
+            // 
+            this.deleteContextMenuItem.Name = "deleteContextMenuItem";
+            resources.ApplyResources(this.deleteContextMenuItem, "deleteContextMenuItem");
+            this.deleteContextMenuItem.Click += new System.EventHandler(this.deleteContextMenuItem_Click);
+            // 
+            // editStripMenuItem
+            // 
+            this.editStripMenuItem.Name = "editStripMenuItem";
+            resources.ApplyResources(this.editStripMenuItem, "editStripMenuItem");
+            this.editStripMenuItem.Click += new System.EventHandler(this.editStripMenuItem_Click);
             // 
             // button1
             // 
@@ -227,10 +267,6 @@
             this.useTitleCheckbox.UseVisualStyleBackColor = true;
             this.useTitleCheckbox.CheckedChanged += new System.EventHandler(this.UseTitleCheckbox_CheckedChanged);
             // 
-            // folderBrowserDialog
-            // 
-            resources.ApplyResources(this.folderBrowserDialog, "folderBrowserDialog");
-            // 
             // queueButton
             // 
             resources.ApplyResources(this.queueButton, "queueButton");
@@ -241,13 +277,6 @@
             // downloadVideoWorker
             // 
             this.downloadVideoWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.DownloadVideoWorker_DoWork);
-            // 
-            // deleteButton
-            // 
-            resources.ApplyResources(this.deleteButton, "deleteButton");
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // ThumbnailBox
             // 
@@ -297,44 +326,65 @@
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.aboutToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // settingsToolStripMenuItem
             // 
-            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem,
-            this.displayDownloadStatusTextToolStripMenuItem});
+            this.displayToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             // 
             // languageToolStripMenuItem
             // 
-            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.portuguêsBrasileiroToolStripMenuItem,
             this.englishToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             // 
             // portuguêsBrasileiroToolStripMenuItem
             // 
-            resources.ApplyResources(this.portuguêsBrasileiroToolStripMenuItem, "portuguêsBrasileiroToolStripMenuItem");
             this.portuguêsBrasileiroToolStripMenuItem.Name = "portuguêsBrasileiroToolStripMenuItem";
+            resources.ApplyResources(this.portuguêsBrasileiroToolStripMenuItem, "portuguêsBrasileiroToolStripMenuItem");
             this.portuguêsBrasileiroToolStripMenuItem.Click += new System.EventHandler(this.PortuguêsBrasileiroToolStripMenuItem_Click);
             // 
             // englishToolStripMenuItem
             // 
-            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
             this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
             this.englishToolStripMenuItem.Click += new System.EventHandler(this.EnglishToolStripMenuItem_Click);
             // 
-            // displayDownloadStatusTextToolStripMenuItem
+            // displayToolStripMenuItem
             // 
-            resources.ApplyResources(this.displayDownloadStatusTextToolStripMenuItem, "displayDownloadStatusTextToolStripMenuItem");
-            this.displayDownloadStatusTextToolStripMenuItem.Name = "displayDownloadStatusTextToolStripMenuItem";
-            this.displayDownloadStatusTextToolStripMenuItem.Click += new System.EventHandler(this.DisplayDownloadStatusTextToolStripMenuItem_Click);
+            this.displayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.displayVerboseStatusToolStripMenuItem,
+            this.alertOnFinishToolStripMenuItem});
+            this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
+            resources.ApplyResources(this.displayToolStripMenuItem, "displayToolStripMenuItem");
+            // 
+            // displayVerboseStatusToolStripMenuItem
+            // 
+            this.displayVerboseStatusToolStripMenuItem.CheckOnClick = true;
+            this.displayVerboseStatusToolStripMenuItem.Name = "displayVerboseStatusToolStripMenuItem";
+            resources.ApplyResources(this.displayVerboseStatusToolStripMenuItem, "displayVerboseStatusToolStripMenuItem");
+            // 
+            // alertOnFinishToolStripMenuItem
+            // 
+            this.alertOnFinishToolStripMenuItem.CheckOnClick = true;
+            this.alertOnFinishToolStripMenuItem.Name = "alertOnFinishToolStripMenuItem";
+            resources.ApplyResources(this.alertOnFinishToolStripMenuItem, "alertOnFinishToolStripMenuItem");
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // AddFromTextButton
             // 
@@ -348,10 +398,76 @@
             this.openFileDialog1.FileName = "openFileDialog";
             resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
             // 
+            // EditIDBox
+            // 
+            resources.ApplyResources(this.EditIDBox, "EditIDBox");
+            this.EditIDBox.Name = "EditIDBox";
+            // 
+            // EditDestinationButton
+            // 
+            resources.ApplyResources(this.EditDestinationButton, "EditDestinationButton");
+            this.EditDestinationButton.Name = "EditDestinationButton";
+            this.EditDestinationButton.UseVisualStyleBackColor = true;
+            this.EditDestinationButton.Click += new System.EventHandler(this.EditDestinationButton_Click);
+            // 
+            // EditFiletypeBox
+            // 
+            this.EditFiletypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EditFiletypeBox.FormattingEnabled = true;
+            this.EditFiletypeBox.Items.AddRange(new object[] {
+            resources.GetString("EditFiletypeBox.Items"),
+            resources.GetString("EditFiletypeBox.Items1"),
+            resources.GetString("EditFiletypeBox.Items2"),
+            resources.GetString("EditFiletypeBox.Items3"),
+            resources.GetString("EditFiletypeBox.Items4"),
+            resources.GetString("EditFiletypeBox.Items5"),
+            resources.GetString("EditFiletypeBox.Items6"),
+            resources.GetString("EditFiletypeBox.Items7"),
+            resources.GetString("EditFiletypeBox.Items8"),
+            resources.GetString("EditFiletypeBox.Items9"),
+            resources.GetString("EditFiletypeBox.Items10"),
+            resources.GetString("EditFiletypeBox.Items11"),
+            resources.GetString("EditFiletypeBox.Items12"),
+            resources.GetString("EditFiletypeBox.Items13"),
+            resources.GetString("EditFiletypeBox.Items14"),
+            resources.GetString("EditFiletypeBox.Items15"),
+            resources.GetString("EditFiletypeBox.Items16")});
+            resources.ApplyResources(this.EditFiletypeBox, "EditFiletypeBox");
+            this.EditFiletypeBox.Name = "EditFiletypeBox";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // EditFilenameBox
+            // 
+            resources.ApplyResources(this.EditFilenameBox, "EditFilenameBox");
+            this.EditFilenameBox.Name = "EditFilenameBox";
+            // 
+            // FilenameCard
+            // 
+            resources.ApplyResources(this.FilenameCard, "FilenameCard");
+            this.FilenameCard.Name = "FilenameCard";
+            // 
+            // UseTitleInEditCheckbox
+            // 
+            resources.ApplyResources(this.UseTitleInEditCheckbox, "UseTitleInEditCheckbox");
+            this.UseTitleInEditCheckbox.Name = "UseTitleInEditCheckbox";
+            this.UseTitleInEditCheckbox.UseVisualStyleBackColor = true;
+            this.UseTitleInEditCheckbox.CheckedChanged += new System.EventHandler(this.UseTitleInEditCheckbox_CheckedChanged);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.UseTitleInEditCheckbox);
+            this.Controls.Add(this.FilenameCard);
+            this.Controls.Add(this.EditFilenameBox);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.EditFiletypeBox);
+            this.Controls.Add(this.EditDestinationButton);
+            this.Controls.Add(this.EditIDBox);
             this.Controls.Add(this.AddFromTextButton);
             this.Controls.Add(this.PathCard);
             this.Controls.Add(this.FiletypeCard);
@@ -362,7 +478,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.ThumbnailBox);
-            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.queueButton);
             this.Controls.Add(this.useTitleCheckbox);
             this.Controls.Add(this.filenameBox);
@@ -379,13 +494,17 @@
             this.Controls.Add(this.DownloadButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UrlBox);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ThumbnailBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -415,7 +534,6 @@
         private System.Windows.Forms.ToolStripStatusLabel downloadSpeedLabel;
         private System.Windows.Forms.Button queueButton;
         private System.ComponentModel.BackgroundWorker downloadVideoWorker;
-        private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.PictureBox ThumbnailBox;
@@ -435,9 +553,23 @@
         private System.Windows.Forms.ToolStripMenuItem languageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem portuguêsBrasileiroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem displayDownloadStatusTextToolStripMenuItem;
         private System.Windows.Forms.Button AddFromTextButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem displayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayVerboseStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alertOnFinishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem deleteContextMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editStripMenuItem;
+        private System.Windows.Forms.TextBox EditIDBox;
+        private System.Windows.Forms.Button EditDestinationButton;
+        private System.Windows.Forms.ComboBox EditFiletypeBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox EditFilenameBox;
+        private System.Windows.Forms.Label FilenameCard;
+        private System.Windows.Forms.CheckBox UseTitleInEditCheckbox;
     }
 }
 

@@ -133,6 +133,15 @@ namespace youtube_dl.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Downloads completed!.
+        /// </summary>
+        internal static string Finished {
+            get {
+                return ResourceManager.GetString("Finished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Unable to download video! This filetype may not be available at the moment. Try using the default filetype!.
         /// </summary>
         internal static string InvalidFiletype {
@@ -183,6 +192,15 @@ namespace youtube_dl.Properties {
         internal static string NoDownload {
             get {
                 return ResourceManager.GetString("NoDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Save Changes.
+        /// </summary>
+        internal static string SaveChanges {
+            get {
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
             }
         }
         

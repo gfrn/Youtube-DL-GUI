@@ -19,9 +19,10 @@ namespace youtube_dl
         public int filetype { get; set; }
         public string thumbURL { get; set; }
         public string title { get; set; }
+        
 
-        // Stores filetype IDs for Youtube-DL.
-        private Dictionary<int, string> fileTypes = new Dictionary<int, string>()
+    // Stores filetype IDs for Youtube-DL.
+    private Dictionary<int, string> fileTypes = new Dictionary<int, string>()
         {
             {0, "140"},
             {1, "mp3"},

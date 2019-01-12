@@ -23,6 +23,8 @@ namespace youtube_dl
         List<Video> downloadQueue = new List<Video>();
         YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = apiKey });
 
+        private int downloadButtonState = 0;
+
         static WaitHandle[] waitHandles = new WaitHandle[]
         {
             new AutoResetEvent(false)
@@ -54,7 +56,7 @@ namespace youtube_dl
 
         public bool DisplayVerbose
         {
-            get { return displayDownloadStatusTextToolStripMenuItem.Checked; }
+            get { return displayVerboseStatusToolStripMenuItem.Checked; }
         }
 
         public DataGridView DownloadGridView
@@ -68,7 +70,7 @@ namespace youtube_dl
             get { return DownloadButton.Text; }
             set { DownloadButton.Text = value; }
         }
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -80,7 +82,7 @@ namespace youtube_dl
                 SetCulture(Settings.Default.Language);
             }
 
-            displayDownloadStatusTextToolStripMenuItem.Checked = Settings.Default.DisplayStatus;
+            displayVerboseStatusToolStripMenuItem.Checked = Settings.Default.DisplayStatus;
             FiletypeBox.SelectedIndex = Settings.Default.IndexFileType;
             destinationBox.Text = Settings.Default.Destination == "" ? Application.StartupPath : Settings.Default.Destination;
 
@@ -225,15 +227,25 @@ namespace youtube_dl
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
-            if (DownloadButton.Text == strings.Cancel)
+            switch(downloadButtonState) 
             {
-                Video video = new Video(this);
-                video.AbortDownloads();
-            }
-            else
-            {
+                case 0:
                 downloadVideoWorker.RunWorkerAsync();
                 DownloadButton.Text = strings.Cancel;
+                downloadButtonState = 1;
+                    break;
+
+                case 1:
+                Video video = new Video(this);
+                video.AbortDownloads();
+                downloadButtonState = 0;
+                    break;
+
+                case 2:
+                    string newFilename = UseTitleInEditCheckbox.Checked ? "%(title)s.%(ext)s" :  EditFilenameBox.Text;
+                    string newPath = Directory.Exists(folderBrowserDialog.SelectedPath) ? folderBrowserDialog.SelectedPath + @"\": downloadQueue[DownloadGrid.SelectedRows[0].Index].path;
+                    ModifyQueue(EditIDBox.Text, newFilename, newPath, EditFiletypeBox.SelectedIndex, true);
+                    break;
             }
         }
 
@@ -246,7 +258,7 @@ namespace youtube_dl
         {
             Settings.Default.Destination = destinationBox.Text;
             Settings.Default.IndexFileType = FiletypeBox.SelectedIndex;
-            Settings.Default.DisplayStatus = displayDownloadStatusTextToolStripMenuItem.Checked;
+            Settings.Default.DisplayStatus = displayVerboseStatusToolStripMenuItem.Checked;
 
             Settings.Default.Save(); // Saves user config
         }
@@ -260,7 +272,7 @@ namespace youtube_dl
             }
         }
 
-        private void AddVideo(string ID, string filename, string path, int filetype)
+        private void ModifyQueue(string ID, string filename, string path, int filetype, bool isEdit)
         {
             switch (ID.Length)
             {
@@ -286,20 +298,25 @@ namespace youtube_dl
                         video.thumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
                         video.title = videoItem.Snippet.Title;
 
-                        downloadQueue.Add(video);
+                        if (isEdit)
+                        {
+                            downloadQueue[DownloadGrid.SelectedRows[0].Index] = video;
+                            DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = video.title;
+                            DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = video.ID;
 
-                        DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, video.title, ID);
+                            UpdateCard();
+                        }
+                        else
+                        {
+                            downloadQueue.Add(video);
+                            DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, video.title, ID);
+                        }
+
                     }
-
-                    DownloadButton.Enabled = true;
-                    deleteButton.Enabled = true;
                     break;
                 case 72:
                     Thread downloadPlaylistTask = new Thread(() => DownloadPlaylist(ID, filename, path, filetype));
                     downloadPlaylistTask.Start();
-
-                    DownloadButton.Enabled = true;
-                    deleteButton.Enabled = true;
                     break;
                 case 0:
                     MessageBox.Show(strings.InvalidURL, strings.Error);
@@ -327,15 +344,24 @@ namespace youtube_dl
                     videoNonYoutube.thumbURL = null;
                     videoNonYoutube.title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
 
-                    downloadQueue.Add(videoNonYoutube);
+                    if (isEdit)
+                    {
+                        downloadQueue[DownloadGrid.SelectedRows[0].Index] = videoNonYoutube;
+                        DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.title;
+                        DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.ID;
 
-                    DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
-
-                    DownloadButton.Enabled = true;
-                    deleteButton.Enabled = true;
+                        UpdateCard();
+                    }
+                    else
+                    {
+                        downloadQueue.Add(videoNonYoutube);
+                        DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
+                    }
+                    
                     break;
             }
 
+            DownloadButton.Enabled = true;
             UrlBox.Clear();
         }
 
@@ -343,11 +369,11 @@ namespace youtube_dl
         private void QueueButton_Click(object sender, EventArgs e)
         {
             string ID = UrlBox.Text;
-            string filename = useTitleCheckbox.Checked ? "/%(title)s.%(ext)s" : "/" + filenameBox.Text;
-            string path = destinationBox.Text;
+            string filename = useTitleCheckbox.Checked ? "%(title)s.%(ext)s" : filenameBox.Text;
+            string path = destinationBox.Text + @"\";
             int filetype = FiletypeBox.SelectedIndex;
 
-            AddVideo(ID, filename, path, filetype);
+            ModifyQueue(ID, filename, path, filetype, false);
         }
 
         public void ClearCard()
@@ -357,6 +383,7 @@ namespace youtube_dl
             IDCard.Text = "";
             FiletypeCard.Text = "";
             PathCard.Text = "";
+            FilenameCard.Text = "";
         }
 
         private void DownloadVideoWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -364,7 +391,6 @@ namespace youtube_dl
             BeginInvoke((Action)(() =>
             {
                 queueButton.Enabled = false;
-                deleteButton.Enabled = false;
             }));
             
             foreach (var video in downloadQueue)
@@ -378,38 +404,64 @@ namespace youtube_dl
                 queueButton.Enabled = true;
                 
                 DownloadButton.Text = strings.Download;
+                if(alertOnFinishToolStripMenuItem.Checked)
+                {
+                    System.Media.SystemSounds.Asterisk.Play();
+                    MessageBox.Show(strings.Finished);
+                }
             }));
         }
 
-        private void DeleteButton_Click(object sender, EventArgs e)
+        private void DeleteVideo(DataGridViewRow row)
         {
-            DataGridViewRow row = DownloadGrid.SelectedRows[0];
-
-            downloadQueue.RemoveAt(row.Index);
-            DownloadGrid.Rows.RemoveAt(row.Index);
-
-            if(downloadQueue.Count < 1)
+            if (DownloadGrid.SelectedRows.Count > 0)
             {
-                deleteButton.Enabled = false;
-            }
+                row = DownloadGrid.SelectedRows[0];
 
-            ClearCard();
+                downloadQueue.RemoveAt(row.Index);
+                DownloadGrid.Rows.RemoveAt(row.Index);
+
+                ClearCard();
+            }
         }
 
         private void DownloadGrid_SelectionChanged(object sender, EventArgs e)
         {
+            UpdateCard();
+        }
+
+        private void UpdateCard()
+        {
             if (DownloadGrid.RowCount > 0)
             {
-                DataGridViewRow row = DownloadGrid.SelectedRows[0];
-                if (row.Index >= 0)
+                if (DownloadGrid.SelectedRows.Count > 0)
                 {
+                    IDCard.Visible = true;
+                    FiletypeCard.Visible = true;
+                    PathCard.Visible = true;
+                    FilenameCard.Visible = true;
+                    DownloadButton.Enabled = true;
+                    AddFromTextButton.Enabled = true;
+                    queueButton.Enabled = true;
+
+                    EditDestinationButton.Visible = false;
+                    EditFiletypeBox.Visible = false;
+                    EditIDBox.Visible = false;
+                    EditFilenameBox.Visible = false;
+                    UseTitleInEditCheckbox.Visible = false;
+                    downloadButtonState = 0;
+                    DownloadButton.Text = strings.Download;
+
+                    DataGridViewRow row = DownloadGrid.SelectedRows[0];
                     Video video = downloadQueue[row.Index];
+                    string filename = video.name == "%(title)s.%(ext)s" ? video.title : video.name;
 
                     ThumbnailBox.Image = video.GetThumbnail();
-                    TitleCard.Text = video.title.Length > 60 ? video.title.Substring(0,57) + "..." : video.title;
+                    TitleCard.Text = video.title.Length > 60 ? video.title.Substring(0, 57) + "..." : video.title;
                     IDCard.Text = video.ID;
                     FiletypeCard.Text = FiletypeBox.Items[video.filetype].ToString();
                     PathCard.Text = video.path;
+                    FilenameCard.Text = filename.Length > 60 ? filename.Substring(0, 57) + "..." : filename;
                 }
             }
         }
@@ -426,22 +478,116 @@ namespace youtube_dl
             MessageBox.Show("In order to apply these changes, you'll need to restart the program");
         }
 
-        private void DisplayDownloadStatusTextToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            displayDownloadStatusTextToolStripMenuItem.Checked = !displayDownloadStatusTextToolStripMenuItem.Checked;
-        }
-
         private void AddFromTextButton_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
             string[] videos = File.ReadAllLines(openFileDialog1.FileName);
-            string filename = useTitleCheckbox.Checked ? "/%(title)s.%(ext)s" : "/" + filenameBox.Text;
-            string path = destinationBox.Text;
+            string filename = useTitleCheckbox.Checked ? "%(title)s.%(ext)s" : filenameBox.Text;
+            string path = destinationBox.Text + "/";
             int filetype = FiletypeBox.SelectedIndex;
 
             foreach (string video in videos)
             {
-                AddVideo(video, filename, path, filetype);
+                ModifyQueue(video, filename, path, filetype, false);
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm about = new AboutForm();
+            about.Show();
+        }
+
+        private void DownloadGrid_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            DeleteVideo(e.Row);
+        }
+
+        private void DownloadGrid_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                DataGridView.HitTestInfo hit = DownloadGrid.HitTest(e.X, e.Y);
+                if (hit.Type == DataGridViewHitTestType.Cell)
+                {
+                    DataGridViewRow row = DownloadGridView.Rows[hit.RowIndex];
+
+                    DownloadGrid.ClearSelection();
+                    row.Selected = true;
+
+                    contextMenuStrip.Show(DownloadGrid, e.X, e.Y);
+                }
+            }
+        }
+
+        private void deleteContextMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DownloadGrid.SelectedRows.Count > 0)
+            {
+                DeleteVideo(DownloadGrid.SelectedRows[0]);
+            }
+        }
+
+        private void editStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DownloadGrid.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = DownloadGridView.SelectedRows[0];
+
+                Video editedVideo = downloadQueue[row.Index];
+
+                IDCard.Visible = false;
+                FiletypeCard.Visible = false;
+                PathCard.Visible = false;
+                AddFromTextButton.Enabled = false;
+                FilenameCard.Visible = false;
+                queueButton.Enabled = false;
+
+                EditDestinationButton.Visible = true;
+                EditFiletypeBox.Visible = true;
+                EditIDBox.Visible = true;
+                EditFilenameBox.Visible = true;
+                UseTitleInEditCheckbox.Visible = true;
+                DownloadButton.Text = strings.SaveChanges;
+                downloadButtonState = 2;
+
+                EditFiletypeBox.SelectedIndex = editedVideo.filetype;
+                EditIDBox.Text = editedVideo.ID;
+                if (editedVideo.name == "%(title)s.%(ext)s")
+                {
+                    EditFilenameBox.Text = editedVideo.title;
+                    EditFilenameBox.Enabled = false;
+                }
+                else
+                {
+                    EditFilenameBox.Text = editedVideo.name;
+                }
+                UseTitleInEditCheckbox.Checked = editedVideo.name == "%(title)s.%(ext)s";
+            }
+        }
+
+        private void EditDestinationButton_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog.ShowDialog();
+        }
+
+        private void SaveChangesButton_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void UseTitleInEditCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            DataGridViewRow row = DownloadGridView.SelectedRows[0];
+            Video editedVideo = downloadQueue[row.Index];
+
+            if (UseTitleInEditCheckbox.Checked)
+            {
+                EditFilenameBox.Text = editedVideo.title;
+                EditFilenameBox.Enabled = false;
+            }
+            else
+            {
+                EditFilenameBox.Enabled = true;
             }
         }
     }

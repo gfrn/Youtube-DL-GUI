@@ -141,6 +141,9 @@
   <data name="FFMpeg" xml:space="preserve">
     <value>Convertendo...</value>
   </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Download terminado!</value>
+  </data>
   <data name="InvalidFiletype" xml:space="preserve">
     <value>Não foi possível baixar o vídeo! Este tipo de arquivo pode não estar disponível. Tente selecionar o tipo padrão.</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="NoDownload" xml:space="preserve">
     <value>Nenhum Download</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Salvar</value>
   </data>
   <data name="StartingUp" xml:space="preserve">
     <value>Começando...</value>
