@@ -166,6 +166,21 @@
   <data name="VideoID.HeaderText" xml:space="preserve">
     <value>ID do Vídeo</value>
   </data>
+  <data name="deleteContextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 22</value>
+  </data>
+  <data name="deleteContextMenuItem.Text" xml:space="preserve">
+    <value>Excluir da Lista</value>
+  </data>
+  <data name="editStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 22</value>
+  </data>
+  <data name="editStripMenuItem.Text" xml:space="preserve">
+    <value>Editar Atributos</value>
+  </data>
+  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 48</value>
+  </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>465, 54</value>
   </data>
@@ -229,23 +244,11 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Destino do Download:</value>
   </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 20</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Configurações</value>
-  </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 22</value>
   </data>
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>Idioma</value>
-  </data>
-  <data name="displayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 22</value>
-  </data>
-  <data name="displayToolStripMenuItem.Text" xml:space="preserve">
-    <value>Exibir</value>
   </data>
   <data name="displayVerboseStatusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 22</value>
@@ -259,6 +262,18 @@
   <data name="alertOnFinishToolStripMenuItem.Text" xml:space="preserve">
     <value>Alerta ao Finalizar</value>
   </data>
+  <data name="displayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 22</value>
+  </data>
+  <data name="displayToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exibir</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 20</value>
   </data>
@@ -270,6 +285,9 @@
   </data>
   <data name="AddFromTextButton.Text" xml:space="preserve">
     <value>&amp;Importar de Arquivo de Texto</value>
+  </data>
+  <data name="EditDestinationButton.Text" xml:space="preserve">
+    <value>Selecionar Destino</value>
   </data>
   <data name="EditFiletypeBox.Items" xml:space="preserve">
     <value>m4a - 130k (apenas áudio)</value>
@@ -300,5 +318,23 @@
   </data>
   <data name="EditFiletypeBox.Items12" xml:space="preserve">
     <value>mp4 -1280x720 (aúdio e vídeo)</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 13</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Nome:</value>
+  </data>
+  <data name="EditFilenameBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 20</value>
+  </data>
+  <data name="UseTitleInEditCheckbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>465, 495</value>
+  </data>
+  <data name="UseTitleInEditCheckbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 17</value>
+  </data>
+  <data name="UseTitleInEditCheckbox.Text" xml:space="preserve">
+    <value>Usar Título do Vídeo</value>
   </data>
 </root>
