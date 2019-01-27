@@ -43,16 +43,16 @@ namespace youtube_dl
             {16, "default" }
         };
 
-        Process ytbDL = new Process
+        Process ytbDL = new Process();
+
+        ProcessStartInfo ytbDLInfo = new ProcessStartInfo
         {
-            StartInfo =
-        {
+
             UseShellExecute = false,
             RedirectStandardOutput = true,
             CreateNoWindow = true,
             StandardOutputEncoding = Encoding.UTF8,
             FileName = "youtube-dl.exe"
-        }
         };
 
         private readonly Form1 form;
@@ -112,7 +112,9 @@ namespace youtube_dl
                 arguments += " -o \"" + path + name + "\"";
                 arguments += " " + ID;
 
-                ytbDL.StartInfo.Arguments = arguments;
+                ytbDLInfo.Arguments = arguments;
+                ytbDL = Process.Start(ytbDLInfo);
+
                 ytbDL.OutputDataReceived += new DataReceivedEventHandler(
                 (s, f) =>
                 {
@@ -153,7 +155,7 @@ namespace youtube_dl
 
                 if (!completedDownload)
                 {
-                    MessageBox.Show(strings.InvalidVideo, strings.Error);
+                    MessageBox.Show(strings.InvalidFiletype, strings.Error);
                 }
 
                 form.BeginInvoke((Action)(() =>
@@ -168,12 +170,6 @@ namespace youtube_dl
 
                 arguments = "";
             }
-        }
-
-        public void AbortDownloads()
-        {
-            ytbDL.Kill();
-            form.DownloadButtonText = strings.Download;
         }
     }
 }

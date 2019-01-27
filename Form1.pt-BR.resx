@@ -245,7 +245,7 @@
     <value>Destino do Download:</value>
   </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>Idioma</value>
@@ -263,7 +263,7 @@
     <value>Alerta ao Finalizar</value>
   </data>
   <data name="displayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="displayToolStripMenuItem.Text" xml:space="preserve">
     <value>Exibir</value>

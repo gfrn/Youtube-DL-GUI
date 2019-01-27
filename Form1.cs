@@ -125,7 +125,7 @@ namespace youtube_dl
                 {
                     lastVersionGUI = client.DownloadString("https://diskpro.github.io/Youtube-DL-GUI/update/LATEST_VERSION");
 
-                    if (guiVersion != lastVersionGUI)
+                    if (guiVersion != lastVersionGUI.Substring(0, lastVersionGUI.IndexOf(@"\")))
                     {
                         DialogResult userDialogResult = MessageBox.Show(strings.AskToUpdateGUI + "\n" + strings.CurrentVersion + guiVersion + "\n" + strings.NewVersion + lastVersionGUI, "", MessageBoxButtons.YesNo);
                         if (userDialogResult == DialogResult.Yes)
@@ -231,20 +231,17 @@ namespace youtube_dl
             {
                 case 0:
                 downloadVideoWorker.RunWorkerAsync();
-                DownloadButton.Text = strings.Cancel;
-                downloadButtonState = 1;
+                    DownloadButton.Enabled = false;
+                    queueButton.Enabled = false;
+                    AddFromTextButton.Enabled = false;
                     break;
 
                 case 1:
-                Video video = new Video(this);
-                video.AbortDownloads();
-                downloadButtonState = 0;
-                    break;
-
-                case 2:
                     string newFilename = UseTitleInEditCheckbox.Checked ? "%(title)s.%(ext)s" :  EditFilenameBox.Text;
                     string newPath = Directory.Exists(folderBrowserDialog.SelectedPath) ? folderBrowserDialog.SelectedPath + @"\": downloadQueue[DownloadGrid.SelectedRows[0].Index].path;
                     ModifyQueue(EditIDBox.Text, newFilename, newPath, EditFiletypeBox.SelectedIndex, true);
+
+                    DownloadButton.Text = strings.Download;
                     break;
             }
         }
@@ -388,11 +385,6 @@ namespace youtube_dl
 
         private void DownloadVideoWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            BeginInvoke((Action)(() =>
-            {
-                queueButton.Enabled = false;
-            }));
-            
             foreach (var video in downloadQueue)
             {
                 video.DownloadVideo();
@@ -401,6 +393,8 @@ namespace youtube_dl
 
             BeginInvoke((Action)(() =>
             {
+                DownloadButton.Enabled = true;
+                AddFromTextButton.Enabled = true;
                 queueButton.Enabled = true;
                 
                 DownloadButton.Text = strings.Download;
@@ -450,7 +444,6 @@ namespace youtube_dl
                     EditFilenameBox.Visible = false;
                     UseTitleInEditCheckbox.Visible = false;
                     downloadButtonState = 0;
-                    DownloadButton.Text = strings.Download;
 
                     DataGridViewRow row = DownloadGrid.SelectedRows[0];
                     Video video = downloadQueue[row.Index];
@@ -549,7 +542,7 @@ namespace youtube_dl
                 EditFilenameBox.Visible = true;
                 UseTitleInEditCheckbox.Visible = true;
                 DownloadButton.Text = strings.SaveChanges;
-                downloadButtonState = 2;
+                downloadButtonState = 1;
 
                 EditFiletypeBox.SelectedIndex = editedVideo.filetype;
                 EditIDBox.Text = editedVideo.ID;
@@ -569,10 +562,6 @@ namespace youtube_dl
         private void EditDestinationButton_Click(object sender, EventArgs e)
         {
             folderBrowserDialog.ShowDialog();
-        }
-
-        private void SaveChangesButton_Click(object sender, EventArgs e)
-        {
         }
 
         private void UseTitleInEditCheckbox_CheckedChanged(object sender, EventArgs e)
