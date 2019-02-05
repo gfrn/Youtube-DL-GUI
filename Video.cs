@@ -105,6 +105,9 @@ namespace youtube_dl
                     case int n when (n == 14 || n == 15):
                         arguments += "--recode-video " + fileTypes[filetype];
                         break;
+                    case int n when (n == 16):
+                        arguments += " ";
+                        break;
                     default:
                         arguments += "-f " + fileTypes[filetype];
                         break;
