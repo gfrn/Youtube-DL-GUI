@@ -22,6 +22,7 @@ namespace youtube_dl
         private const string apiKey = "key"; // Temporary, will fix once safer solution becomes available
         List<Video> downloadQueue = new List<Video>();
         YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = apiKey });
+        private int currentVideo = 0;
 
         private int downloadButtonState = 0;
 
@@ -388,8 +389,10 @@ namespace youtube_dl
             foreach (var video in downloadQueue)
             {
                 video.DownloadVideo();
+                currentVideo++;
             }
             downloadQueue.Clear();
+            currentVideo = 0;
 
             BeginInvoke((Action)(() =>
             {
@@ -445,8 +448,8 @@ namespace youtube_dl
                     UseTitleInEditCheckbox.Visible = false;
                     downloadButtonState = 0;
 
-                    DataGridViewRow row = DownloadGrid.SelectedRows[0];
-                    Video video = downloadQueue[row.Index];
+                    int index = int.Parse(DownloadGrid.SelectedRows[0].Cells[0].Value.ToString()) - 1;
+                    Video video = downloadQueue[index];
                     string filename = video.name == "%(title)s.%(ext)s" ? video.title : video.name;
 
                     ThumbnailBox.Image = video.GetThumbnail();
@@ -578,6 +581,17 @@ namespace youtube_dl
             {
                 EditFilenameBox.Enabled = true;
             }
+        }
+
+        private void FiletypeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void converterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Converter converter = new Converter();
+            converter.Show();
         }
     }
 }

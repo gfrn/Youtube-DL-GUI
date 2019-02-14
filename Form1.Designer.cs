@@ -75,6 +75,8 @@
             this.displayVerboseStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alertOnFinishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.converterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddFromTextButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.EditIDBox = new System.Windows.Forms.TextBox();
@@ -162,6 +164,7 @@
             resources.GetString("FiletypeBox.Items16")});
             resources.ApplyResources(this.FiletypeBox, "FiletypeBox");
             this.FiletypeBox.Name = "FiletypeBox";
+            this.FiletypeBox.SelectedIndexChanged += new System.EventHandler(this.FiletypeBox_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -329,7 +332,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.toolsToolStripMenuItem});
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
@@ -386,6 +390,19 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.converterToolStripMenuItem});
+            resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            // 
+            // converterToolStripMenuItem
+            // 
+            this.converterToolStripMenuItem.Name = "converterToolStripMenuItem";
+            resources.ApplyResources(this.converterToolStripMenuItem, "converterToolStripMenuItem");
+            this.converterToolStripMenuItem.Click += new System.EventHandler(this.converterToolStripMenuItem_Click);
             // 
             // AddFromTextButton
             // 
@@ -571,6 +588,8 @@
         private System.Windows.Forms.TextBox EditFilenameBox;
         private System.Windows.Forms.Label FilenameCard;
         private System.Windows.Forms.CheckBox UseTitleInEditCheckbox;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem converterToolStripMenuItem;
     }
 }
 
