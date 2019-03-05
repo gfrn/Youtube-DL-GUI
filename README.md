@@ -5,7 +5,7 @@ A Youtube-DL GUI made in C#
 Was pissed at online downloaders and wanted to make Youtube-DL as easy as possible to use.
 
 ## TODO
-- [ ] Add file converter
+- [x] Add file converter
 
 ## How it looks so far
 ![Example form](https://i.imgur.com/iRsKa4Q.png)
