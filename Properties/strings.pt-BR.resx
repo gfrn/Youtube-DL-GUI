@@ -129,6 +129,9 @@
   <data name="CurrentVersion" xml:space="preserve">
     <value>Versão atual: </value>
   </data>
+  <data name="Done" xml:space="preserve">
+    <value>Pronto!</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>Baixar</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="NewVersion" xml:space="preserve">
     <value>Nova versão: </value>
+  </data>
+  <data name="NoConversion" xml:space="preserve">
+    <value>Sem conversão</value>
   </data>
   <data name="NoDownload" xml:space="preserve">
     <value>Nenhum Download</value>

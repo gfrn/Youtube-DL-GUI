@@ -28,7 +28,7 @@ namespace youtube_dl
         {
             if(clicks > 7)
             {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=w15oWDh02K4");
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=taQvvuQD8DM");
                 clicks = 0;
             }
             else

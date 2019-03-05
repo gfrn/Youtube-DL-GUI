@@ -117,70 +117,113 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AskToUpdateGUI" xml:space="preserve">
-    <value>New version detected. Would you like to update? </value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 13</value>
   </data>
-  <data name="AskToUpdateYoutubeDL" xml:space="preserve">
-    <value>New version of youtube-dl detected. Would you like to update? For that, the program needs to restart and the process might take several minutes.</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Arquivo:</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="OpenFileButton.Text" xml:space="preserve">
+    <value>Selecionar Arquivo</value>
   </data>
-  <data name="CurrentVersion" xml:space="preserve">
-    <value>Current version: </value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 13</value>
   </data>
-  <data name="Done" xml:space="preserve">
-    <value>Done!</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Destino:</value>
   </data>
-  <data name="Download" xml:space="preserve">
-    <value>Download</value>
+  <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
   </data>
-  <data name="Downloading" xml:space="preserve">
-    <value>Downloading...</value>
+  <data name="statusLabel.Text" xml:space="preserve">
+    <value />
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error!</value>
+  <data name="ConvertButton.Text" xml:space="preserve">
+    <value>Converter</value>
   </data>
-  <data name="FFMpeg" xml:space="preserve">
-    <value>Converting...</value>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 13</value>
   </data>
-  <data name="Finished" xml:space="preserve">
-    <value>Downloads completed!</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Convertido De/Para:</value>
   </data>
-  <data name="InvalidFiletype" xml:space="preserve">
-    <value>Unable to download video! This filetype may not be available at the moment. Try using the default filetype!</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 13</value>
   </data>
-  <data name="InvalidPath" xml:space="preserve">
-    <value>Invalid path selected! Select a valid path and try again!</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Arquivo Destino:</value>
   </data>
-  <data name="InvalidURL" xml:space="preserve">
-    <value>Add a valid URL!</value>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 13</value>
   </data>
-  <data name="InvalidVideo" xml:space="preserve">
-    <value>Invalid video!</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Arquivo Original:</value>
   </data>
-  <data name="NewVersion" xml:space="preserve">
-    <value>New version: </value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Informação</value>
   </data>
-  <data name="NoConversion" xml:space="preserve">
-    <value>No conversion</value>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 13</value>
   </data>
-  <data name="NoDownload" xml:space="preserve">
-    <value>No Download</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Cortar de:</value>
   </data>
-  <data name="SaveChanges" xml:space="preserve">
-    <value>Save Changes</value>
+  <data name="SaveFileButton.Text" xml:space="preserve">
+    <value>Select Destino</value>
   </data>
-  <data name="StartingUp" xml:space="preserve">
-    <value>Starting Up...</value>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>13, 13</value>
   </data>
-  <data name="UnableGatherTitle" xml:space="preserve">
-    <value>Unable to gather video title!</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>à</value>
   </data>
-  <data name="UnauthorizedAccess" xml:space="preserve">
-    <value>Could not update; program was not given permission to modify files in installation folder</value>
+  <data name="JoinVideosButton.Text" xml:space="preserve">
+    <value>Concatenar Vídeos</value>
   </data>
-  <data name="Updating" xml:space="preserve">
-    <value>Updating youtube-dl...</value>
+  <data name="AddSubsButton.Text" xml:space="preserve">
+    <value>Adicionar Legendas</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 13</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Outros:</value>
+  </data>
+  <data name="CancelJoinButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CancelSubtitlesButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CancelMergeButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="MergeButton.Text" xml:space="preserve">
+    <value>Mesclar Áudio e Vídeo</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>247, 157</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 13</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>segundo(s)</value>
+  </data>
+  <data name="CancelImportButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="IntervalSnagBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>204, 154</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 13</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Capturar imagem a cada</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Conversor</value>
   </data>
 </root>

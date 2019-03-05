@@ -73,7 +73,7 @@ namespace youtube_dl.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2018.1.27")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2019.03.01")]
         public string CurrentVersionYoutubeDL {
             get {
                 return ((string)(this["CurrentVersionYoutubeDL"]));

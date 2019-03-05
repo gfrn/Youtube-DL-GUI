@@ -97,6 +97,15 @@ namespace youtube_dl.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Done!.
+        /// </summary>
+        internal static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Download.
         /// </summary>
         internal static string Download {
@@ -183,6 +192,15 @@ namespace youtube_dl.Properties {
         internal static string NewVersion {
             get {
                 return ResourceManager.GetString("NewVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a No conversion.
+        /// </summary>
+        internal static string NoConversion {
+            get {
+                return ResourceManager.GetString("NoConversion", resourceCulture);
             }
         }
         
