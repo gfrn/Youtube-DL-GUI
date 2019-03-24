@@ -209,10 +209,12 @@ namespace youtube_dl
                 foreach (var playlistItem in playlistItemsListResponse.Items)
                 {
                     Video videoFromPlaylist = new Video(this);
+                    videoFromPlaylist.title = playlistItem.Snippet.Title;
                     videoFromPlaylist.ID = "https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId;
                     videoFromPlaylist.name = filename;
                     videoFromPlaylist.path = path;
                     videoFromPlaylist.filetype = filetype;
+                    videoFromPlaylist.thumbURL = playlistItem.Snippet.Thumbnails.Default__.Url;
 
                     BeginInvoke((Action)(() =>
                     {
@@ -312,48 +314,52 @@ namespace youtube_dl
 
                     }
                     break;
-                case 72:
-                    Thread downloadPlaylistTask = new Thread(() => DownloadPlaylist(ID, filename, path, filetype));
-                    downloadPlaylistTask.Start();
-                    break;
                 case 0:
                     MessageBox.Show(strings.InvalidURL, strings.Error);
                     break;
                 default:
-                    string HTML = "";
-
-                    using (WebClient client = new WebClient())
+                    if (ID.Contains("playlist") && ID.Contains("youtube"))
                     {
-                        try
-                        {
-                            HTML = client.DownloadString(UrlBox.Text);
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show(strings.UnableGatherTitle, strings.Error);
-                        }
-                    }
-
-                    Video videoNonYoutube = new Video(this);
-                    videoNonYoutube.ID = ID;
-                    videoNonYoutube.name = filename;
-                    videoNonYoutube.path = path;
-                    videoNonYoutube.filetype = filetype;
-                    videoNonYoutube.thumbURL = null;
-                    videoNonYoutube.title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
-
-                    if (isEdit)
-                    {
-                        downloadQueue[DownloadGrid.SelectedRows[0].Index] = videoNonYoutube;
-                        DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.title;
-                        DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.ID;
-
-                        UpdateCard();
+                        Thread downloadPlaylistTask = new Thread(() => DownloadPlaylist(ID, filename, path, filetype));
+                        downloadPlaylistTask.Start();
                     }
                     else
                     {
-                        downloadQueue.Add(videoNonYoutube);
-                        DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
+                        string HTML = "";
+
+                        using (WebClient client = new WebClient())
+                        {
+                            try
+                            {
+                                HTML = client.DownloadString(UrlBox.Text);
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show(strings.UnableGatherTitle, strings.Error);
+                            }
+                        }
+
+                        Video videoNonYoutube = new Video(this);
+                        videoNonYoutube.ID = ID;
+                        videoNonYoutube.name = filename;
+                        videoNonYoutube.path = path;
+                        videoNonYoutube.filetype = filetype;
+                        videoNonYoutube.thumbURL = null;
+                        videoNonYoutube.title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
+
+                        if (isEdit)
+                        {
+                            downloadQueue[DownloadGrid.SelectedRows[0].Index] = videoNonYoutube;
+                            DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.title;
+                            DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.ID;
+
+                            UpdateCard();
+                        }
+                        else
+                        {
+                            downloadQueue.Add(videoNonYoutube);
+                            DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
+                        }
                     }
                     
                     break;
