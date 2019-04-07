@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="CancelSubtitlesButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="&gt;&gt;EndOfVideoCheckbox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -131,8 +127,8 @@
   <data name="&gt;&gt;openMergeDialog.Name" xml:space="preserve">
     <value>openMergeDialog</value>
   </data>
-  <data name="&gt;&gt;OutputFileLabel.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="EndOfVideoCheckbox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 74</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
@@ -150,6 +146,9 @@
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="OutputFileLabel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
@@ -162,17 +161,17 @@
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="&gt;&gt;MergeButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MergeButton.Name" xml:space="preserve">
+    <value>MergeButton</value>
   </data>
   <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
     <value>statusStrip1</value>
   </data>
   <data name="IntervalSnagBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>37, 20</value>
-  </data>
-  <data name="JoinVideosButton.Text" xml:space="preserve">
-    <value>Join Videos</value>
   </data>
   <data name="&gt;&gt;CancelSubtitlesButton.Name" xml:space="preserve">
     <value>CancelSubtitlesButton</value>
@@ -192,6 +191,7 @@
   <data name="&gt;&gt;CancelJoinButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="CutStartTextbox.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
   </data>
@@ -216,14 +216,11 @@
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="ConvertButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="OpenFileButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="&gt;&gt;JoinVideosButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -236,6 +233,9 @@
   </data>
   <data name="CutEndTextbox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 66</value>
   </data>
   <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -264,8 +264,8 @@
   <data name="EndOfVideoCheckbox.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
   </data>
-  <data name="&gt;&gt;CancelMergeButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="JoinVideosButton.Text" xml:space="preserve">
+    <value>Join Videos</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Converter</value>
@@ -291,9 +291,6 @@
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
-  <data name="AddSubsButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="openVideoListDialog.Filter" xml:space="preserve">
     <value>Text Files|*.txt</value>
   </data>
@@ -309,8 +306,11 @@
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 75</value>
+  <data name="&gt;&gt;CancelMergeButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CancelMergeButton.Name" xml:space="preserve">
+    <value>CancelMergeButton</value>
   </data>
   <data name="CancelMergeButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -318,23 +318,14 @@
   <data name="&gt;&gt;ConvertButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;EndOfVideoCheckbox.Name" xml:space="preserve">
-    <value>EndOfVideoCheckbox</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 13</value>
   </data>
-  <data name="&gt;&gt;ConvertFromToLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="&gt;&gt;CancelJoinButton.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -351,29 +342,32 @@
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 336</value>
-  </data>
   <data name="&gt;&gt;CancelImportButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;statusLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;MergeButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;OpenFileButton.ZOrder" xml:space="preserve">
+    <value>21</value>
   </data>
-  <data name="&gt;&gt;CutEndTextbox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;AddSubsButton.Name" xml:space="preserve">
+    <value>AddSubsButton</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;EndOfVideoCheckbox.Name" xml:space="preserve">
+    <value>EndOfVideoCheckbox</value>
+  </data>
+  <data name="&gt;&gt;openSubtitlesDialog.Name" xml:space="preserve">
+    <value>openSubtitlesDialog</value>
   </data>
   <data name="ConvertButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -387,23 +381,26 @@
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;CancelJoinButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="&gt;&gt;CutEndTextbox.Type" xml:space="preserve">
     <value>System.Windows.Forms.MaskedTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;OpenFileButton.Name" xml:space="preserve">
-    <value>OpenFileButton</value>
+  <data name="IntervalSnagBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>174, 153</value>
   </data>
   <data name="&gt;&gt;OriginalFileLabel.Name" xml:space="preserve">
     <value>OriginalFileLabel</value>
   </data>
   <data name="MergeButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;OutputFileLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SaveFileButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 36</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Other:</value>
@@ -414,8 +411,11 @@
   <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;MergeButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="OriginalFileLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>116, 20</value>
@@ -423,20 +423,20 @@
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 13</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="statusStrip1.Text" xml:space="preserve">
     <value>statusStrip1</value>
+  </data>
+  <data name="CancelImportButton.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;CutStartTextbox.Type" xml:space="preserve">
     <value>System.Windows.Forms.MaskedTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;EndOfVideoCheckbox.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CancelSubtitlesButton.Text" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="CutStartTextbox.Mask" xml:space="preserve">
     <value>00:00:00\.0</value>
@@ -450,11 +450,11 @@
   <data name="CutStartTextbox.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="SaveFileButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>78, 36</value>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="EndOfVideoCheckbox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 74</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 13</value>
   </data>
   <data name="label10.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -464,6 +464,9 @@
   </data>
   <data name="CancelJoinButton.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
+  </data>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -486,8 +489,8 @@
   <data name="OpenFileButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 12</value>
   </data>
-  <data name="&gt;&gt;OpenFileButton.ZOrder" xml:space="preserve">
-    <value>21</value>
+  <data name="&gt;&gt;CutEndTextbox.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="&gt;&gt;AddSubsButton.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -504,8 +507,8 @@
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="OutputFileLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
+  <data name="OutputFileLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;saveFileDialog.Name" xml:space="preserve">
     <value>saveFileDialog</value>
@@ -513,20 +516,17 @@
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="ConvertButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 310</value>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 336</value>
   </data>
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 13</value>
+  <data name="&gt;&gt;OpenFileButton.Name" xml:space="preserve">
+    <value>OpenFileButton</value>
   </data>
-  <data name="IntervalSnagBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 153</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 13</value>
+  <data name="&gt;&gt;CancelJoinButton.Name" xml:space="preserve">
+    <value>CancelJoinButton</value>
   </data>
   <data name="&gt;&gt;OpenFileButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -543,11 +543,8 @@
   <data name="&gt;&gt;OutputFileLabel.Name" xml:space="preserve">
     <value>OutputFileLabel</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 66</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="OutputFileLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 13</value>
   </data>
   <data name="CancelSubtitlesButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -567,12 +564,6 @@
   <data name="&gt;&gt;openMergeDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="AddSubsButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>79, 127</value>
   </data>
@@ -585,8 +576,8 @@
   <data name="AddSubsButton.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="&gt;&gt;OutputFileLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ConvertButton.Text" xml:space="preserve">
+    <value>Convert</value>
   </data>
   <data name="&gt;&gt;SaveFileButton.ZOrder" xml:space="preserve">
     <value>19</value>
@@ -606,9 +597,6 @@
   <data name="&gt;&gt;label8.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="SaveFileButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="&gt;&gt;openVideoListDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -621,8 +609,8 @@
   <data name="OutputFileLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>116, 43</value>
   </data>
-  <data name="&gt;&gt;JoinVideosButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="SaveFileButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 23</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 13</value>
@@ -630,14 +618,11 @@
   <data name="ConvertFromToLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
+  <data name="CancelSubtitlesButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="ConvertFromToLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Snag image every</value>
+  <data name="openFileDialog.Filter" xml:space="preserve">
+    <value>Video Files (*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm)|*.mp4;*.3gp;*.m4v;*.mov;*.webm|Audio Files (*.ogg;*.mp3;*.m4a;*.flac) |*.ogg;*.mp3;*.m4a;*.flac</value>
   </data>
   <data name="SaveFileButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -645,11 +630,14 @@
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 43</value>
   </data>
+  <data name="&gt;&gt;JoinVideosButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="label7.Text" xml:space="preserve">
     <value>to</value>
   </data>
-  <data name="&gt;&gt;CutEndTextbox.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Snag image every</value>
   </data>
   <data name="CancelSubtitlesButton.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -672,8 +660,8 @@
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 20</value>
   </data>
-  <data name="&gt;&gt;CancelSubtitlesButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="IntervalSnagBox.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -687,8 +675,14 @@
   <data name="&gt;&gt;JoinVideosButton.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;MergeButton.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -702,8 +696,8 @@
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Converter</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 41</value>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="CancelSubtitlesButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 127</value>
@@ -711,11 +705,14 @@
   <data name="CancelImportButton.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
   </data>
-  <data name="&gt;&gt;AddSubsButton.Name" xml:space="preserve">
-    <value>AddSubsButton</value>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
   </data>
   <data name="&gt;&gt;SaveFileButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -732,14 +729,14 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;ConvertFromToLabel.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;CancelSubtitlesButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Destination:</value>
+  </data>
+  <data name="ConvertButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 310</value>
   </data>
   <data name="AddSubsButton.Text" xml:space="preserve">
     <value>Add Subtitles</value>
@@ -747,20 +744,20 @@
   <data name="&gt;&gt;openVideoListDialog.Name" xml:space="preserve">
     <value>openVideoListDialog</value>
   </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;ConvertFromToLabel.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;ConvertButton.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 13</value>
-  </data>
-  <data name="&gt;&gt;JoinVideosButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 75</value>
   </data>
   <data name="CancelMergeButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>220, 179</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>400, 93</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -768,11 +765,11 @@
   <data name="CancelMergeButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="&gt;&gt;MergeButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="OpenFileButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="CancelImportButton.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 13</value>
   </data>
   <data name="&gt;&gt;ConvertFromToLabel.Name" xml:space="preserve">
     <value>ConvertFromToLabel</value>
@@ -798,20 +795,17 @@
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>423, 22</value>
   </data>
-  <data name="CancelImportButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="SaveFileButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;OutputFileLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>File:</value>
   </data>
   <data name="SaveFileButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="MergeButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -837,14 +831,17 @@
   <data name="&gt;&gt;CutStartTextbox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;CancelMergeButton.Name" xml:space="preserve">
-    <value>CancelMergeButton</value>
+  <data name="&gt;&gt;CutEndTextbox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;OriginalFileLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="AddSubsButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 23</value>
   </data>
-  <data name="CutStartTextbox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 20</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 41</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>22</value>
@@ -852,17 +849,17 @@
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
   </data>
-  <data name="&gt;&gt;MergeButton.Name" xml:space="preserve">
-    <value>MergeButton</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 13</value>
   </data>
   <data name="statusLabel.Text" xml:space="preserve">
     <value>No Conversion</value>
   </data>
-  <data name="CancelSubtitlesButton.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;MergeButton.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>423, 358</value>
@@ -879,17 +876,17 @@
   <data name="CancelMergeButton.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
-  <data name="&gt;&gt;openSubtitlesDialog.Name" xml:space="preserve">
-    <value>openSubtitlesDialog</value>
+  <data name="CutStartTextbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
   </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
   </data>
-  <data name="openFileDialog.Filter" xml:space="preserve">
-    <value>Video Files (*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm)|*.mp4;*.3gp;*.m4v;*.mov;*.webm|Audio Files (*.ogg;*.mp3;*.m4a;*.flac) |*.ogg;*.mp3;*.m4a;*.flac</value>
+  <data name="AddSubsButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 93</value>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;AddSubsButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -909,8 +906,8 @@
   <data name="IntervalSnagBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="OutputFileLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;statusLabel.Name" xml:space="preserve">
     <value>statusLabel</value>
@@ -918,11 +915,11 @@
   <data name="CancelJoinButton.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;OutputFileLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CancelJoinButton.Name" xml:space="preserve">
-    <value>CancelJoinButton</value>
+  <data name="CancelImportButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
   <data name="MergeButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>79, 179</value>
@@ -933,8 +930,8 @@
   <data name="&gt;&gt;CancelImportButton.Name" xml:space="preserve">
     <value>CancelImportButton</value>
   </data>
-  <data name="SaveFileButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 23</value>
+  <data name="ConvertFromToLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 13</value>
   </data>
   <data name="ConvertFromToLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -951,14 +948,17 @@
   <data name="ConvertButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>400, 23</value>
   </data>
-  <data name="&gt;&gt;OriginalFileLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="CancelJoinButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
+  </data>
+  <data name="&gt;&gt;OutputFileLabel.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -969,8 +969,8 @@
   <data name="CutStartTextbox.Location" type="System.Drawing.Point, System.Drawing">
     <value>79, 72</value>
   </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="&gt;&gt;ConvertFromToLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 75</value>
@@ -978,17 +978,17 @@
   <data name="EndOfVideoCheckbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 17</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Output File:</value>
   </data>
-  <data name="ConvertButton.Text" xml:space="preserve">
-    <value>Convert</value>
+  <data name="&gt;&gt;CancelJoinButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="CancelJoinButton.Text" xml:space="preserve">
     <value>Cancel</value>

@@ -15,7 +15,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="CurrentVersionYoutubeDL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2019.03.01</Value>
+      <Value Profile="(Default)">2019.04.07</Value>
     </Setting>
   </Settings>
 </SettingsFile>

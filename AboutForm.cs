@@ -12,8 +12,6 @@ namespace youtube_dl
 {
     public partial class AboutForm : Form
     {
-        private int clicks = 0;
-
         public AboutForm()
         {
             InitializeComponent();
@@ -26,16 +24,7 @@ namespace youtube_dl
 
         private void title_Click(object sender, EventArgs e)
         {
-            if(clicks > 7)
-            {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=taQvvuQD8DM");
-                clicks = 0;
-            }
-            else
-            {
-                clicks++;
-            }
-            
+            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=taQvvuQD8DM");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

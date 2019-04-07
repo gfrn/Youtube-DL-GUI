@@ -13,7 +13,7 @@ using System.Threading;
 using System.ComponentModel;
 using System.Globalization;
 using System.Security.Principal;
-using System.Reflection;
+using System.Drawing;
 
 namespace youtube_dl
 {
@@ -30,6 +30,8 @@ namespace youtube_dl
         {
             new AutoResetEvent(false)
         };
+
+        public bool easterEggFound = false;
 
         public string VerboseStatus
         {
@@ -89,7 +91,8 @@ namespace youtube_dl
 
             CultureInfo currentCulture = Thread.CurrentThread.CurrentUICulture;
 
-            switch (currentCulture.Name) {
+            switch (currentCulture.Name)
+            {
                 case "pt-BR":
                     portuguêsBrasileiroToolStripMenuItem.Checked = true;
                     break;
@@ -228,6 +231,25 @@ namespace youtube_dl
             }
         }
 
+        private void DownloadChannel(string ID, string filename, string path, int filetype)
+        {
+            var channelItemsRequest = yt.Channels.List("contentDetails");
+            channelItemsRequest.Id = ID.Substring(ID.IndexOf("channel/") + 8);
+            channelItemsRequest.MaxResults = 50;
+
+            var channelsListResponse = channelItemsRequest.Execute();
+
+            foreach(var item in channelsListResponse.Items)
+            {
+                string uploadsListID = item.ContentDetails.RelatedPlaylists.Uploads;
+
+                Thread downloadPlaylistTask = new Thread(() => DownloadPlaylist(uploadsListID, filename, path, filetype));
+                downloadPlaylistTask.Start();
+            }
+
+
+        }
+
         private void DownloadButton_Click(object sender, EventArgs e)
         {
             switch(downloadButtonState) 
@@ -318,12 +340,18 @@ namespace youtube_dl
                     MessageBox.Show(strings.InvalidURL, strings.Error);
                     break;
                 default:
-                    if (ID.Contains("playlist") && ID.Contains("youtube"))
+                    if (ID.Contains("youtube"))
                     {
-                        Thread downloadPlaylistTask = new Thread(() => DownloadPlaylist(ID, filename, path, filetype));
-                        downloadPlaylistTask.Start();
-                    }
-                    else
+                        if (ID.Contains("playlist"))
+                        {
+                            Thread downloadPlaylistTask = new Thread(() => DownloadPlaylist(ID, filename, path, filetype));
+                            downloadPlaylistTask.Start();
+                        }
+                        else if (ID.Contains("channel"))
+                        {
+                            DownloadChannel(ID, filename, path, filetype);
+                        }
+                    } else
                     {
                         string HTML = "";
 
@@ -361,11 +389,8 @@ namespace youtube_dl
                             DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
                         }
                     }
-                    
                     break;
             }
-
-            DownloadButton.Enabled = true;
             UrlBox.Clear();
         }
 
@@ -431,6 +456,16 @@ namespace youtube_dl
         private void DownloadGrid_SelectionChanged(object sender, EventArgs e)
         {
             UpdateCard();
+            if(DownloadGrid.Rows.Count > 0)
+            {
+                ExportButton.Visible = true;
+                DownloadButton.Enabled = true;
+            }
+            else
+            {
+                ExportButton.Visible = false;
+                DownloadButton.Enabled = false;
+            }
         }
 
         private void UpdateCard()
@@ -443,7 +478,6 @@ namespace youtube_dl
                     FiletypeCard.Visible = true;
                     PathCard.Visible = true;
                     FilenameCard.Visible = true;
-                    DownloadButton.Enabled = true;
                     AddFromTextButton.Enabled = true;
                     queueButton.Enabled = true;
 
@@ -598,6 +632,19 @@ namespace youtube_dl
         {
             Converter converter = new Converter();
             converter.Show();
+        }
+
+        private void ExportButton_Click(object sender, EventArgs e)
+        {
+            string queueString = "";
+            exportQueueDialog.ShowDialog();
+
+            
+            foreach (Video video in downloadQueue)
+                {
+                    queueString += video.ID + Environment.NewLine;
+                }
+            File.WriteAllText(exportQueueDialog.FileName, queueString);
         }
     }
 }

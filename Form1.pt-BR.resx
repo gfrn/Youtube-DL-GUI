@@ -181,6 +181,9 @@
   <data name="VideoID.HeaderText" xml:space="preserve">
     <value>ID do Vídeo</value>
   </data>
+  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 48</value>
+  </data>
   <data name="deleteContextMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 22</value>
   </data>
@@ -192,9 +195,6 @@
   </data>
   <data name="editStripMenuItem.Text" xml:space="preserve">
     <value>Editar Atributos</value>
-  </data>
-  <data name="contextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 48</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
     <value>465, 54</value>
@@ -259,11 +259,23 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Destino do Download:</value>
   </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 20</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
   <data name="languageToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 22</value>
   </data>
   <data name="languageToolStripMenuItem.Text" xml:space="preserve">
     <value>Idioma</value>
+  </data>
+  <data name="displayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 22</value>
+  </data>
+  <data name="displayToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exibir</value>
   </data>
   <data name="displayVerboseStatusToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>235, 22</value>
@@ -277,35 +289,23 @@
   <data name="alertOnFinishToolStripMenuItem.Text" xml:space="preserve">
     <value>Alerta ao Finalizar</value>
   </data>
-  <data name="displayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 22</value>
-  </data>
-  <data name="displayToolStripMenuItem.Text" xml:space="preserve">
-    <value>Exibir</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 20</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Configurações</value>
-  </data>
   <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 20</value>
   </data>
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>Sobre</value>
   </data>
-  <data name="converterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 22</value>
-  </data>
-  <data name="converterToolStripMenuItem.Text" xml:space="preserve">
-    <value>Conversor</value>
-  </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 20</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>Ferramentas</value>
+  </data>
+  <data name="converterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 22</value>
+  </data>
+  <data name="converterToolStripMenuItem.Text" xml:space="preserve">
+    <value>Conversor</value>
   </data>
   <data name="AddFromTextButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 23</value>
@@ -363,5 +363,11 @@
   </data>
   <data name="UseTitleInEditCheckbox.Text" xml:space="preserve">
     <value>Usar Título do Vídeo</value>
+  </data>
+  <data name="ExportButton.Text" xml:space="preserve">
+    <value>&amp;Exportar Fila</value>
+  </data>
+  <data name="exportQueueDialog.Filter" xml:space="preserve">
+    <value>Arquivo de Texto|*.txt</value>
   </data>
 </root>
