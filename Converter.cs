@@ -67,18 +67,25 @@ namespace youtube_dl
             saveFileDialog.ShowDialog();
             if(saveFileDialog.CheckPathExists)
             {
-                outputFile = saveFileDialog.FileName;
-
-                OutputFileLabel.Text = outputFile.Length > 53 ? outputFile.Substring(0, 50) + "..." : outputFile;
-                ConvertFromToLabel.Text = Path.GetExtension(inputFile) + "/" + Path.GetExtension(outputFile);
-
-                if(Path.GetExtension(outputFile) == ".png")
+                if (File.Exists(saveFileDialog.FileName))
                 {
-                    MergeButton.Enabled = AddSubsButton.Enabled = IntervalSnagBox.Enabled = false;
+                    MessageBox.Show(Properties.strings.Overwrite, Properties.strings.Error);
+                    saveFileDialog.FileName = "";
                 }
+                else
+                {
+                    outputFile = saveFileDialog.FileName;
 
+                    OutputFileLabel.Text = outputFile.Length > 53 ? outputFile.Substring(0, 50) + "..." : outputFile;
+                    ConvertFromToLabel.Text = Path.GetExtension(inputFile) + "/" + Path.GetExtension(outputFile);
 
-                ConvertButton.Enabled = true;
+                    if (Path.GetExtension(outputFile) == ".png")
+                    {
+                        MergeButton.Enabled = AddSubsButton.Enabled = IntervalSnagBox.Enabled = false;
+                    }
+
+                    ConvertButton.Enabled = true;
+                }
             }
         }
 
@@ -91,7 +98,7 @@ namespace youtube_dl
             }
             else
             {
-                args = "-i \"" + openFileDialog.FileName + "\"";
+                args = "-i \"" + inputFile + "\"";
                 if (Path.GetExtension(outputFile) == ".png") { args += " -r " + IntervalSnagBox.Text + " " + outputFile.Substring(0, outputFile.LastIndexOf('.')) + "_%04d.png"; }
                 else if (CutStartTextbox.Text == "00:00:00.0" && EndOfVideoCheckbox.Checked)
                 {
@@ -99,7 +106,7 @@ namespace youtube_dl
                     else if (openSubtitlesDialog.FileName != "") { args += "-i " + openSubtitlesDialog.FileName + " - map 0 - map 1 - c copy - c:v"; }
                     else if (openMergeDialog.FileName != "") { args += "-i " + openMergeDialog.FileName + " -c:v copy -c:a aac -strict experimental"; }
 
-                    args += " " + "\"" + saveFileDialog.FileName + "\"";
+                    args += " " + "\"" + outputFile + "\"";
                 }
                 else
                 {
@@ -127,6 +134,14 @@ namespace youtube_dl
                 });
 
             statusLabel.Text = Properties.strings.Done;
+
+            OriginalFileLabel.Text = "";
+            OutputFileLabel.Text = "";
+            inputFile = "";
+            outputFile = "";
+            ConvertFromToLabel.Text = "";
+
+            ConvertButton.Enabled = false;
         }
 
         private void EndOfVideoCheckbox_CheckedChanged(object sender, EventArgs e)

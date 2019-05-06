@@ -153,6 +153,7 @@
             // saveFileDialog
             // 
             resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
+            this.saveFileDialog.OverwritePrompt = false;
             // 
             // label6
             // 

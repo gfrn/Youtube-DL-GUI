@@ -142,6 +142,9 @@
   <data name="ConvertButton.Text" xml:space="preserve">
     <value>Converter</value>
   </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Informação</value>
+  </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 13</value>
   </data>
@@ -160,9 +163,6 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Arquivo Original:</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Informação</value>
-  </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
   </data>
@@ -170,13 +170,19 @@
     <value>Cortar de:</value>
   </data>
   <data name="SaveFileButton.Text" xml:space="preserve">
-    <value>Select Destino</value>
+    <value>Selecionar Destino</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>13, 13</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>à</value>
+  </data>
+  <data name="EndOfVideoCheckbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 17</value>
+  </data>
+  <data name="EndOfVideoCheckbox.Text" xml:space="preserve">
+    <value>Fim do Vídeo</value>
   </data>
   <data name="JoinVideosButton.Text" xml:space="preserve">
     <value>Concatenar Vídeos</value>
