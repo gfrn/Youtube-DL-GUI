@@ -211,20 +211,7 @@ namespace youtube_dl
 
                 foreach (var playlistItem in playlistItemsListResponse.Items)
                 {
-                    Video videoFromPlaylist = new Video(this);
-                    videoFromPlaylist.title = playlistItem.Snippet.Title;
-                    videoFromPlaylist.ID = "https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId;
-                    videoFromPlaylist.name = filename;
-                    videoFromPlaylist.path = path;
-                    videoFromPlaylist.filetype = filetype;
-                    videoFromPlaylist.thumbURL = playlistItem.Snippet.Thumbnails.Default__.Url;
-
-                    BeginInvoke((Action)(() =>
-                    {
-                        DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, playlistItem.Snippet.Title, videoFromPlaylist.ID);
-                    }));
-
-                    downloadQueue.Add(videoFromPlaylist);
+                    ModifyQueue("https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId, filename, path, filetype, false);
                 }
 
                 nextPageToken = playlistItemsListResponse.NextPageToken;
@@ -243,8 +230,7 @@ namespace youtube_dl
             {
                 string uploadsListID = item.ContentDetails.RelatedPlaylists.Uploads;
 
-                Thread downloadPlaylistTask = new Thread(() => DownloadPlaylist(uploadsListID, filename, path, filetype));
-                downloadPlaylistTask.Start();
+                DownloadPlaylist(uploadsListID, filename, path, filetype);
             }
 
 
@@ -299,7 +285,7 @@ namespace youtube_dl
             switch (ID.Length)
             {
                 case 43:
-                    var videoRequest = yt.Videos.List("snippet");
+                    var videoRequest = yt.Videos.List("snippet,status");
                     videoRequest.Id = ID.Contains("youtube") ? ID.Substring(ID.IndexOf("=") + 1) : ID;
 
                     var videoListResponse = videoRequest.Execute();
@@ -312,26 +298,29 @@ namespace youtube_dl
 
                     foreach (var videoItem in videoListResponse.Items)
                     {
-                        Video video = new Video(this);
-                        video.ID = ID;
-                        video.name = filename;
-                        video.path = path;
-                        video.filetype = filetype;
-                        video.thumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
-                        video.title = videoItem.Snippet.Title;
-
-                        if (isEdit)
+                        if (videoItem.Status != null)
                         {
-                            downloadQueue[DownloadGrid.SelectedRows[0].Index] = video;
-                            DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = video.title;
-                            DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = video.ID;
+                            Video video = new Video(this);
+                            video.ID = ID;
+                            video.name = filename;
+                            video.path = path;
+                            video.filetype = filetype;
+                            video.thumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
+                            video.title = videoItem.Snippet.Title;
 
-                            UpdateCard();
-                        }
-                        else
-                        {
-                            downloadQueue.Add(video);
-                            DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, video.title, ID);
+                            if (isEdit)
+                            {
+                                downloadQueue[DownloadGrid.SelectedRows[0].Index] = video;
+                                DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = video.title;
+                                DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = video.ID;
+
+                                UpdateCard();
+                            }
+                            else
+                            {
+                                downloadQueue.Add(video);
+                                DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, video.title, ID);
+                            }
                         }
 
                     }
@@ -344,8 +333,7 @@ namespace youtube_dl
                     {
                         if (ID.Contains("playlist"))
                         {
-                            Thread downloadPlaylistTask = new Thread(() => DownloadPlaylist(ID, filename, path, filetype));
-                            downloadPlaylistTask.Start();
+                            DownloadPlaylist(ID, filename, path, filetype);
                         }
                         else if (ID.Contains("channel"))
                         {
@@ -385,13 +373,17 @@ namespace youtube_dl
                         }
                         else
                         {
-                            downloadQueue.Add(videoNonYoutube);
-                            DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
+                                downloadQueue.Add(videoNonYoutube);
+                                DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
                         }
                     }
                     break;
             }
-            UrlBox.Clear();
+            if(InvokeRequired)
+            {
+                UrlBox.Clear();
+            }
+            
         }
 
         // Adds selected video to download queue
