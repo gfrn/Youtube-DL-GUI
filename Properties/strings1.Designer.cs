@@ -214,6 +214,15 @@ namespace youtube_dl.Properties {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a You cannot choose the same name and extension as the original file. Please pick another name..
+        /// </summary>
+        internal static string Overwrite {
+            get {
+                return ResourceManager.GetString("Overwrite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Save Changes.
         /// </summary>
         internal static string SaveChanges {

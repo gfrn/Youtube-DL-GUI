@@ -168,6 +168,9 @@
   <data name="NoDownload" xml:space="preserve">
     <value>Nenhum Download</value>
   </data>
+  <data name="Overwrite" xml:space="preserve">
+    <value>Você não pode escolher o mesmo nome e extensão do arquivo original. Por favor escolha outro nome.</value>
+  </data>
   <data name="SaveChanges" xml:space="preserve">
     <value>Salvar</value>
   </data>

@@ -26,15 +26,7 @@ namespace youtube_dl
         private string videoAudioFilter = "mp4|*.mp4|m4a|*.m4a|3gp|*.3gp|m4v|*.m4v|mov|*.mov|webm|*.webm|ogg|*.ogg|mp3|*.mp3|flac|*.flac";
         private string imageFilter = "png|*.png";
 
-        ProcessStartInfo ffmpegInfo = new ProcessStartInfo
-        {
-
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            CreateNoWindow = true,
-            StandardOutputEncoding = Encoding.UTF8,
-            FileName = "ffmpeg.exe"
-        };
+        private Process ffMpegProc = new Process();
 
         public Converter()
         {
@@ -121,27 +113,38 @@ namespace youtube_dl
                 }
             }
 
-            ffmpegInfo.Arguments = args;
-            Process ffmpegProc = Process.Start(ffmpegInfo);
+            ffMpegProc.StartInfo.Arguments = args;
+            ffMpegProc.StartInfo.UseShellExecute = false;
+            ffMpegProc.StartInfo.RedirectStandardOutput = true;
+            ffMpegProc.StartInfo.CreateNoWindow = true;
+            ffMpegProc.StartInfo.StandardOutputEncoding = Encoding.UTF8;
+            ffMpegProc.StartInfo.FileName = "ffmpeg.exe";
 
-            ffmpegProc.OutputDataReceived += new DataReceivedEventHandler(
-                (s, f) =>
-                {
-                    AddSubsButton.Enabled = CancelImportButton.Visible = CancelJoinButton.Visible = CancelMergeButton.Visible = CancelSubtitlesButton.Visible = false;
-                    EndOfVideoCheckbox.Enabled = ConvertButton.Enabled = SaveFileButton.Enabled = OpenFileButton.Enabled = MergeButton.Enabled = false;
+            ffMpegProc.EnableRaisingEvents = true;
+            ffMpegProc.Exited += new EventHandler(ffMpegProc_Exited);
 
-                    statusLabel.Text = Properties.strings.FFMpeg;
-                });
+            ffMpegProc.Start();
 
-            statusLabel.Text = Properties.strings.Done;
+            AddSubsButton.Enabled = CancelImportButton.Visible = CancelJoinButton.Visible = CancelMergeButton.Visible = CancelSubtitlesButton.Visible = false;
+            EndOfVideoCheckbox.Enabled = ConvertButton.Enabled = SaveFileButton.Enabled = OpenFileButton.Enabled = MergeButton.Enabled = CutStartTextbox.Enabled = EndOfVideoCheckbox.Enabled = false;
 
-            OriginalFileLabel.Text = "";
-            OutputFileLabel.Text = "";
-            inputFile = "";
-            outputFile = "";
-            ConvertFromToLabel.Text = "";
+            statusLabel.Text = Properties.strings.FFMpeg;
+        }
 
-            ConvertButton.Enabled = false;
+        private void ffMpegProc_Exited(object sender, EventArgs e)
+        {
+            this.BeginInvoke((Action)(() =>
+            {
+                OriginalFileLabel.Text = "";
+                OutputFileLabel.Text = "";
+                inputFile = "";
+                outputFile = "";
+                ConvertFromToLabel.Text = "";
+
+                OpenFileButton.Enabled = CutStartTextbox.Enabled = EndOfVideoCheckbox.Enabled = JoinVideosButton.Enabled = true;
+
+                statusLabel.Text = Properties.strings.Done;
+            }));        
         }
 
         private void EndOfVideoCheckbox_CheckedChanged(object sender, EventArgs e)
