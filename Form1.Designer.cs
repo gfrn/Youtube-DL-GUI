@@ -164,7 +164,8 @@
             resources.GetString("FiletypeBox.Items13"),
             resources.GetString("FiletypeBox.Items14"),
             resources.GetString("FiletypeBox.Items15"),
-            resources.GetString("FiletypeBox.Items16")});
+            resources.GetString("FiletypeBox.Items16"),
+            resources.GetString("FiletypeBox.Items17")});
             this.FiletypeBox.Name = "FiletypeBox";
             this.FiletypeBox.SelectedIndexChanged += new System.EventHandler(this.FiletypeBox_SelectedIndexChanged);
             // 

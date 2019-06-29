@@ -395,6 +395,8 @@ namespace youtube_dl
             int filetype = FiletypeBox.SelectedIndex;
 
             ModifyQueue(ID, filename, path, filetype, false);
+
+            UrlBox.Clear();
         }
 
         public void ClearCard()

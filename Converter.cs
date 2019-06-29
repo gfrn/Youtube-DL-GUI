@@ -14,16 +14,16 @@ namespace youtube_dl
 {
     public partial class Converter : Form
     {
-        private string videoFilter = "Video Files (*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm)|*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm";
-        private string audioFilter = "Audio Files (*.ogg;*.mp3;*.m4a;*.flac) |*.ogg;*.mp3;*.m4a;*.flac";
+        private string videoFilter = "Video (*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm)|*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm";
+        private string audioFilter = "Audio (*.ogg;*.mp3;*.m4a;*.flac; *.mpeg) |*.ogg;*.mp3;*.m4a;*.flac;*.mpeg";
 
         private string[] videoFormats = { ".m4a", ".mp4", ".3gp", ".m4v", ".mov", ".webm" };
-        private string[] audioFormats = { ".ogg", ".mp3", ".m4a", ".flac" };
+        private string[] audioFormats = { ".ogg", ".mp3", ".m4a", ".flac", ".mpeg" };
 
         private string inputFile = "";
         private string outputFile = "";
 
-        private string videoAudioFilter = "mp4|*.mp4|m4a|*.m4a|3gp|*.3gp|m4v|*.m4v|mov|*.mov|webm|*.webm|ogg|*.ogg|mp3|*.mp3|flac|*.flac";
+        private string videoAudioFilter = "mp4|*.mp4|m4a|*.m4a|3gp|*.3gp|m4v|*.m4v|mov|*.mov|webm|*.webm|ogg|*.ogg|mp3|*.mp3|flac|*.flac|mpeg|*.mpeg";
         private string imageFilter = "png|*.png";
 
         private Process ffMpegProc = new Process();
@@ -173,6 +173,8 @@ namespace youtube_dl
         {
             openFileDialog.FileName = "";
             inputFile = "";
+
+            OriginalFileLabel.Text = "";
 
             JoinVideosButton.Enabled = true;
             CancelImportButton.Visible = false;
