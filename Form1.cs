@@ -617,11 +617,6 @@ namespace youtube_dl
             }
         }
 
-        private void FiletypeBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void converterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Converter converter = new Converter();
