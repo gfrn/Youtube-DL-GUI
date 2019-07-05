@@ -86,7 +86,14 @@ namespace youtube_dl
             }
 
             displayVerboseStatusToolStripMenuItem.Checked = Settings.Default.DisplayStatus;
-            FiletypeBox.SelectedIndex = Settings.Default.IndexFileType;
+            if (Settings.Default.IndexFileType <= FiletypeBox.Items.Count)
+            {
+                FiletypeBox.SelectedIndex = Settings.Default.IndexFileType;
+            }
+            else
+            {
+                FiletypeBox.SelectedIndex = 0;
+            }
             destinationBox.Text = Settings.Default.Destination == "" ? Application.StartupPath : Settings.Default.Destination;
 
             CultureInfo currentCulture = Thread.CurrentThread.CurrentUICulture;
