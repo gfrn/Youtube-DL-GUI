@@ -163,18 +163,6 @@
   <data name="FiletypeBox.Items13" xml:space="preserve">
     <value>mp4 -1280x720 (aúdio e vídeo)</value>
   </data>
-  <data name="FiletypeBox.Items14" xml:space="preserve">
-    <value>mp4 -1280x720 (video and audio)</value>
-  </data>
-  <data name="FiletypeBox.Items15" xml:space="preserve">
-    <value>flv</value>
-  </data>
-  <data name="FiletypeBox.Items16" xml:space="preserve">
-    <value>avi</value>
-  </data>
-  <data name="FiletypeBox.Items17" xml:space="preserve">
-    <value>padrão</value>
-  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 13</value>
   </data>

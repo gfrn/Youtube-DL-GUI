@@ -163,9 +163,7 @@
             resources.GetString("FiletypeBox.Items12"),
             resources.GetString("FiletypeBox.Items13"),
             resources.GetString("FiletypeBox.Items14"),
-            resources.GetString("FiletypeBox.Items15"),
-            resources.GetString("FiletypeBox.Items16"),
-            resources.GetString("FiletypeBox.Items17")});
+            resources.GetString("FiletypeBox.Items15")});
             this.FiletypeBox.Name = "FiletypeBox";
             // 
             // label2

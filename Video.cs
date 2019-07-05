@@ -38,9 +38,8 @@ namespace youtube_dl
             {11, "43"},
             {12, "18"},
             {13, "22"},
-            {14, "flv"},
-            {15, "avi" },
-            {16, "default" }
+            {14, "avi" },
+            {15, "default" }
         };
 
         Process ytbDL = new Process();
@@ -97,15 +96,13 @@ namespace youtube_dl
             {
                 switch(filetype)
                 {
-                    case 15:
-                        break;
                     case int n when (n == 1 || n == 2):
                         arguments += "--prefer-ffmpeg --extract-audio --audio-format " + fileTypes[filetype];
                         break;
-                    case int n when (n == 14 || n == 15):
+                    case 14:
                         arguments += "--recode-video " + fileTypes[filetype];
                         break;
-                    case int n when (n == 16):
+                    case 15:
                         arguments += " ";
                         break;
                     default:
