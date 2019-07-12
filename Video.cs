@@ -103,7 +103,7 @@ namespace youtube_dl
                         arguments += "--recode-video " + fileTypes[filetype];
                         break;
                     case 15:
-                        arguments += " ";
+                        
                         break;
                     default:
                         arguments += "-f " + fileTypes[filetype];
