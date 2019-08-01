@@ -95,6 +95,7 @@ namespace youtube_dl
                 FiletypeBox.SelectedIndex = 0;
             }
             destinationBox.Text = Settings.Default.Destination == "" ? Application.StartupPath : Settings.Default.Destination;
+            filenameBox.Enabled = !useTitleCheckbox.Checked;
 
             CultureInfo currentCulture = Thread.CurrentThread.CurrentUICulture;
 
@@ -321,7 +322,7 @@ namespace youtube_dl
                         {
                             Video video = new Video(this);
                             video.ID = ID;
-                            video.name = filename;
+                            video.name = filename == "%(title)s.%(ext)s" ? videoItem.Snippet.Title + ".%(ext)s": filename + ".%(ext)s"; //Temporary until title gathering returns to normal via YT-DL
                             video.path = path;
                             video.filetype = filetype;
                             video.thumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
