@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Security.Principal;
 using System.Drawing;
+using System.Linq;
 
 namespace youtube_dl
 {
@@ -22,6 +23,10 @@ namespace youtube_dl
         private const string apiKey = "key"; // Temporary, will fix once safer solution becomes available
         List<Video> downloadQueue = new List<Video>();
         YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = apiKey });
+
+        Queue queue = new Queue();
+
+        Dictionary<string, string> formats = new Dictionary<string, string>();
         private int currentVideo = 0;
 
         private int downloadButtonState = 0;
@@ -30,8 +35,6 @@ namespace youtube_dl
         {
             new AutoResetEvent(false)
         };
-
-        public bool easterEggFound = false;
 
         public string VerboseStatus
         {
@@ -86,14 +89,6 @@ namespace youtube_dl
             }
 
             displayVerboseStatusToolStripMenuItem.Checked = Settings.Default.DisplayStatus;
-            if (Settings.Default.IndexFileType <= FiletypeBox.Items.Count)
-            {
-                FiletypeBox.SelectedIndex = Settings.Default.IndexFileType;
-            }
-            else
-            {
-                FiletypeBox.SelectedIndex = 0;
-            }
             destinationBox.Text = Settings.Default.Destination == "" ? Application.StartupPath : Settings.Default.Destination;
             filenameBox.Enabled = !useTitleCheckbox.Checked;
 
@@ -205,7 +200,7 @@ namespace youtube_dl
         DownloadStatus.Text = strings.NoDownload;      
         }
 
-        private void DownloadPlaylist(string ID, string filename, string path, int filetype)
+        private void DownloadPlaylist(string ID, string filename, string path, string filetype)
         {
             var nextPageToken = "";
             while (nextPageToken != null)
@@ -219,14 +214,14 @@ namespace youtube_dl
 
                 foreach (var playlistItem in playlistItemsListResponse.Items)
                 {
-                    ModifyQueue("https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId, filename, path, filetype, false);
+                    ModifyQueue("https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId, filename, path, filetype, FiletypeBox.Text, false);
                 }
 
                 nextPageToken = playlistItemsListResponse.NextPageToken;
             }
         }
 
-        private void DownloadChannel(string ID, string filename, string path, int filetype)
+        private void DownloadChannel(string ID, string filename, string path, string filetype)
         {
             var channelItemsRequest = yt.Channels.List("contentDetails");
             channelItemsRequest.Id = ID.Substring(ID.IndexOf("channel/") + 8);
@@ -256,13 +251,18 @@ namespace youtube_dl
                     break;
 
                 case 1:
+
                     string newFilename = UseTitleInEditCheckbox.Checked ? "%(title)s.%(ext)s" :  EditFilenameBox.Text;
                     string newPath = Directory.Exists(folderBrowserDialog.SelectedPath) ? folderBrowserDialog.SelectedPath + @"\": downloadQueue[DownloadGrid.SelectedRows[0].Index].path;
-                    ModifyQueue(EditIDBox.Text, newFilename, newPath, EditFiletypeBox.SelectedIndex, true);
+                    string newFiletype = formats.FirstOrDefault(x => x.Value == EditFiletypeBox.Text).Key;
+                    ModifyQueue(EditIDBox.Text, newFilename, newPath, newFiletype, EditFiletypeBox.Text, true);
 
                     DownloadButton.Text = strings.Download;
                     break;
             }
+
+            queueButton.Enabled = false;
+            FiletypeBox.Enabled = false;
         }
 
         private void UseTitleCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -273,7 +273,6 @@ namespace youtube_dl
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Settings.Default.Destination = destinationBox.Text;
-            Settings.Default.IndexFileType = FiletypeBox.SelectedIndex;
             Settings.Default.DisplayStatus = displayVerboseStatusToolStripMenuItem.Checked;
 
             Settings.Default.Save(); // Saves user config
@@ -288,7 +287,7 @@ namespace youtube_dl
             }
         }
 
-        private void ModifyQueue(string ID, string filename, string path, int filetype, bool isEdit)
+        private void ModifyQueue(string ID, string filename, string path, string filetype, string filetypeDesc, bool isEdit)
         {
             string procID = ID;
 
@@ -322,9 +321,10 @@ namespace youtube_dl
                         {
                             Video video = new Video(this);
                             video.ID = ID;
-                            video.name = filename == "%(title)s.%(ext)s" ? videoItem.Snippet.Title + ".%(ext)s": filename + ".%(ext)s"; //Temporary until title gathering returns to normal via YT-DL
+                            video.name = filename == "%(title)s.%(ext)s" ? videoItem.Snippet.Title + ".%(ext)s": filename + ".%(ext)s";
                             video.path = path;
                             video.filetype = filetype;
+                            video.filetypeDesc = filetypeDesc;
                             video.thumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
                             video.title = videoItem.Snippet.Title;
 
@@ -418,11 +418,12 @@ namespace youtube_dl
             string ID = UrlBox.Text;
             string filename = useTitleCheckbox.Checked ? "%(title)s.%(ext)s" : filenameBox.Text;
             string path = destinationBox.Text + @"\";
-            int filetype = FiletypeBox.SelectedIndex;
+            string filetype = formats.FirstOrDefault(x => x.Value == FiletypeBox.Text).Key;
 
-            ModifyQueue(ID, filename, path, filetype, false);
+            ModifyQueue(ID, filename, path, filetype, FiletypeBox.Text, false);
 
             UrlBox.Clear();
+            FiletypeBox.Items.Clear();
         }
 
         public void ClearCard()
@@ -515,7 +516,7 @@ namespace youtube_dl
                     ThumbnailBox.Image = video.GetThumbnail();
                     TitleCard.Text = video.title.Length > 60 ? video.title.Substring(0, 57) + "..." : video.title;
                     IDCard.Text = video.ID;
-                    FiletypeCard.Text = FiletypeBox.Items[video.filetype].ToString();
+                    FiletypeCard.Text = video.filetypeDesc;
                     PathCard.Text = video.path;
                     FilenameCard.Text = filename.Length > 60 ? filename.Substring(0, 57) + "..." : filename;
                 }
@@ -544,7 +545,7 @@ namespace youtube_dl
 
             foreach (string video in videos)
             {
-                ModifyQueue(video, filename, path, filetype, false);
+                ModifyQueue(video, filename, path, "default", "default", false);
             }
         }
 
@@ -607,7 +608,7 @@ namespace youtube_dl
                 DownloadButton.Text = strings.SaveChanges;
                 downloadButtonState = 1;
 
-                EditFiletypeBox.SelectedIndex = editedVideo.filetype;
+                EditFiletypeBox.Items.AddRange(queue.getFormats(editedVideo.ID).Values.ToArray());
                 EditIDBox.Text = editedVideo.ID;
                 if (editedVideo.name == "%(title)s.%(ext)s")
                 {
@@ -660,6 +661,18 @@ namespace youtube_dl
                     queueString += video.ID + Environment.NewLine;
                 }
             File.WriteAllText(exportQueueDialog.FileName, queueString);
+        }
+
+        private void SelectVideoButton_Click(object sender, EventArgs e)
+        {
+            formats = queue.getFormats(UrlBox.Text);
+            if(formats.Count > 0)
+            {
+                queueButton.Enabled = true;
+                FiletypeBox.Enabled = true;
+            }
+
+            FiletypeBox.Items.AddRange(queue.getFormats(UrlBox.Text).Values.ToArray());
         }
     }
 }

@@ -122,7 +122,7 @@
     <value>81, 27</value>
   </data>
   <data name="UrlBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>503, 20</value>
+    <value>393, 20</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="UrlBox.TabIndex" type="System.Int32, mscorlib">
@@ -138,7 +138,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UrlBox.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>35</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -165,7 +165,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>34</value>
   </data>
   <data name="DownloadButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -192,7 +192,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DownloadButton.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>33</value>
   </data>
   <metadata name="StatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -240,55 +240,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;StatusStrip.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>31</value>
   </data>
-  <data name="FiletypeBox.Items" xml:space="preserve">
-    <value>m4a - 130k (audio only)</value>
-  </data>
-  <data name="FiletypeBox.Items1" xml:space="preserve">
-    <value>mp3 (audio only)</value>
-  </data>
-  <data name="FiletypeBox.Items2" xml:space="preserve">
-    <value>flac (audio only)</value>
-  </data>
-  <data name="FiletypeBox.Items3" xml:space="preserve">
-    <value>mp4 - 144p (video only)</value>
-  </data>
-  <data name="FiletypeBox.Items4" xml:space="preserve">
-    <value>mp4 - 240p (video only)</value>
-  </data>
-  <data name="FiletypeBox.Items5" xml:space="preserve">
-    <value>mp4 - 360p (video only)</value>
-  </data>
-  <data name="FiletypeBox.Items6" xml:space="preserve">
-    <value>mp4 - 480p (video only)</value>
-  </data>
-  <data name="FiletypeBox.Items7" xml:space="preserve">
-    <value>mp4 - 720p (video only)</value>
-  </data>
-  <data name="FiletypeBox.Items8" xml:space="preserve">
-    <value>3gp - 176x144     </value>
-  </data>
-  <data name="FiletypeBox.Items9" xml:space="preserve">
-    <value>3gp - 320x240     </value>
-  </data>
-  <data name="FiletypeBox.Items10" xml:space="preserve">
-    <value>flv - 400x240     </value>
-  </data>
-  <data name="FiletypeBox.Items11" xml:space="preserve">
-    <value>webm - 640x360     </value>
-  </data>
-  <data name="FiletypeBox.Items12" xml:space="preserve">
-    <value>mp4 - 640x360 (video and audio)</value>
-  </data>
-  <data name="FiletypeBox.Items13" xml:space="preserve">
-    <value>mp4 -1280x720 (video and audio)</value>
-  </data>
-  <data name="FiletypeBox.Items14" xml:space="preserve">
-    <value>avi</value>
-  </data>
-  <data name="FiletypeBox.Items15" xml:space="preserve">
-    <value>default</value>
+  <data name="FiletypeBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="FiletypeBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 108</value>
@@ -309,7 +264,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FiletypeBox.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>30</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -336,7 +291,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>29</value>
   </data>
   <data name="progressBar1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 523</value>
@@ -357,7 +312,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBar1.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="Number.HeaderText" xml:space="preserve">
     <value>#</value>
@@ -420,10 +375,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DownloadGrid.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>479, 54</value>
+    <value>480, 54</value>
   </data>
   <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 23</value>
@@ -444,7 +399,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -471,7 +426,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="destinationBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 56</value>
@@ -492,7 +447,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;destinationBox.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -519,7 +474,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="filenameBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 82</value>
@@ -540,7 +495,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;filenameBox.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="useTitleCheckbox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -567,11 +522,14 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;useTitleCheckbox.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <metadata name="folderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>126, 17</value>
   </metadata>
+  <data name="queueButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="queueButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 552</value>
   </data>
@@ -594,7 +552,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;queueButton.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <metadata name="downloadVideoWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>289, 17</value>
@@ -618,7 +576,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ThumbnailBox.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -645,7 +603,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -672,7 +630,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -699,7 +657,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -726,7 +684,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="TitleCard.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -750,7 +708,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;TitleCard.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="IDCard.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -774,7 +732,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;IDCard.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="FiletypeCard.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -798,7 +756,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FiletypeCard.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="PathCard.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -822,7 +780,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PathCard.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>466, 17</value>
@@ -909,7 +867,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>32</value>
   </data>
   <data name="AddFromTextButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>125, 552</value>
@@ -933,7 +891,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;AddFromTextButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>581, 17</value>
@@ -963,7 +921,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;EditIDBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="EditDestinationButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -994,55 +952,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;EditDestinationButton.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="EditFiletypeBox.Items" xml:space="preserve">
-    <value>m4a - 130k (audio only)</value>
-  </data>
-  <data name="EditFiletypeBox.Items1" xml:space="preserve">
-    <value>mp3 (audio only)</value>
-  </data>
-  <data name="EditFiletypeBox.Items2" xml:space="preserve">
-    <value>flac (audio only)</value>
-  </data>
-  <data name="EditFiletypeBox.Items3" xml:space="preserve">
-    <value>mp4 - 144p (video only)</value>
-  </data>
-  <data name="EditFiletypeBox.Items4" xml:space="preserve">
-    <value>mp4 - 240p (video only)</value>
-  </data>
-  <data name="EditFiletypeBox.Items5" xml:space="preserve">
-    <value>mp4 - 360p (video only)</value>
-  </data>
-  <data name="EditFiletypeBox.Items6" xml:space="preserve">
-    <value>mp4 - 480p (video only)</value>
-  </data>
-  <data name="EditFiletypeBox.Items7" xml:space="preserve">
-    <value>mp4 - 720p (video only)</value>
-  </data>
-  <data name="EditFiletypeBox.Items8" xml:space="preserve">
-    <value>3gp - 176x144     </value>
-  </data>
-  <data name="EditFiletypeBox.Items9" xml:space="preserve">
-    <value>3gp - 320x240     </value>
-  </data>
-  <data name="EditFiletypeBox.Items10" xml:space="preserve">
-    <value>flv - 400x240     </value>
-  </data>
-  <data name="EditFiletypeBox.Items11" xml:space="preserve">
-    <value>webm - 640x360     </value>
-  </data>
-  <data name="EditFiletypeBox.Items12" xml:space="preserve">
-    <value>mp4 - 640x360 (video and audio)</value>
-  </data>
-  <data name="EditFiletypeBox.Items13" xml:space="preserve">
-    <value>mp4 -1280x720 (video and audio)</value>
-  </data>
-  <data name="EditFiletypeBox.Items14" xml:space="preserve">
-    <value>avi</value>
-  </data>
-  <data name="EditFiletypeBox.Items15" xml:space="preserve">
-    <value>default</value>
+    <value>8</value>
   </data>
   <data name="EditFiletypeBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>277, 439</value>
@@ -1066,7 +976,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;EditFiletypeBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1096,7 +1006,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="EditFilenameBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>277, 493</value>
@@ -1120,7 +1030,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;EditFilenameBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="FilenameCard.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1144,7 +1054,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;FilenameCard.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="UseTitleInEditCheckbox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1177,7 +1087,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UseTitleInEditCheckbox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="ExportButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>329, 552</value>
@@ -1204,13 +1114,40 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ExportButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="exportQueueDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>870, 17</value>
   </metadata>
   <data name="exportQueueDialog.Filter" xml:space="preserve">
     <value>Text File|*.txt</value>
+  </data>
+  <data name="SelectVideoButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="SelectVideoButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>480, 25</value>
+  </data>
+  <data name="SelectVideoButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 23</value>
+  </data>
+  <data name="SelectVideoButton.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="SelectVideoButton.Text" xml:space="preserve">
+    <value>Select Video</value>
+  </data>
+  <data name="&gt;&gt;SelectVideoButton.Name" xml:space="preserve">
+    <value>SelectVideoButton</value>
+  </data>
+  <data name="&gt;&gt;SelectVideoButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SelectVideoButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SelectVideoButton.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

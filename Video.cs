@@ -16,31 +16,10 @@ namespace youtube_dl
         public string ID { get; set; }
         public string path { get; set; }
         public string name { get; set; }
-        public int filetype { get; set; }
+        public string filetype { get; set; }
+        public string filetypeDesc { get; set; }
         public string thumbURL { get; set; }
         public string title { get; set; }
-        
-
-    // Stores filetype IDs for Youtube-DL.
-    private Dictionary<int, string> fileTypes = new Dictionary<int, string>()
-        {
-            {0, "140"},
-            {1, "mp3"},
-            {2, "flac" },
-            {3, "160"},
-            {4, "133"},
-            {5, "134"},
-            {6, "135"},
-            {7, "136"},
-            {8, "17"},
-            {9, "36"},
-            {10, "5"},
-            {11, "43"},
-            {12, "18"},
-            {13, "22"},
-            {14, "avi" },
-            {15, "default" }
-        };
 
         Process ytbDL = new Process();
 
@@ -94,20 +73,32 @@ namespace youtube_dl
             }
             else
             {
-                switch(filetype)
+                if(filetype != default)
                 {
-                    case int n when (n == 1 || n == 2):
-                        arguments += "--prefer-ffmpeg --extract-audio --audio-format " + fileTypes[filetype];
-                        break;
-                    case 14:
-                        arguments += "--recode-video " + fileTypes[filetype];
-                        break;
-                    case 15:
-                        
-                        break;
-                    default:
-                        arguments += "-f " + fileTypes[filetype];
-                        break;
+                    switch (filetype)
+                    {
+                        case string s when (s == "mp3" || s == "flac"):
+                            arguments += "--prefer-ffmpeg --extract-audio --audio-format " + filetype;
+                            break;
+                        case "default":
+                            arguments += "-f bestvideo+bestaudio --merge-output-format mp4";
+                            break;
+                        default:
+                            arguments += "-f ";
+
+                            if (filetype.Contains(" "))
+                            {
+                                arguments += filetype.Substring(0, filetype.IndexOf(" "));
+                                arguments += filetype.Contains("webm") ? "+bestaudio[ext=webm] " : "+bestaudio[ext=m4a] ";
+                                arguments += "--merge-output-format " + filetype.Substring(filetype.IndexOf(" "));
+                            }
+                            else
+                            {
+                                 arguments += filetype;
+                            }
+                            
+                            break;
+                    }
                 }
                 arguments += " -o \"" + path + name + "\"";
                 arguments += " " + ID;

@@ -88,6 +88,7 @@
             this.UseTitleInEditCheckbox = new System.Windows.Forms.CheckBox();
             this.ExportButton = new System.Windows.Forms.Button();
             this.exportQueueDialog = new System.Windows.Forms.SaveFileDialog();
+            this.SelectVideoButton = new System.Windows.Forms.Button();
             this.StatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadGrid)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -145,25 +146,8 @@
             // FiletypeBox
             // 
             this.FiletypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FiletypeBox.FormattingEnabled = true;
-            this.FiletypeBox.Items.AddRange(new object[] {
-            resources.GetString("FiletypeBox.Items"),
-            resources.GetString("FiletypeBox.Items1"),
-            resources.GetString("FiletypeBox.Items2"),
-            resources.GetString("FiletypeBox.Items3"),
-            resources.GetString("FiletypeBox.Items4"),
-            resources.GetString("FiletypeBox.Items5"),
-            resources.GetString("FiletypeBox.Items6"),
-            resources.GetString("FiletypeBox.Items7"),
-            resources.GetString("FiletypeBox.Items8"),
-            resources.GetString("FiletypeBox.Items9"),
-            resources.GetString("FiletypeBox.Items10"),
-            resources.GetString("FiletypeBox.Items11"),
-            resources.GetString("FiletypeBox.Items12"),
-            resources.GetString("FiletypeBox.Items13"),
-            resources.GetString("FiletypeBox.Items14"),
-            resources.GetString("FiletypeBox.Items15")});
             resources.ApplyResources(this.FiletypeBox, "FiletypeBox");
+            this.FiletypeBox.FormattingEnabled = true;
             this.FiletypeBox.Name = "FiletypeBox";
             // 
             // label2
@@ -432,23 +416,6 @@
             // 
             this.EditFiletypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EditFiletypeBox.FormattingEnabled = true;
-            this.EditFiletypeBox.Items.AddRange(new object[] {
-            resources.GetString("EditFiletypeBox.Items"),
-            resources.GetString("EditFiletypeBox.Items1"),
-            resources.GetString("EditFiletypeBox.Items2"),
-            resources.GetString("EditFiletypeBox.Items3"),
-            resources.GetString("EditFiletypeBox.Items4"),
-            resources.GetString("EditFiletypeBox.Items5"),
-            resources.GetString("EditFiletypeBox.Items6"),
-            resources.GetString("EditFiletypeBox.Items7"),
-            resources.GetString("EditFiletypeBox.Items8"),
-            resources.GetString("EditFiletypeBox.Items9"),
-            resources.GetString("EditFiletypeBox.Items10"),
-            resources.GetString("EditFiletypeBox.Items11"),
-            resources.GetString("EditFiletypeBox.Items12"),
-            resources.GetString("EditFiletypeBox.Items13"),
-            resources.GetString("EditFiletypeBox.Items14"),
-            resources.GetString("EditFiletypeBox.Items15")});
             resources.ApplyResources(this.EditFiletypeBox, "EditFiletypeBox");
             this.EditFiletypeBox.Name = "EditFiletypeBox";
             // 
@@ -485,11 +452,19 @@
             // 
             resources.ApplyResources(this.exportQueueDialog, "exportQueueDialog");
             // 
+            // SelectVideoButton
+            // 
+            resources.ApplyResources(this.SelectVideoButton, "SelectVideoButton");
+            this.SelectVideoButton.Name = "SelectVideoButton";
+            this.SelectVideoButton.UseVisualStyleBackColor = true;
+            this.SelectVideoButton.Click += new System.EventHandler(this.SelectVideoButton_Click);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.SelectVideoButton);
             this.Controls.Add(this.ExportButton);
             this.Controls.Add(this.UseTitleInEditCheckbox);
             this.Controls.Add(this.FilenameCard);
@@ -604,6 +579,7 @@
         private System.Windows.Forms.ToolStripMenuItem converterToolStripMenuItem;
         private System.Windows.Forms.Button ExportButton;
         private System.Windows.Forms.SaveFileDialog exportQueueDialog;
+        private System.Windows.Forms.Button SelectVideoButton;
     }
 }
 

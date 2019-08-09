@@ -5,9 +5,6 @@
     <Setting Name="Destination" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="IndexFileType" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
     <Setting Name="DisplayStatus" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -15,7 +12,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="CurrentVersionYoutubeDL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2019.07.02</Value>
+      <Value Profile="(Default)">2019.07.30</Value>
     </Setting>
   </Settings>
 </SettingsFile>
