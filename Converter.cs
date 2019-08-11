@@ -73,7 +73,8 @@ namespace youtube_dl
 
                     if (Path.GetExtension(outputFile) == ".png")
                     {
-                        MergeButton.Enabled = AddSubsButton.Enabled = IntervalSnagBox.Enabled = false;
+                        MergeButton.Enabled = AddSubsButton.Enabled = false;
+                        IntervalSnagBox.Enabled = true;
                     }
 
                     ConvertButton.Enabled = true;
@@ -91,8 +92,8 @@ namespace youtube_dl
             else
             {
                 args = "-i \"" + inputFile + "\"";
-                if (Path.GetExtension(outputFile) == ".png") { args += " -r " + IntervalSnagBox.Text + " " + outputFile.Substring(0, outputFile.LastIndexOf('.')) + "_%04d.png"; }
-                else if (CutStartTextbox.Text == "00:00:00.0" && EndOfVideoCheckbox.Checked)
+                if (Path.GetExtension(outputFile) == ".png") { args += " -vf fps=" + IntervalSnagBox.Text + " "; }
+                if (CutStartTextbox.Text == "00:00:00.0" && EndOfVideoCheckbox.Checked)
                 {
                     if (openMergeDialog.FileName != "" && openSubtitlesDialog.FileName != "") { MessageBox.Show(""); }
                     else if (openSubtitlesDialog.FileName != "") { args += "-i " + openSubtitlesDialog.FileName + " - map 0 - map 1 - c copy - c:v"; }
@@ -106,10 +107,10 @@ namespace youtube_dl
                     else
                     {
                         args += " -ss " + CutStartTextbox.Text;
-                        args += EndOfVideoCheckbox.Checked ? "" : " -to " + CutEndTextbox.Text;
+                        args += EndOfVideoCheckbox.Checked ? "" : " -to " + CutEndTextbox.Text + " ";
                     }
 
-                    args += " " + "\"" + saveFileDialog.FileName + "\"";
+                    args += Path.GetExtension(outputFile) == ".png" ? "\"" + outputFile.Substring(0, outputFile.LastIndexOf('.')) + "_%04d.png\"" : "\"" + saveFileDialog.FileName + "\"";
                 }
             }
 
@@ -134,7 +135,7 @@ namespace youtube_dl
         private void ffMpegProc_Exited(object sender, EventArgs e)
         {
             this.BeginInvoke((Action)(() =>
-            {
+           {
                 OriginalFileLabel.Text = "";
                 OutputFileLabel.Text = "";
                 inputFile = "";
