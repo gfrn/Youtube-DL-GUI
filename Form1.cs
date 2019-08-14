@@ -665,6 +665,7 @@ namespace youtube_dl
 
         private void SelectVideoButton_Click(object sender, EventArgs e)
         {
+            statusLabel.Text = strings.RetrevingFormats;
             formats = queue.getFormats(UrlBox.Text);
             if(formats.Count > 0)
             {
@@ -673,6 +674,7 @@ namespace youtube_dl
             }
 
             FiletypeBox.Items.AddRange(queue.getFormats(UrlBox.Text).Values.ToArray());
+            statusLabel.Text = strings.NoDownload;
         }
     }
 }

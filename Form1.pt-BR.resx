@@ -133,6 +133,9 @@
   <data name="label2.Text" xml:space="preserve">
     <value>Extensão:</value>
   </data>
+  <data name="Title.HeaderText" xml:space="preserve">
+    <value>Título</value>
+  </data>
   <data name="VideoID.HeaderText" xml:space="preserve">
     <value>ID do Vídeo</value>
   </data>
@@ -294,5 +297,8 @@
   </data>
   <data name="exportQueueDialog.Filter" xml:space="preserve">
     <value>Arquivo de Texto|*.txt</value>
+  </data>
+  <data name="SelectVideoButton.Text" xml:space="preserve">
+    <value>Selecionar Vídeo</value>
   </data>
 </root>

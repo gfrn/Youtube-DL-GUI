@@ -41,10 +41,20 @@ namespace youtube_dl
 
                     if(char.IsDigit(output[0]))
                     {
+                        string code, desc;
+
                         MatchCollection values = Regex.Matches(output, @"([^\s]+)");
-                        string code = values[2].ToString() == "audio" ? values[0].ToString() : values[0].ToString() + " " + values[1].ToString();
-                        string desc = values[1].ToString() + " (";
-                        desc = values[2].ToString() == "audio" ? desc + values[2].ToString() + ' ' + values[6].ToString() + ')' : desc + values[2].ToString() + ' ' + values[3].ToString() + ')';
+                        if (values.Count > 4)
+                        {
+                            code = values[2].ToString() == "audio" ? values[0].ToString() : values[0].ToString() + " " + values[1].ToString();
+                            desc = values[1].ToString() + " (";
+                            desc = values[2].ToString() == "audio" ? desc + values[2].ToString() + ' ' + values[6].ToString() + ')' : desc + values[2].ToString() + ' ' + values[3].ToString() + ')';
+                        }
+                        else
+                        {
+                            code = values[0].ToString();
+                            desc = values[1].ToString();
+                        }
 
                         formats.Add(code, desc);
                     }
