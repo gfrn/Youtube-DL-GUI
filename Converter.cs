@@ -92,14 +92,13 @@ namespace youtube_dl
             else
             {
                 args = "-i \"" + inputFile + "\"";
+                string output = Path.GetExtension(outputFile) == ".png" ? "\"" + outputFile.Substring(0, outputFile.LastIndexOf('.')) + "_%03d.png\"" : "\"" + saveFileDialog.FileName + "\"";
                 if (Path.GetExtension(outputFile) == ".png") { args += " -vf fps=" + IntervalSnagBox.Text + " "; }
                 if (CutStartTextbox.Text == "00:00:00.0" && EndOfVideoCheckbox.Checked)
                 {
                     if (openMergeDialog.FileName != "" && openSubtitlesDialog.FileName != "") { MessageBox.Show(""); }
                     else if (openSubtitlesDialog.FileName != "") { args += "-i " + openSubtitlesDialog.FileName + " - map 0 - map 1 - c copy - c:v"; }
                     else if (openMergeDialog.FileName != "") { args += "-i " + openMergeDialog.FileName + " -c:v copy -c:a aac -strict experimental"; }
-
-                    args += " " + "\"" + outputFile + "\"";
                 }
                 else
                 {
@@ -109,9 +108,8 @@ namespace youtube_dl
                         args += " -ss " + CutStartTextbox.Text;
                         args += EndOfVideoCheckbox.Checked ? "" : " -to " + CutEndTextbox.Text + " ";
                     }
-
-                    args += Path.GetExtension(outputFile) == ".png" ? "\"" + outputFile.Substring(0, outputFile.LastIndexOf('.')) + "_%04d.png\"" : "\"" + saveFileDialog.FileName + "\"";
                 }
+                args += output;
             }
 
             ffMpegProc.StartInfo.Arguments = args;

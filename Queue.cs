@@ -28,6 +28,7 @@ namespace youtube_dl
         {
             string output = "";
             string arguments = "-F " + url;
+            bool isNext = false;
             Dictionary<string, string> formats = new Dictionary<string, string>();
 
             ytbDLInfo.Arguments = arguments;
@@ -39,14 +40,14 @@ namespace youtube_dl
                 {
                     output = f.Data ?? "null";
 
-                    if(char.IsDigit(output[0]))
+                    if(isNext && output != "null")
                     {
                         string code, desc;
 
                         MatchCollection values = Regex.Matches(output, @"([^\s]+)");
                         if (values.Count > 4)
                         {
-                            code = values[2].ToString() == "audio" ? values[0].ToString() : values[0].ToString() + " " + values[1].ToString();
+                            code = values[0].ToString();
                             desc = values[1].ToString() + " (";
                             desc = values[2].ToString() == "audio" ? desc + values[2].ToString() + ' ' + values[6].ToString() + ')' : desc + values[2].ToString() + ' ' + values[3].ToString() + ')';
                         }
@@ -55,9 +56,11 @@ namespace youtube_dl
                             code = values[0].ToString();
                             desc = values[1].ToString();
                         }
-
-                        formats.Add(code, desc);
+                        
+                         formats.Add(code, desc);
                     }
+
+                    if(!isNext){isNext = output.Substring(0, output.IndexOf(" ")) == "format";}
                 });
 
             ytbDL.Start();
