@@ -172,6 +172,9 @@
   <data name="SaveFileButton.Text" xml:space="preserve">
     <value>Selecionar Destino</value>
   </data>
+  <data name="CutEndTextbox.Mask" xml:space="preserve">
+    <value>00:00:00.0</value>
+  </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>13, 13</value>
   </data>

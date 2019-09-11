@@ -92,7 +92,7 @@ namespace youtube_dl
             else
             {
                 args = "-i \"" + inputFile + "\"";
-                string output = Path.GetExtension(outputFile) == ".png" ? "\"" + outputFile.Substring(0, outputFile.LastIndexOf('.')) + "_%03d.png\"" : "\"" + saveFileDialog.FileName + "\"";
+                string output = Path.GetExtension(outputFile) == ".png" ? "\"" + outputFile.Substring(0, outputFile.LastIndexOf('.')) + "_%03d.png\"" : " \"" + saveFileDialog.FileName + "\"";
                 if (Path.GetExtension(outputFile) == ".png") { args += " -vf fps=" + IntervalSnagBox.Text + " "; }
                 if (CutStartTextbox.Text == "00:00:00.0" && EndOfVideoCheckbox.Checked)
                 {

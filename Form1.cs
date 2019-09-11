@@ -321,7 +321,7 @@ namespace youtube_dl
                         {
                             Video video = new Video(this);
                             video.ID = ID;
-                            video.name = filename == "%(title)s.%(ext)s" ? videoItem.Snippet.Title + ".%(ext)s": filename + ".%(ext)s";
+                            video.name = filename;
                             video.path = path;
                             video.filetype = filetype;
                             video.filetypeDesc = filetypeDesc;
@@ -424,6 +424,7 @@ namespace youtube_dl
 
             UrlBox.Clear();
             FiletypeBox.Items.Clear();
+            FiletypeBox.Enabled = false;
         }
 
         public void ClearCard()
@@ -666,16 +667,15 @@ namespace youtube_dl
         private void SelectVideoButton_Click(object sender, EventArgs e)
         {
             FiletypeBox.Items.Clear();
-            statusLabel.Text = strings.RetrevingFormats;
+            DownloadStatus.Text = strings.RetrevingFormats;
             formats = queue.getFormats(UrlBox.Text);
             if(formats.Count > 0)
             {
                 queueButton.Enabled = true;
                 FiletypeBox.Enabled = true;
+                FiletypeBox.Items.AddRange(queue.getFormats(UrlBox.Text).Values.ToArray());
             }
-
-            FiletypeBox.Items.AddRange(queue.getFormats(UrlBox.Text).Values.ToArray());
-            statusLabel.Text = strings.NoDownload;
+            DownloadStatus.Text = strings.NoDownload;
         }
     }
 }

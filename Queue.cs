@@ -40,27 +40,29 @@ namespace youtube_dl
                 {
                     output = f.Data ?? "null";
 
-                    if(isNext && output != "null")
+                    if (output != "null")
                     {
-                        string code, desc;
+                        if (isNext)
+                        {
+                            string code, desc;
 
-                        MatchCollection values = Regex.Matches(output, @"([^\s]+)");
-                        if (values.Count > 4)
-                        {
-                            code = values[0].ToString();
-                            desc = values[1].ToString() + " (";
-                            desc = values[2].ToString() == "audio" ? desc + values[2].ToString() + ' ' + values[6].ToString() + ')' : desc + values[2].ToString() + ' ' + values[3].ToString() + ')';
+                            MatchCollection values = Regex.Matches(output, @"([^\s]+)");
+                            if (values.Count > 4)
+                            {
+                                code = values[0].ToString();
+                                desc = values[1].ToString() + " (";
+                                desc = values[2].ToString() == "audio" ? desc + values[2].ToString() + ' ' + values[5].ToString() + ')' : desc + values[2].ToString() + ' ' + values[3].ToString() + ')';
+                            }
+                            else
+                            {
+                                code = values[0].ToString();
+                                desc = values[1].ToString();
+                            }
+
+                            formats.Add(code, desc);
                         }
-                        else
-                        {
-                            code = values[0].ToString();
-                            desc = values[1].ToString();
-                        }
-                        
-                         formats.Add(code, desc);
+                        else if (output.IndexOf(" ") > 0) { isNext = output.Substring(0, output.IndexOf(" ")) == "format"; }
                     }
-
-                    if(!isNext){isNext = output.Substring(0, output.IndexOf(" ")) == "format";}
                 });
 
             ytbDL.Start();

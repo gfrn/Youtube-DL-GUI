@@ -87,15 +87,15 @@
             // 
             // statusStrip1
             // 
-            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel});
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Name = "statusStrip1";
             // 
             // statusLabel
             // 
-            resources.ApplyResources(this.statusLabel, "statusLabel");
             this.statusLabel.Name = "statusLabel";
+            resources.ApplyResources(this.statusLabel, "statusLabel");
             // 
             // openFileDialog
             // 
@@ -110,13 +110,13 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.ConvertFromToLabel);
             this.groupBox1.Controls.Add(this.OutputFileLabel);
             this.groupBox1.Controls.Add(this.OriginalFileLabel);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -152,7 +152,6 @@
             // 
             // saveFileDialog
             // 
-            resources.ApplyResources(this.saveFileDialog, "saveFileDialog");
             this.saveFileDialog.OverwritePrompt = false;
             // 
             // label6
@@ -169,12 +168,13 @@
             // 
             // CutStartTextbox
             // 
-            resources.ApplyResources(this.CutStartTextbox, "CutStartTextbox");
             this.CutStartTextbox.BeepOnError = true;
+            resources.ApplyResources(this.CutStartTextbox, "CutStartTextbox");
             this.CutStartTextbox.Name = "CutStartTextbox";
             // 
             // CutEndTextbox
             // 
+            this.CutEndTextbox.Culture = new System.Globalization.CultureInfo("");
             resources.ApplyResources(this.CutEndTextbox, "CutEndTextbox");
             this.CutEndTextbox.Name = "CutEndTextbox";
             // 
@@ -257,10 +257,6 @@
             this.CancelImportButton.Name = "CancelImportButton";
             this.CancelImportButton.UseVisualStyleBackColor = true;
             this.CancelImportButton.Click += new System.EventHandler(this.CancelImportButton_Click);
-            // 
-            // openMergeDialog
-            // 
-            resources.ApplyResources(this.openMergeDialog, "openMergeDialog");
             // 
             // IntervalSnagBox
             // 
