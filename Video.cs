@@ -90,7 +90,7 @@ namespace youtube_dl
                             {
                                 arguments += filetype.Substring(0, filetype.IndexOf(" "));
                                 arguments += filetype.Contains("webm") ? "+bestaudio[ext=webm] " : "+bestaudio[ext=m4a] ";
-                                arguments += "--merge-output-format " + filetype.Substring(filetype.IndexOf(" "));
+                                arguments += "--merge-output-format" + filetype.Substring(filetype.IndexOf(" "));
                             }
                             else
                             {

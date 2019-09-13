@@ -49,9 +49,17 @@ namespace youtube_dl
                             MatchCollection values = Regex.Matches(output, @"([^\s]+)");
                             if (values.Count > 4)
                             {
-                                code = values[0].ToString();
                                 desc = values[1].ToString() + " (";
-                                desc = values[2].ToString() == "audio" ? desc + values[2].ToString() + ' ' + values[5].ToString() + ')' : desc + values[2].ToString() + ' ' + values[3].ToString() + ')';
+                                if(values[2].ToString() == "audio")
+                                    {
+                                        code = values[0].ToString();
+                                        desc += values[2].ToString() + ' ' + values[5].ToString() + ')';
+                                    }
+                                else
+                                    {
+                                        code = values[0].ToString() + ' ' + values[1].ToString();
+                                        desc += values[2].ToString() + ' ' + values[3].ToString() + ')';
+                                    }                  
                             }
                             else
                             {
