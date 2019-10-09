@@ -26,10 +26,11 @@ namespace youtube_dl
 
         public Dictionary<string, string> getFormats(string url)
         {
+            Dictionary<string, string> formats = new Dictionary<string, string>();
+
             string output = "";
             string arguments = "-F " + url;
             bool isNext = false;
-            Dictionary<string, string> formats = new Dictionary<string, string>();
 
             ytbDLInfo.Arguments = arguments;
 

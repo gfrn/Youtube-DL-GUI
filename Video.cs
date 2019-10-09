@@ -81,7 +81,6 @@ namespace youtube_dl
                             arguments += "--prefer-ffmpeg --extract-audio --audio-format " + filetype;
                             break;
                         case "default":
-                            arguments += "-f bestvideo+bestaudio --merge-output-format mp4";
                             break;
                         default:
                             arguments += "-f ";
@@ -89,7 +88,7 @@ namespace youtube_dl
                             if (filetype.Contains(" "))
                             {
                                 arguments += filetype.Substring(0, filetype.IndexOf(" "));
-                                arguments += filetype.Contains("webm") ? "+bestaudio[ext=webm] " : "+bestaudio[ext=m4a] ";
+                                arguments += "+bestaudio/best ";
                                 arguments += "--merge-output-format" + filetype.Substring(filetype.IndexOf(" "));
                             }
                             else

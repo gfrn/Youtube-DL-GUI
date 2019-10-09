@@ -291,55 +291,66 @@ namespace youtube_dl
         {
             string procID = ID;
 
-            if (ID.Contains("youtube.com/") || ID.Contains("youtu.be/"))
+            if (ID.Contains("youtu.be/") || ID.Contains("youtube.com/"))
             {
-                var videoRequest = yt.Videos.List("snippet,status");
-                procID = ID.Contains("youtu.be/") ? ID.Substring(ID.LastIndexOf("/") + 1) : ID.Substring(ID.IndexOf("=") + 1);
-
-                if (procID.Contains("&"))
+                if (ID.Contains("playlist"))
                 {
-                    procID = procID.Substring(0, procID.IndexOf("&"));
+                    DownloadPlaylist(ID, filename, path, filetype);
                 }
-                else if(procID.Contains("?"))
+                else if (ID.Contains("channel"))
                 {
-                    procID = procID.Substring(0, procID.IndexOf("?"));
-                }
-
-                videoRequest.Id = procID;
-
-                var videoListResponse = videoRequest.Execute();
-
-                if (videoListResponse.Items.Count < 1)
-                {
-                    MessageBox.Show(strings.InvalidVideo, strings.Error);
+                    DownloadChannel(ID, filename, path, filetype);
                 }
                 else
                 {
-                    foreach (var videoItem in videoListResponse.Items)
+                    var videoRequest = yt.Videos.List("snippet,status");
+                    procID = ID.Contains("youtu.be/") ? ID.Substring(ID.LastIndexOf("/") + 1) : ID.Substring(ID.IndexOf("=") + 1);
+
+                    if (procID.Contains("&"))
                     {
-                        if (videoItem.Status != null)
+                        procID = procID.Substring(0, procID.IndexOf("&"));
+                    }
+                    else if (procID.Contains("?"))
+                    {
+                        procID = procID.Substring(0, procID.IndexOf("?"));
+                    }
+
+                    videoRequest.Id = procID;
+
+                    var videoListResponse = videoRequest.Execute();
+
+                    if (videoListResponse.Items.Count < 1)
+                    {
+                        MessageBox.Show(strings.InvalidVideo, strings.Error);
+                    }
+                    else
+                    {
+                        foreach (var videoItem in videoListResponse.Items)
                         {
-                            Video video = new Video(this);
-                            video.ID = ID;
-                            video.name = filename;
-                            video.path = path;
-                            video.filetype = filetype;
-                            video.filetypeDesc = filetypeDesc;
-                            video.thumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
-                            video.title = videoItem.Snippet.Title;
-
-                            if (isEdit)
+                            if (videoItem.Status != null)
                             {
-                                downloadQueue[DownloadGrid.SelectedRows[0].Index] = video;
-                                DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = video.title;
-                                DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = video.ID;
+                                Video video = new Video(this);
+                                video.ID = ID;
+                                video.name = filename;
+                                video.path = path;
+                                video.filetype = filetype;
+                                video.filetypeDesc = filetypeDesc;
+                                video.thumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
+                                video.title = videoItem.Snippet.Title;
 
-                                UpdateCard();
-                            }
-                            else
-                            {
-                                downloadQueue.Add(video);
-                                DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, video.title, ID);
+                                if (isEdit)
+                                {
+                                    downloadQueue[DownloadGrid.SelectedRows[0].Index] = video;
+                                    DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = video.title;
+                                    DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = video.ID;
+
+                                    UpdateCard();
+                                }
+                                else
+                                {
+                                    downloadQueue.Add(video);
+                                    DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, video.title, ID);
+                                }
                             }
                         }
                     }
@@ -353,54 +364,40 @@ namespace youtube_dl
                         MessageBox.Show(strings.InvalidURL, strings.Error);
                         break;
                     default:
-                        if (ID.Contains("youtube"))
+                        string HTML = "";
+
+                        using (WebClient client = new WebClient())
                         {
-                            if (ID.Contains("playlist"))
+                            try
                             {
-                                DownloadPlaylist(ID, filename, path, filetype);
+                                HTML = client.DownloadString(UrlBox.Text);
                             }
-                            else if (ID.Contains("channel"))
+                            catch (Exception)
                             {
-                                DownloadChannel(ID, filename, path, filetype);
+                                MessageBox.Show(strings.UnableGatherTitle, strings.Error);
                             }
+                        }
+
+                        Video videoNonYoutube = new Video(this);
+                        videoNonYoutube.ID = ID;
+                        videoNonYoutube.name = filename;
+                        videoNonYoutube.path = path;
+                        videoNonYoutube.filetype = filetype;
+                        videoNonYoutube.thumbURL = null;
+                        videoNonYoutube.title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
+
+                        if (isEdit)
+                        {
+                            downloadQueue[DownloadGrid.SelectedRows[0].Index] = videoNonYoutube;
+                            DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.title;
+                            DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.ID;
+
+                            UpdateCard();
                         }
                         else
                         {
-                            string HTML = "";
-
-                            using (WebClient client = new WebClient())
-                            {
-                                try
-                                {
-                                    HTML = client.DownloadString(UrlBox.Text);
-                                }
-                                catch (Exception)
-                                {
-                                    MessageBox.Show(strings.UnableGatherTitle, strings.Error);
-                                }
-                            }
-
-                            Video videoNonYoutube = new Video(this);
-                            videoNonYoutube.ID = ID;
-                            videoNonYoutube.name = filename;
-                            videoNonYoutube.path = path;
-                            videoNonYoutube.filetype = filetype;
-                            videoNonYoutube.thumbURL = null;
-                            videoNonYoutube.title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
-
-                            if (isEdit)
-                            {
-                                downloadQueue[DownloadGrid.SelectedRows[0].Index] = videoNonYoutube;
-                                DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.title;
-                                DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.ID;
-
-                                UpdateCard();
-                            }
-                            else
-                            {
-                                downloadQueue.Add(videoNonYoutube);
-                                DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
-                            }
+                            downloadQueue.Add(videoNonYoutube);
+                            DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
                         }
                         break;
                 }
@@ -667,15 +664,44 @@ namespace youtube_dl
         private void SelectVideoButton_Click(object sender, EventArgs e)
         {
             FiletypeBox.Items.Clear();
-            DownloadStatus.Text = strings.RetrevingFormats;
-            formats = queue.getFormats(UrlBox.Text);
-            if(formats.Count > 0)
+            formats.Clear();
+            if (prioritizePlaylist.Checked && UrlBox.Text.Contains(@"&list="))
             {
+                formats.Add("default", "default (mp4)");
+                formats.Add("mp3", "mp3");
+                formats.Add("flac", "flac");
+                FiletypeBox.Items.AddRange(formats.Values.ToArray());
                 queueButton.Enabled = true;
                 FiletypeBox.Enabled = true;
-                FiletypeBox.Items.AddRange(queue.getFormats(UrlBox.Text).Values.ToArray());
+                UrlBox.BackColor = Color.LightGreen;
             }
-            DownloadStatus.Text = strings.NoDownload;
+            else
+            {
+                UrlBox.Text = UrlBox.Text.Contains(@"&list=") ? UrlBox.Text.Substring(0, UrlBox.Text.IndexOf(@"&list=")) : UrlBox.Text; 
+                DownloadStatus.Text = strings.RetrevingFormats;
+                formats = queue.getFormats(UrlBox.Text);
+                if (formats.Count > 0)
+                {
+                    queueButton.Enabled = true;
+                    FiletypeBox.Enabled = true;
+                    FiletypeBox.Items.AddRange(queue.getFormats(UrlBox.Text).Values.ToArray());
+                    UrlBox.BackColor = Color.LightGreen;
+                }
+                DownloadStatus.Text = strings.NoDownload;
+            }
+            }
+
+        private void UrlBox_TextChanged(object sender, EventArgs e)
+        {
+            if(UrlBox.BackColor == Color.LightGreen)
+            {
+                FiletypeBox.Items.Clear();
+                formats.Clear();
+
+                queueButton.Enabled = false;
+                UrlBox.BackColor = Color.White;
+            }
         }
     }
-}
+    }
+
