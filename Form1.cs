@@ -130,14 +130,14 @@ namespace youtube_dl
             {
                 using (WebClient client = new WebClient())
                 {
-                    lastVersionGUI = client.DownloadString("https://diskpro.github.io/Youtube-DL-GUI/update/LATEST_VERSION");
+                    lastVersionGUI = client.DownloadString("https://ntanck.github.io/Youtube-DL-GUI/update/LATEST_VERSION");
 
                     if (guiVersion != lastVersionGUI.Substring(0, lastVersionGUI.IndexOf('\n')))
                     {
                         DialogResult userDialogResult = MessageBox.Show(strings.AskToUpdateGUI + "\n" + strings.CurrentVersion + guiVersion + "\n" + strings.NewVersion + lastVersionGUI, "", MessageBoxButtons.YesNo);
                         if (userDialogResult == DialogResult.Yes)
                         {
-                            Process.Start("https://diskpro.github.io/Youtube-DL-GUI/");
+                            Process.Start("https://ntanck.github.io/Youtube-DL-GUI/");
                         }
                     }
                     else
