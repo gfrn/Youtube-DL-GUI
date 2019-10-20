@@ -2,11 +2,11 @@
 A Youtube-DL GUI made in C#
 
 ## Why?
-Was pissed at online downloaders and wanted to make Youtube-DL as easy as possible to use.
+Wanted to make Youtube-DL even easier to use for non-power users.
 
 ## How it looks so far
-![Example form](https://i.imgur.com/pZlJRya.png)
+![Example form](https://i.imgur.com/IDTnU7B.png)
 
 ## Other notes
-Please don't hesitate to notify me of any bugs or features you may feel that are missing. Your input is very valuable to me!
+This is still very much a small project, however, any input is appreciated and any requested features will be added if possible or convenient
 
