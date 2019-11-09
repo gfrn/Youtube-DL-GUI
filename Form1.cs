@@ -383,6 +383,7 @@ namespace youtube_dl
                         videoNonYoutube.name = filename;
                         videoNonYoutube.path = path;
                         videoNonYoutube.filetype = filetype;
+                        videoNonYoutube.filetypeDesc = filetypeDesc;
                         videoNonYoutube.thumbURL = null;
                         videoNonYoutube.title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
 

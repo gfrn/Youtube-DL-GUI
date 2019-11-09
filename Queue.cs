@@ -54,8 +54,9 @@ namespace youtube_dl
                                 if(values[2].ToString() == "audio")
                                     {
                                         code = values[0].ToString();
-                                        desc += values[2].ToString() + ' ' + values[5].ToString() + ')';
-                                    }
+                                        desc += values[2].ToString();
+                                        desc += values.Count  > 5 ? " " + values[5].ToString() + ")" : ")";
+                                }
                                 else
                                     {
                                         code = values[0].ToString() + ' ' + values[1].ToString();

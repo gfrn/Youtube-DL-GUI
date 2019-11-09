@@ -88,7 +88,7 @@ namespace youtube_dl
                             if (filetype.Contains(" "))
                             {
                                 arguments += filetype.Substring(0, filetype.IndexOf(" "));
-                                arguments += "+bestaudio/best ";
+                                arguments += filetype.Substring(0, filetype.IndexOf(" ")) == "mp4" ? "+bestaudio[ext!=webm] ‌" : "+bestaudio[ext=webm]‌ ";
                                 arguments += "--merge-output-format" + filetype.Substring(filetype.IndexOf(" "));
                             }
                             else
