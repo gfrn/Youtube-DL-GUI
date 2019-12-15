@@ -20,11 +20,7 @@ namespace youtube_dl
 {
     public partial class Form1 : Form
     {
-        private const string apiKey = "key"; // Temporary, will fix once safer solution becomes available
-        List<Video> downloadQueue = new List<Video>();
-        YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = apiKey });
-
-        Queue queue = new Queue();
+        Queue queue;
 
         Dictionary<string, string> formats = new Dictionary<string, string>();
         private int currentVideo = 0;
@@ -105,6 +101,7 @@ namespace youtube_dl
             }
 
             CheckForUpdates();
+            queue = new Queue(this);
         }
 
         private void SetCulture(string culture)
@@ -200,45 +197,6 @@ namespace youtube_dl
         DownloadStatus.Text = strings.NoDownload;      
         }
 
-        private void DownloadPlaylist(string ID, string filename, string path, string filetype)
-        {
-            var nextPageToken = "";
-            while (nextPageToken != null)
-            {
-                var playlistItemsListRequest = yt.PlaylistItems.List("snippet");
-                playlistItemsListRequest.PlaylistId = ID.Substring(ID.IndexOf("=") + 1);
-                playlistItemsListRequest.MaxResults = 50;
-                playlistItemsListRequest.PageToken = nextPageToken;
-
-                var playlistItemsListResponse = playlistItemsListRequest.Execute();
-
-                foreach (var playlistItem in playlistItemsListResponse.Items)
-                {
-                    ModifyQueue("https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId, filename, path, filetype, FiletypeBox.Text, false);
-                }
-
-                nextPageToken = playlistItemsListResponse.NextPageToken;
-            }
-        }
-
-        private void DownloadChannel(string ID, string filename, string path, string filetype)
-        {
-            var channelItemsRequest = yt.Channels.List("contentDetails");
-            channelItemsRequest.Id = ID.Substring(ID.IndexOf("channel/") + 8);
-            channelItemsRequest.MaxResults = 50;
-
-            var channelsListResponse = channelItemsRequest.Execute();
-
-            foreach(var item in channelsListResponse.Items)
-            {
-                string uploadsListID = item.ContentDetails.RelatedPlaylists.Uploads;
-
-                DownloadPlaylist(uploadsListID, filename, path, filetype);
-            }
-
-
-        }
-
         private void DownloadButton_Click(object sender, EventArgs e)
         {
             switch(downloadButtonState) 
@@ -253,9 +211,9 @@ namespace youtube_dl
                 case 1:
 
                     string newFilename = UseTitleInEditCheckbox.Checked ? "%(title)s.%(ext)s" :  EditFilenameBox.Text;
-                    string newPath = Directory.Exists(folderBrowserDialog.SelectedPath) ? folderBrowserDialog.SelectedPath + @"\": downloadQueue[DownloadGrid.SelectedRows[0].Index].path;
+                    string newPath = Directory.Exists(folderBrowserDialog.SelectedPath) ? folderBrowserDialog.SelectedPath + @"\": queue.Videos[DownloadGrid.SelectedRows[0].Index].path;
                     string newFiletype = formats.FirstOrDefault(x => x.Value == EditFiletypeBox.Text).Key;
-                    ModifyQueue(EditIDBox.Text, newFilename, newPath, newFiletype, EditFiletypeBox.Text, true);
+                    queue.ModifyQueue(EditIDBox.Text, newFilename, newPath, newFiletype, EditFiletypeBox.Text, true);
 
                     DownloadButton.Text = strings.Download;
                     break;
@@ -287,129 +245,6 @@ namespace youtube_dl
             }
         }
 
-        private void ModifyQueue(string ID, string filename, string path, string filetype, string filetypeDesc, bool isEdit)
-        {
-            string procID = ID;
-
-            if (ID.Contains("youtu.be/") || ID.Contains("youtube.com/"))
-            {
-                if (ID.Contains("playlist"))
-                {
-                    DownloadPlaylist(ID, filename, path, filetype);
-                }
-                else if (ID.Contains("channel"))
-                {
-                    DownloadChannel(ID, filename, path, filetype);
-                }
-                else
-                {
-                    var videoRequest = yt.Videos.List("snippet,status");
-                    procID = ID.Contains("youtu.be/") ? ID.Substring(ID.LastIndexOf("/") + 1) : ID.Substring(ID.IndexOf("=") + 1);
-
-                    if (procID.Contains("&"))
-                    {
-                        procID = procID.Substring(0, procID.IndexOf("&"));
-                    }
-                    else if (procID.Contains("?"))
-                    {
-                        procID = procID.Substring(0, procID.IndexOf("?"));
-                    }
-
-                    videoRequest.Id = procID;
-
-                    var videoListResponse = videoRequest.Execute();
-
-                    if (videoListResponse.Items.Count < 1)
-                    {
-                        MessageBox.Show(strings.InvalidVideo, strings.Error);
-                    }
-                    else
-                    {
-                        foreach (var videoItem in videoListResponse.Items)
-                        {
-                            if (videoItem.Status != null)
-                            {
-                                Video video = new Video(this);
-                                video.ID = ID;
-                                video.name = filename;
-                                video.path = path;
-                                video.filetype = filetype;
-                                video.filetypeDesc = filetypeDesc;
-                                video.thumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
-                                video.title = videoItem.Snippet.Title;
-
-                                if (isEdit)
-                                {
-                                    downloadQueue[DownloadGrid.SelectedRows[0].Index] = video;
-                                    DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = video.title;
-                                    DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = video.ID;
-
-                                    UpdateCard();
-                                }
-                                else
-                                {
-                                    downloadQueue.Add(video);
-                                    DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, video.title, ID);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                switch (ID.Length)
-                {
-                    case 0:
-                        MessageBox.Show(strings.InvalidURL, strings.Error);
-                        break;
-                    default:
-                        string HTML = "";
-
-                        using (WebClient client = new WebClient())
-                        {
-                            try
-                            {
-                                HTML = client.DownloadString(UrlBox.Text);
-                            }
-                            catch (Exception)
-                            {
-                                MessageBox.Show(strings.UnableGatherTitle, strings.Error);
-                            }
-                        }
-
-                        Video videoNonYoutube = new Video(this);
-                        videoNonYoutube.ID = ID;
-                        videoNonYoutube.name = filename;
-                        videoNonYoutube.path = path;
-                        videoNonYoutube.filetype = filetype;
-                        videoNonYoutube.filetypeDesc = filetypeDesc;
-                        videoNonYoutube.thumbURL = null;
-                        videoNonYoutube.title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
-
-                        if (isEdit)
-                        {
-                            downloadQueue[DownloadGrid.SelectedRows[0].Index] = videoNonYoutube;
-                            DownloadGrid[1, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.title;
-                            DownloadGrid[2, DownloadGrid.SelectedRows[0].Index].Value = videoNonYoutube.ID;
-
-                            UpdateCard();
-                        }
-                        else
-                        {
-                            downloadQueue.Add(videoNonYoutube);
-                            DownloadGrid.Rows.Add(DownloadGrid.Rows.Count + 1, videoNonYoutube.title, ID);
-                        }
-                        break;
-                }
-                if (InvokeRequired)
-                {
-                    UrlBox.Clear();
-                }
-            }
-            
-        }
-
         // Adds selected video to download queue
         private void QueueButton_Click(object sender, EventArgs e)
         {
@@ -418,7 +253,7 @@ namespace youtube_dl
             string path = destinationBox.Text + @"\";
             string filetype = formats.FirstOrDefault(x => x.Value == FiletypeBox.Text).Key;
 
-            ModifyQueue(ID, filename, path, filetype, FiletypeBox.Text, false);
+            queue.ModifyQueue(ID, filename, path, filetype, FiletypeBox.Text, false);
 
             UrlBox.Clear();
             FiletypeBox.Items.Clear();
@@ -437,12 +272,12 @@ namespace youtube_dl
 
         private void DownloadVideoWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            foreach (var video in downloadQueue)
+            foreach (var video in queue.Videos)
             {
                 video.DownloadVideo();
                 currentVideo++;
             }
-            downloadQueue.Clear();
+            queue.Videos.Clear();
             currentVideo = 0;
 
             BeginInvoke((Action)(() =>
@@ -466,7 +301,7 @@ namespace youtube_dl
             {
                 row = DownloadGrid.SelectedRows[0];
 
-                downloadQueue.RemoveAt(row.Index);
+                queue.Videos.RemoveAt(row.Index);
                 DownloadGrid.Rows.RemoveAt(row.Index);
 
                 ClearCard();
@@ -488,7 +323,7 @@ namespace youtube_dl
             }
         }
 
-        private void UpdateCard()
+        public void UpdateCard()
         {
             if (DownloadGrid.RowCount > 0)
             {
@@ -509,7 +344,7 @@ namespace youtube_dl
                     downloadButtonState = 0;
 
                     int index = int.Parse(DownloadGrid.SelectedRows[0].Cells[0].Value.ToString()) - 1;
-                    Video video = downloadQueue[index];
+                    Video video = queue.Videos[index];
                     string filename = video.name == "%(title)s.%(ext)s" ? video.title : video.name;
 
                     ThumbnailBox.Image = video.GetThumbnail();
@@ -544,7 +379,7 @@ namespace youtube_dl
 
             foreach (string video in videos)
             {
-                ModifyQueue(video, filename, path, "default", "default", false);
+                queue.ModifyQueue(video, filename, path, "default", "default", false);
             }
         }
 
@@ -590,7 +425,7 @@ namespace youtube_dl
             {
                 DataGridViewRow row = DownloadGridView.SelectedRows[0];
 
-                Video editedVideo = downloadQueue[row.Index];
+                Video editedVideo = queue.Videos[row.Index];
 
                 IDCard.Visible = false;
                 FiletypeCard.Visible = false;
@@ -607,7 +442,12 @@ namespace youtube_dl
                 DownloadButton.Text = strings.SaveChanges;
                 downloadButtonState = 1;
 
-                EditFiletypeBox.Items.AddRange(queue.getFormats(editedVideo.ID).Values.ToArray());
+                EditFiletypeBox.Items.Clear();
+                formats.Clear();
+
+                formats = queue.getFormats(editedVideo.ID);
+
+                EditFiletypeBox.Items.AddRange(formats.Values.ToArray());
                 EditIDBox.Text = editedVideo.ID;
                 if (editedVideo.name == "%(title)s.%(ext)s")
                 {
@@ -630,7 +470,7 @@ namespace youtube_dl
         private void UseTitleInEditCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             DataGridViewRow row = DownloadGridView.SelectedRows[0];
-            Video editedVideo = downloadQueue[row.Index];
+            Video editedVideo = queue.Videos[row.Index];
 
             if (UseTitleInEditCheckbox.Checked)
             {
@@ -655,7 +495,7 @@ namespace youtube_dl
             exportQueueDialog.ShowDialog();
 
             
-            foreach (Video video in downloadQueue)
+            foreach (Video video in queue.Videos)
                 {
                     queueString += video.ID + Environment.NewLine;
                 }
@@ -672,8 +512,7 @@ namespace youtube_dl
                 formats.Add("mp3", "mp3");
                 formats.Add("flac", "flac");
                 FiletypeBox.Items.AddRange(formats.Values.ToArray());
-                queueButton.Enabled = true;
-                FiletypeBox.Enabled = true;
+                FiletypeBox.Enabled = queueButton.Enabled = true;
                 UrlBox.BackColor = Color.LightGreen;
             }
             else
@@ -683,10 +522,14 @@ namespace youtube_dl
                 formats = queue.getFormats(UrlBox.Text);
                 if (formats.Count > 0)
                 {
-                    queueButton.Enabled = true;
-                    FiletypeBox.Enabled = true;
-                    FiletypeBox.Items.AddRange(queue.getFormats(UrlBox.Text).Values.ToArray());
+                    FiletypeBox.Enabled = queueButton.Enabled = true;
+                    FiletypeBox.Items.AddRange(formats.Values.ToArray());
                     UrlBox.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    UrlBox.Clear();
+                    MessageBox.Show(strings.InvalidURL, strings.Error);
                 }
                 DownloadStatus.Text = strings.NoDownload;
             }
