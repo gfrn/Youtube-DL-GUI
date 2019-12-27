@@ -73,14 +73,12 @@ namespace youtube_dl
             }
             else
             {
-                if(filetype != default)
+                if(filetype != "default")
                 {
                     switch (filetype)
                     {
                         case string s when (s == "mp3" || s == "flac"):
                             arguments += "--prefer-ffmpeg --extract-audio --audio-format " + filetype;
-                            break;
-                        case "default":
                             break;
                         default:
                             arguments += "-f ";
@@ -88,8 +86,8 @@ namespace youtube_dl
                             if (filetype.Contains(" "))
                             {
                                 arguments += filetype.Substring(0, filetype.IndexOf(" "));
-                                arguments += filetype.Substring(0, filetype.IndexOf(" ")) == "mp4" ? "+bestaudio[ext!=webm] ‌" : "+bestaudio[ext=webm]‌ ";
-                                arguments += "--merge-output-format" + filetype.Substring(filetype.IndexOf(" "));
+                                arguments += filetype.Contains("mp4") ? "+bestaudio[ext!=webm]" : "+bestaudio[ext=webm]‌";
+                                arguments += " --merge-output-format" + filetype.Substring(filetype.IndexOf(" "));
                             }
                             else
                             {
@@ -99,7 +97,7 @@ namespace youtube_dl
                             break;
                     }
                 }
-                arguments += " -o \"" + path + name + "\"";
+                arguments += filetype == "default" ? "-o \"" + path + name + "\"" : " -o \"" + path + name + "\"";
                 arguments += " " + ID;
 
                 ytbDLInfo.Arguments = arguments;
