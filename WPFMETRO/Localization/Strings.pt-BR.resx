@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>sobre</value>
+  </data>
+  <data name="AccentColor" xml:space="preserve">
+    <value>Cor de Destaque</value>
+  </data>
+  <data name="AccentTextColor" xml:space="preserve">
+    <value>Cor do Texto de Destaque</value>
+  </data>
+  <data name="AddFromTextFile" xml:space="preserve">
+    <value>Adicionar de Arquivo</value>
+  </data>
+  <data name="AddSubtitles" xml:space="preserve">
+    <value>Adicionar Legendas</value>
+  </data>
+  <data name="AddToQueue" xml:space="preserve">
+    <value>Adicionar à Lista</value>
+  </data>
+  <data name="AlertOnFinish" xml:space="preserve">
+    <value>Alertar ao Fim</value>
+  </data>
+  <data name="AskToUpdateGUI" xml:space="preserve">
+    <value>Nova versão do programa detectada. Gostaria de atualizar?</value>
+  </data>
+  <data name="AskToUpdateYoutubeDL" xml:space="preserve">
+    <value>Nova versão do youtube-dl detectada. Gostaria de atualizar? Para atualizar, o programa precisa ser reiniciado com permissões de administrador. O processo pode demorar alguns minutos.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>Converter</value>
+  </data>
+  <data name="ConvertedFrom" xml:space="preserve">
+    <value>Extensão Origem:</value>
+  </data>
+  <data name="ConvertedTo" xml:space="preserve">
+    <value>Extensão Destino:</value>
+  </data>
+  <data name="Converter" xml:space="preserve">
+    <value>conversor</value>
+  </data>
+  <data name="CropFrom" xml:space="preserve">
+    <value>Cortar de:</value>
+  </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>Versão atual: </value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Customizada</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Escuro</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Destino:</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Pronto!</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Baixar</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>Baixando...</value>
+  </data>
+  <data name="DownloadLocation" xml:space="preserve">
+    <value>Salvar Em</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erro!</value>
+  </data>
+  <data name="ExportQueue" xml:space="preserve">
+    <value>Exportar Lista</value>
+  </data>
+  <data name="FFMpeg" xml:space="preserve">
+    <value>Convertendo...</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Arquivo:</value>
+  </data>
+  <data name="Filename" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Filetype" xml:space="preserve">
+    <value>Formato</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Download terminado!</value>
+  </data>
+  <data name="General Style" xml:space="preserve">
+    <value>Estilo Geral</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Informações</value>
+  </data>
+  <data name="InvalidFiletype" xml:space="preserve">
+    <value>Não foi possível baixar o vídeo! Este tipo de arquivo pode não estar disponível. Tente selecionar o tipo padrão.</value>
+  </data>
+  <data name="InvalidPath" xml:space="preserve">
+    <value>Destino do download inválido selecionado! Selecione um caminho existente e tente novamente!</value>
+  </data>
+  <data name="InvalidURL" xml:space="preserve">
+    <value>Adicione um URL válido!</value>
+  </data>
+  <data name="InvalidVideo" xml:space="preserve">
+    <value>Vídeo inválido/indisponível!</value>
+  </data>
+  <data name="JoinVideos" xml:space="preserve">
+    <value>Juntar Vídeos</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="MergeAV" xml:space="preserve">
+    <value>Juntar Vídeo e Áudio</value>
+  </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>Nova versão: </value>
+  </data>
+  <data name="NoConversion" xml:space="preserve">
+    <value>Sem conversão</value>
+  </data>
+  <data name="NoDownload" xml:space="preserve">
+    <value>Nenhum Download</value>
+  </data>
+  <data name="OriginalFile" xml:space="preserve">
+    <value>Arquivo Original:</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Outros:</value>
+  </data>
+  <data name="OutputFile" xml:space="preserve">
+    <value>Arquivo Destino:</value>
+  </data>
+  <data name="Overwrite" xml:space="preserve">
+    <value>Você não pode escolher o mesmo nome e extensão do arquivo original. Por favor escolha outro nome.</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Preferências</value>
+  </data>
+  <data name="PrioritizePlaylists" xml:space="preserve">
+    <value>Priorizar Playlists Sobre Vídeos</value>
+  </data>
+  <data name="RetrievingFormats" xml:space="preserve">
+    <value>Buscando Formatos...</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>Segundos</value>
+  </data>
+  <data name="SelectDestination" xml:space="preserve">
+    <value>Selecionar Destino</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Selecionar Arquivo</value>
+  </data>
+  <data name="SelectLocation" xml:space="preserve">
+    <value>Selecionar Local</value>
+  </data>
+  <data name="SelectVideo" xml:space="preserve">
+    <value>Selecionar Vídeo</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>configurações</value>
+  </data>
+  <data name="SnagEvery" xml:space="preserve">
+    <value>Extrair Frame a Cada</value>
+  </data>
+  <data name="StartingUp" xml:space="preserve">
+    <value>Começando...</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Título</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>à</value>
+  </data>
+  <data name="ToEnd" xml:space="preserve">
+    <value>Até o Final do Vídeo</value>
+  </data>
+  <data name="UnableGatherTitle" xml:space="preserve">
+    <value>Título do vídeo indisponível!</value>
+  </data>
+  <data name="UnauthorizedAccess" xml:space="preserve">
+    <value>Não foi possível realizar a atualização; o programa não possui permissão para modificar arquivos no local de instalação</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>Atualizando o youtube-dl...</value>
+  </data>
+  <data name="UseCustomLocale" xml:space="preserve">
+    <value>Usar Idioma Alternativo</value>
+  </data>
+  <data name="UseVerboseStatus" xml:space="preserve">
+    <value>Usar Status Prolixo</value>
+  </data>
+  <data name="UseVideoTitle" xml:space="preserve">
+    <value>Usar Título</value>
+  </data>
+  <data name="Video Title:" xml:space="preserve">
+    <value>Título</value>
+  </data>
+</root>

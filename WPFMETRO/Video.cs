@@ -1,0 +1,152 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Threading;
+using System.Windows.Media.Imaging;
+using MahApps.Metro.Controls;
+
+namespace WPFMETRO
+{
+    public class Video
+    {
+        public string ID { get; set; }
+        public string Path { get; set; }
+        public string Name { get; set; }
+        public string SelectedFormat { get; set; }
+        public List<KeyValuePair<string, string>> AvailableFormats { get; set; }
+        public string ThumbURL { get; set; }
+        public string Title { get; set; }
+
+        Process ytbDL = new Process();
+        ProcessStartInfo ytbDLInfo = new ProcessStartInfo
+        {
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            CreateNoWindow = true,
+            StandardOutputEncoding = Encoding.UTF8,
+            FileName = "youtube-dl.exe"
+        };
+
+        MainWindow mw = Application.Current.Windows
+        .Cast<Window>()
+        .FirstOrDefault(window => window is MainWindow) as MainWindow;
+
+        public void DownloadVideo()
+        {
+            string arguments = "";
+            string output = "";
+            bool completedDownload = false;
+            string progress = "";
+
+            if (!Directory.Exists(Path))
+            {
+                MessageBox.Show(Localization.Strings.InvalidPath, Localization.Strings.Error);
+            }
+            else
+            {
+                if (SelectedFormat != "default")
+                {
+                    switch (SelectedFormat)
+                    {
+                        case string s when (s == "mp3" || s == "flac"):
+                            arguments += "--prefer-ffmpeg --extract-audio --audio-mwat " + SelectedFormat;
+                            break;
+                        default:
+                            arguments += "-f ";
+
+                            if (SelectedFormat.Contains(" "))
+                            {
+                                arguments += SelectedFormat.Substring(0, SelectedFormat.IndexOf(" "));
+                                arguments += SelectedFormat.Contains("mp4") ? "+bestaudio[ext!=webm]" : "+bestaudio[ext=webm]‌";
+                                arguments += " --merge-output-format" + SelectedFormat.Substring(SelectedFormat.IndexOf(" "));
+                            }
+                            else
+                            {
+                                arguments += SelectedFormat;
+                            }
+
+                            break;
+                    }
+                }
+                arguments += SelectedFormat == "default" ? "-o \"" + Path + Name + "\"" : " -o \"" + Path + Name + "\"";
+                arguments += " " + ID;
+
+                ytbDLInfo.Arguments = arguments;
+                ytbDL = Process.Start(ytbDLInfo);
+
+                ytbDL.OutputDataReceived += new DataReceivedEventHandler(
+                (s, f) =>
+                {
+                    output = f.Data ?? "null";
+
+                    if (output.Contains("[download]") && output.Contains("of"))
+                    {
+                        if (output.Contains("at") && output.Contains("MiB") && !output.Contains("Destination"))
+                        {
+                            string downloadSpeed = output.Substring(output.IndexOf("at") + 3, output.IndexOf("ETA") - output.IndexOf("at") - 3);
+                            mw.BeginInvoke((Action)(() =>
+                            {
+                                mw.DownloadSpeed.Text = downloadSpeed;
+                            }));
+                            progress = output.Substring(output.LastIndexOf("[download]") + 11, output.LastIndexOf("%") - 11);
+                            progress = progress.Contains(".") ? progress.Substring(0, progress.IndexOf(".")) : progress;
+                        }
+                        
+                        mw.BeginInvoke((Action)(() =>
+                        {
+                            mw.DownloadStatus.Text = Localization.Strings.Downloading;
+                            mw.DownloadPercentage.Text = progress + "%";
+                            mw.DownloadProgressBar.Value = progress != "" ? Int16.Parse(progress) : 0;
+                        }));
+                        completedDownload = true;
+                    }
+                    else
+                    {
+                        mw.BeginInvoke((Action)(() =>
+                        {
+                            mw.DownloadStatus.Text = output.Contains("[ffmpeg]") ? Localization.Strings.FFMpeg : Localization.Strings.StartingUp;
+                        }));
+                    }
+
+                    if (output != "null" && Properties.Settings.Default.VerboseStatus)
+                    {
+                        mw.BeginInvoke((Action)(() =>
+                        {
+                            mw.VerboseStatus.Text = output;
+                        }));
+                    }
+                }
+                );
+
+                ytbDL.Start();
+                ytbDL.BeginOutputReadLine();
+                ytbDL.WaitForExit();
+                ytbDL.CancelOutputRead();
+
+                if (!completedDownload)
+                {
+                    MessageBox.Show(Localization.Strings.InvalidFiletype, Localization.Strings.Error);
+                }
+
+                mw.BeginInvoke((Action)(() =>
+                {
+                    mw.DownloadSpeed.Text = "0.0 MiB/s";
+                    mw.VerboseStatus.Text = "";
+                    mw.ClearCard();
+                    mw.DownloadProgressBar.Value = 0;
+                    mw.DownloadStatus.Text = Localization.Strings.NoDownload;
+                }));
+
+                arguments = "";
+            }
+        }
+    }
+}

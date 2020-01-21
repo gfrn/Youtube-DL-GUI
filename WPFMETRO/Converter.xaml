@@ -1,0 +1,114 @@
+﻿<Controls:MetroWindow x:Class="WPFMETRO.Converter" WindowTitleBrush="{Binding Source={x:Static properties:Settings.Default}, Path=AccentColor}" BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=AccentColor}"
+                      TitleForeground="{Binding Source={x:Static properties:Settings.Default}, Path=TextColor}" Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:localization="clr-namespace:WPFMETRO.Localization"
+        xmlns:properties="clr-namespace:WPFMETRO.Properties"
+        xmlns:local="clr-namespace:WPFMETRO"
+                      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                      mc:Ignorable="d"
+        Title="{x:Static localization:Strings.Converter}" Height="457" Width="440">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.00085*" />
+            <RowDefinition Height="0.00085*" />
+            <RowDefinition Height="0.00085*" />
+            <RowDefinition Height="0.00086*" />
+            <RowDefinition Height="0.0026*" />
+            <RowDefinition Height="0.0038*" />
+            <RowDefinition Height="0.00087*" />
+            <RowDefinition Height="0.00056*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Margin="13,2" Grid.Column = "0" Grid.Row = "0" Orientation = "Horizontal">
+            <Label  Content = "{x:Static localization:Strings.File}"  VerticalAlignment = "Center" Width = "75"/>
+            <Button x:Name="ImportButton" Click="ImportButton_Click" MinWidth="150" MaxWidth="160" Content="{x:Static localization:Strings.SelectFile}"/>
+            <Button Margin="10,0,0,0" x:Name="CancelButton" Click="ImportButton_Click" MinWidth="150" MaxWidth="160" Content="{x:Static localization:Strings.Cancel}" Visibility="Hidden"/>
+        </StackPanel>
+        
+        <StackPanel Margin="13,2" Grid.Column = "0" Grid.Row = "1" Orientation = "Horizontal">
+            <Label  Content = "{x:Static localization:Strings.Destination}"  VerticalAlignment = "Center" Width = "75"/>
+            <Button IsEnabled="False" Click="ExportButton_Click" x:Name="ExportButton" MinWidth="150" MaxWidth="160" Content="{x:Static localization:Strings.SelectDestination}"/>
+        </StackPanel>
+
+        <StackPanel Margin="13,2" Grid.Column = "0" Grid.Row = "2" Orientation = "Horizontal">
+            <Label Content = "{x:Static localization:Strings.CropFrom}"  VerticalAlignment = "Center" Width = "75"/>
+            <xctk:MaskedTextBox Name="CutStartTextbox" Mask="00:00:00.0" Width="90" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label Content="{x:Static localization:Strings.To}"/>
+            <xctk:MaskedTextBox Name="CutEndTextbox" Mask="00:00:00.0" Width="90" Margin="0,0" VerticalAlignment="Center" VerticalContentAlignment="Center">
+                <xctk:MaskedTextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=EndOfVideoCheckbox, Path=IsChecked}" Value="True">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </xctk:MaskedTextBox.Style>
+            </xctk:MaskedTextBox>
+
+            <CheckBox Name="EndOfVideoCheckbox" Margin="6,0" Content="{x:Static localization:Strings.ToEnd}"/>
+        </StackPanel>
+        
+        <StackPanel Margin="13,6, 0, 0" Grid.Column = "0" Grid.Row = "3" Orientation = "Horizontal">
+            <Label  Content = "{x:Static localization:Strings.Other}"  VerticalAlignment = "Center" Width = "75"/>
+            <Button IsEnabled="False" x:Name="JoinVideosButton" Content = "{x:Static localization:Strings.JoinVideos}" MinWidth="150" MaxWidth="160"/>
+            <Button Margin="10,0,0,0" x:Name="CancelJoinButton" Click="ImportButton_Click" MinWidth="150" MaxWidth="160" Content="{x:Static localization:Strings.Cancel}" Visibility="Hidden"/>
+        </StackPanel>
+        
+        <StackPanel Margin="13,2" Orientation="Vertical" Grid.Row = "4" >
+            <StackPanel Grid.Column = "0" Grid.Row = "4" Orientation = "Horizontal">
+                <Button IsEnabled="False" Name="AddSubsButton" Content="{x:Static localization:Strings.AddSubtitles}" HorizontalAlignment="Left" MinWidth="150" MaxWidth="160" Margin="75,2"/>
+                <Button Margin="10,0,0,0" x:Name="CancelSubsButton" Click="ImportButton_Click" MinWidth="150" MaxWidth="160" Content="{x:Static localization:Strings.Cancel}" Visibility="Hidden"/>
+            </StackPanel>
+            <StackPanel Margin="70,2" Grid.Column = "0" Grid.Row = "4" Orientation = "Horizontal">
+                <Label Content = "{x:Static localization:Strings.SnagEvery}"  VerticalAlignment = "Center" MinWidth = "105"/>
+                <TextBox Name="IntervalSnagBox" Width = "50" IsEnabled="False" TextInput="IntervalSnagBox_TextInput"/>
+                <Label  Content = "{x:Static localization:Strings.Seconds}" VerticalAlignment = "Center" Width = "75"/>
+            </StackPanel>
+            <StackPanel Grid.Column = "0" Grid.Row = "4" Orientation = "Horizontal">
+                <Button IsEnabled="False" Name="MergeButton" Content="{x:Static localization:Strings.MergeAV}" HorizontalAlignment="Left" MinWidth="150" MaxWidth="160" Margin="75,2"/>
+                <Button Margin="10,0,0,0" x:Name="CancelMergeButton" Click="ImportButton_Click" MinWidth="150" MaxWidth="160" Content="{x:Static localization:Strings.Cancel}" Visibility="Hidden"/>
+            </StackPanel>
+        </StackPanel>
+
+        <GroupBox Margin="13,2" Grid.Row="5" Header="{x:Static localization:Strings.Information}">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="OriginalFileLabel" Content="{x:Static localization:Strings.OriginalFile}"/>
+                    <Label/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{x:Static localization:Strings.OutputFile}"/>
+                    <Label Name="OutputFileLabel"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{x:Static localization:Strings.ConvertedFrom}"/>
+                    <Label Name="ConvertFromLabel"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="{x:Static localization:Strings.ConvertedTo}"/>
+                    <Label Name="ConvertToLabel"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel Margin="13,2,13,4" Grid.Row="6">
+            <Button IsEnabled="False" Name="ConvertButton" Click="ConvertButton_Click" Content="{x:Static localization:Strings.Convert}"></Button>
+        </StackPanel>
+
+        <StatusBar Grid.Row="7" DockPanel.Dock="Bottom" Width="Auto">
+            <StatusBarItem>
+                <Label Name="StatusLabel" Padding="0" Content="{x:Static localization:Strings.NoConversion}"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Controls:MetroWindow>
