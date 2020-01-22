@@ -40,9 +40,9 @@
 
         <StackPanel Margin="13,2" Grid.Column = "0" Grid.Row = "2" Orientation = "Horizontal">
             <Label Content = "{x:Static localization:Strings.CropFrom}"  VerticalAlignment = "Center" Width = "75"/>
-            <xctk:MaskedTextBox Name="CutStartTextbox" Mask="00:00:00.0" Width="90" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <xctk:MaskedTextBox Text="0000000" Name="CutStartTextbox" Mask="00:00:00.0" Width="90" Padding="0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
             <Label Content="{x:Static localization:Strings.To}"/>
-            <xctk:MaskedTextBox Name="CutEndTextbox" Mask="00:00:00.0" Width="90" Margin="0,0" VerticalAlignment="Center" VerticalContentAlignment="Center">
+            <xctk:MaskedTextBox Text="0000000" Name="CutEndTextbox" Mask="00:00:00.0" Width="90" Margin="0,0" VerticalAlignment="Center" VerticalContentAlignment="Center">
                 <xctk:MaskedTextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="IsEnabled" Value="True"/>
@@ -55,7 +55,7 @@
                 </xctk:MaskedTextBox.Style>
             </xctk:MaskedTextBox>
 
-            <CheckBox Name="EndOfVideoCheckbox" Margin="6,0" Content="{x:Static localization:Strings.ToEnd}"/>
+            <CheckBox IsChecked="True" Name="EndOfVideoCheckbox" Margin="6,0" Content="{x:Static localization:Strings.ToEnd}"/>
         </StackPanel>
         
         <StackPanel Margin="13,6, 0, 0" Grid.Column = "0" Grid.Row = "3" Orientation = "Horizontal">

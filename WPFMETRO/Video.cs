@@ -57,7 +57,7 @@ namespace WPFMETRO
                     switch (SelectedFormat)
                     {
                         case string s when (s == "mp3" || s == "flac"):
-                            arguments += "--prefer-ffmpeg --extract-audio --audio-mwat " + SelectedFormat;
+                            arguments += "--prefer-ffmpeg --extract-audio --audio-format " + SelectedFormat;
                             break;
                         default:
                             arguments += "-f ";
@@ -140,6 +140,7 @@ namespace WPFMETRO
                 {
                     mw.DownloadSpeed.Text = "0.0 MiB/s";
                     mw.VerboseStatus.Text = "";
+                    mw.DownloadPercentage.Text = "0%";
                     mw.ClearCard();
                     mw.DownloadProgressBar.Value = 0;
                     mw.DownloadStatus.Text = Localization.Strings.NoDownload;

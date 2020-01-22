@@ -23,7 +23,7 @@ namespace WPFMETRO
     {
         public ObservableCollection<Video> Videos = new ObservableCollection<Video>();
 
-        YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = "key" });
+        YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = "" });
         private Process ytbDL = new Process();
 
         private ProcessStartInfo ytbDLInfo = new ProcessStartInfo
