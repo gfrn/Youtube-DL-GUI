@@ -101,9 +101,7 @@ namespace WPFMETRO
                             else
                             {
                                 if (lastVersionYoutubeDL != Properties.Settings.Default.YoutubeDLVersion)
-                                {
-                                    DownloadStatus.Text = Localization.Strings.Updating;
-
+                                { 
                                     if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\youtube-dl.exe"))
                                     {
                                         File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\youtube-dl.exe");
