@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>tietoja</value>
+  </data>
+  <data name="AccentColor" xml:space="preserve">
+    <value>Korostusväri</value>
+  </data>
+  <data name="AccentTextColor" xml:space="preserve">
+    <value>Korostustekstiväri</value>
+  </data>
+  <data name="AddFromTextFile" xml:space="preserve">
+    <value>Lisää tekstitiedostosta</value>
+  </data>
+  <data name="AddSubtitles" xml:space="preserve">
+    <value>Lisää tekstitykset</value>
+  </data>
+  <data name="AddToQueue" xml:space="preserve">
+    <value>Lisää jonoon</value>
+  </data>
+  <data name="AlertOnFinish" xml:space="preserve">
+    <value>Ilmoita, kun valmis</value>
+  </data>
+  <data name="AskToUpdateGUI" xml:space="preserve">
+    <value>Uusi versio saatavilla. Haluatko päivittää? </value>
+  </data>
+  <data name="AskToUpdateYoutubeDL" xml:space="preserve">
+    <value>Uusi versio youtube-dl-ohjelmasta saatavilla. Haluatko päivittää? Ohjelman tulee käynnistyä uudelleen, ja päivityksessä voi kestää joitain minuutteja.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Peruuta</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>Muunna</value>
+  </data>
+  <data name="ConvertedFrom" xml:space="preserve">
+    <value>Muodosta:</value>
+  </data>
+  <data name="ConvertedTo" xml:space="preserve">
+    <value>Muotoon:</value>
+  </data>
+  <data name="Converter" xml:space="preserve">
+    <value>muuntaja</value>
+  </data>
+  <data name="CropFrom" xml:space="preserve">
+    <value>Leikkaa:</value>
+  </data>
+  <data name="CurrentVersion" xml:space="preserve">
+    <value>Nykyinen versio:</value>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Mukautettu</value>
+  </data>
+  <data name="Dark" xml:space="preserve">
+    <value>Tumma</value>
+  </data>
+  <data name="Destination" xml:space="preserve">
+    <value>Kohde:</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Valmis!</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Lataa</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>Ladataan...</value>
+  </data>
+  <data name="DownloadLocation" xml:space="preserve">
+    <value>Polku</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Virhe!</value>
+  </data>
+  <data name="ExportQueue" xml:space="preserve">
+    <value>Vie jono</value>
+  </data>
+  <data name="FFMpeg" xml:space="preserve">
+    <value>Muunnetaan...</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Tiedosto:</value>
+  </data>
+  <data name="Filename" xml:space="preserve">
+    <value>Tiedostonimi</value>
+  </data>
+  <data name="Filetype" xml:space="preserve">
+    <value>Muoto</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Lataus valmis!</value>
+  </data>
+  <data name="GeneralStyle" xml:space="preserve">
+    <value>Yleinen tyyli</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Tiedot</value>
+  </data>
+  <data name="InvalidFiletype" xml:space="preserve">
+    <value>Videota ei voitu ladata! Haluamasi tiedostotyyppi ei ole mahdollisesti saatavilla tällä hetkellä. Kokeile oletustyyppiä!</value>
+  </data>
+  <data name="InvalidPath" xml:space="preserve">
+    <value>Virheellinen polku valittu. Valitse toinen polku ja yritä uudelleen!</value>
+  </data>
+  <data name="InvalidURL" xml:space="preserve">
+    <value>Lisää oikea osoite!</value>
+  </data>
+  <data name="InvalidVideo" xml:space="preserve">
+    <value>Virheellinen video!</value>
+  </data>
+  <data name="JoinVideos" xml:space="preserve">
+    <value>Yhdistä videot</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Kieli</value>
+  </data>
+  <data name="Light" xml:space="preserve">
+    <value>Vaalea</value>
+  </data>
+  <data name="MergeAV" xml:space="preserve">
+    <value>Yhdistä ääni ja kuva</value>
+  </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>Uusi versio:</value>
+  </data>
+  <data name="NoConversion" xml:space="preserve">
+    <value>Ei muunnettavaa</value>
+  </data>
+  <data name="NoDownload" xml:space="preserve">
+    <value>Ei ladattavaa</value>
+  </data>
+  <data name="OriginalFile" xml:space="preserve">
+    <value>Alkuperäinen tiedosto:</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Muu:</value>
+  </data>
+  <data name="OutputFile" xml:space="preserve">
+    <value>Kohdetiedosto:</value>
+  </data>
+  <data name="Overwrite" xml:space="preserve">
+    <value>Et voi valita samaa nimeä ja tiedostopäätettä kuin alkuperäisellä tiedostolla. Valitse jokin toinen nimi.</value>
+  </data>
+  <data name="Preferences" xml:space="preserve">
+    <value>Asetukset</value>
+  </data>
+  <data name="PrioritizePlaylists" xml:space="preserve">
+    <value>Lataa soittolistat ennen videoita</value>
+  </data>
+  <data name="RetrevingFormats" xml:space="preserve">
+    <value>Haetaan muotoja...</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Tallenna muutokset</value>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>sekunnin välein</value>
+  </data>
+  <data name="SelectDestination" xml:space="preserve">
+    <value>Valitse kohde</value>
+  </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Valitse tiedosto</value>
+  </data>
+  <data name="SelectLocation" xml:space="preserve">
+    <value>Valitse sijainti</value>
+  </data>
+  <data name="SelectVideo" xml:space="preserve">
+    <value>Käytä videota</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>asetukset</value>
+  </data>
+  <data name="SnagEvery" xml:space="preserve">
+    <value>Ota kuva</value>
+  </data>
+  <data name="StartingUp" xml:space="preserve">
+    <value>Käynnistetään...</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Otsikko</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>aikaan</value>
+  </data>
+  <data name="ToEnd" xml:space="preserve">
+    <value>videon loppuun</value>
+  </data>
+  <data name="UnableGatherTitle" xml:space="preserve">
+    <value>Videon otsikkoa ei voitu hakea!</value>
+  </data>
+  <data name="UnauthorizedAccess" xml:space="preserve">
+    <value>Päivitys ei onnistunut; ei oikeuksia muokata ohjelman tiedostoja</value>
+  </data>
+  <data name="Updating" xml:space="preserve">
+    <value>Päivitetään youtube-dl-ohjelmaa...</value>
+  </data>
+  <data name="UseCustomLocale" xml:space="preserve">
+    <value>Käytä mukautettua kieltä</value>
+  </data>
+  <data name="UseVerboseStatus" xml:space="preserve">
+    <value>Näytä yksityiskohtainen tila</value>
+  </data>
+  <data name="UseVideoTitle" xml:space="preserve">
+    <value>Käytä videon otsikkoa</value>
+  </data>
+  <data name="VideoTitle" xml:space="preserve">
+    <value>Videon otsikko</value>
+  </data>
+</root>
