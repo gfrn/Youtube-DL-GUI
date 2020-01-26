@@ -33,7 +33,8 @@ namespace WPFMETRO
         private Dictionary<string, string> AvailableLanguages { get; set; } = new Dictionary<string, string>
         {
             { "pt-BR",  "Português Brasileiro"},
-            { "en", "English" }
+            { "en", "English" },
+            { "fi", "Suomi" }
         };
 
         private Dictionary<int, string> AvailableAccentColors { get; set; } = new Dictionary<int, string>

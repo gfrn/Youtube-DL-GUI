@@ -98,7 +98,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox Grid.Row="0" Content="{x:Static localization:Strings.UseCustomLocale}" x:Name="UseLocaleBox"/>
+                    <CheckBox Grid.Row="0" Content="{x:Static localization:Strings.UseCustomLocale}" x:Name="UseLocaleBox" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=UseCustomLocale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox Name="LocaleNameBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Source={x:Static properties:Settings.Default}, Path=CustomLocale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               Visibility="{Binding IsChecked,ElementName=UseLocaleBox,Converter={StaticResource b2v}}" Grid.Row="0" Height="30" Margin="110, 0, 0, 0" Width="200" Padding="0"/>
                 </Grid>

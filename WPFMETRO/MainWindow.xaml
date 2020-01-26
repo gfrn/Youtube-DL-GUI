@@ -32,37 +32,34 @@
             <RowDefinition Height="0.00048*" />
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Margin="13,2" Grid.Column = "0" Grid.Row = "0" Orientation = "Horizontal">
-            <Label  Content = "URL"  VerticalAlignment = "Center" Width = "70" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"/>
+        <DockPanel Margin="13,2">
+            <Label DockPanel.Dock="Left" Content = "URL"   VerticalAlignment = "Center" MinWidth = "110" MaxWidth = "140" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"/>
             <TextBox Name = "UrlBox" TextChanged="UrlBox_TextChanged" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
-                         Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"
-                VerticalAlignment = "Center" Width = "600"></TextBox>
-            <Button x:Name="SelectButton" Click="SelectButton_Click" Margin="5,0" Content="{x:Static localization:Strings.SelectVideo}" Width="120"
+                     Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"
+                VerticalAlignment = "Center" Width="500"></TextBox>
+            <Button Margin="5,0,0,0" DockPanel.Dock="Right" x:Name="SelectButton" Click="SelectButton_Click" Content="{x:Static localization:Strings.SelectVideo}" MinWidth = "120" MaxWidth = "240"
                         Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
                         Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
-        </StackPanel>
+        </DockPanel>
 
-        <StackPanel Margin="13,2" Grid.Column = "0" Grid.Row = "1" Orientation = "Horizontal">
+        <DockPanel Margin="13,2" Grid.Column = "0" Grid.Row = "1">
             <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Content = "{x:Static localization:Strings.DownloadLocation}" 
-                       VerticalAlignment = "Center" Width = "70"/>
+                       VerticalAlignment = "Center" MinWidth = "110" MaxWidth = "140" />
             <TextBox IsReadOnly="True" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
                          Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}" Name = "PathBox" VerticalAlignment = "Center" 
-            Width = "600"></TextBox>
-            <Button Margin="5,0" Name="SelectLocationButton" Click="SelectLocationButton_Click"  Content="{x:Static localization:Strings.SelectLocation}" Width="120"
+            Width = "500"></TextBox>
+            <Button Margin="5,0,0,0" Name="SelectLocationButton" Click="SelectLocationButton_Click"  Content="{x:Static localization:Strings.SelectLocation}" MinWidth = "120" MaxWidth = "240"
                         Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
                         Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"></Button>
-        </StackPanel>
+        </DockPanel>
 
-        <StackPanel Margin="13,2" Grid.Column = "0" Grid.Row = "2" Orientation = "Horizontal">
+        <DockPanel Margin="13,2" Grid.Column = "0" Grid.Row = "2">
             <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Content = "{x:Static localization:Strings.Filename}" 
-                       VerticalAlignment = "Center" Width = "70"/>
+                       VerticalAlignment = "Center" MinWidth = "110" MaxWidth = "140"/>
             <TextBox Height="25" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
                          Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}" Name = "FilenameBox" VerticalAlignment = "Center" 
-            Width = "600">
+            Width = "500">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="IsEnabled" Value="True"/>
@@ -74,18 +71,18 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
-            <CheckBox Name="UseVideoTitleBox" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=UseVideoTitle}" IsThreeState="False" Margin="5,0" Content="{x:Static localization:Strings.UseVideoTitle}" Width="120"
+            <CheckBox Name="UseVideoTitleBox" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=UseVideoTitle}" IsThreeState="False" Margin="5,0,0,0" Content="{x:Static localization:Strings.UseVideoTitle}"
                           Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
-                          Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"></CheckBox>
-        </StackPanel>
+                          Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}" MinWidth = "120" MaxWidth = "240" HorizontalAlignment="Left"></CheckBox>
+        </DockPanel>
 
-        <StackPanel Margin="13,2" Grid.Column = "0" Grid.Row = "3" Orientation = "Horizontal">
+        <DockPanel Margin="13,2" Grid.Column = "0" Grid.Row = "3">
             <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Content = "{x:Static localization:Strings.Filetype}" 
-                       VerticalAlignment = "Center" Width = "70"/>
+                       VerticalAlignment = "Center" MinWidth = "110" MaxWidth = "140"/>
             <ComboBox Name = "FiletypeBox" IsEnabled="False" SelectedValuePath="Key" DisplayMemberPath="Value" Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"
                           Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
-            VerticalAlignment = "Center" Width = "600"></ComboBox>
-        </StackPanel>
+            VerticalAlignment = "Center" Width = "500" HorizontalAlignment="Left"></ComboBox>
+        </DockPanel>
         
         
 

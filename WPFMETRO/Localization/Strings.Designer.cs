@@ -592,7 +592,7 @@ namespace WPFMETRO.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Título.
+        ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string Title {
             get {
