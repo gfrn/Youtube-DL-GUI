@@ -40,68 +40,76 @@ namespace WPFMETRO
         {
             Dictionary<string, string> formats = new Dictionary<string, string>();
 
-            string output = "";
-            string arguments = "-F " + url;
-            bool isNext = false;
+            if (!url.Contains("youtube.com/playlist?list"))
+            {
+                string output = "";
+                string arguments = "-F " + url;
+                bool isNext = false;
 
-            ytbDLInfo.Arguments = arguments;
+                ytbDLInfo.Arguments = arguments;
 
-            ytbDL = Process.Start(ytbDLInfo);
+                ytbDL = Process.Start(ytbDLInfo);
 
-            ytbDL.OutputDataReceived += new DataReceivedEventHandler(
-                (s, f) =>
-                {
-                    output = f.Data ?? "null";
-
-                    if (output != "null")
+                ytbDL.OutputDataReceived += new DataReceivedEventHandler(
+                    (s, f) =>
                     {
-                        if (isNext)
-                        {
-                            string code, desc;
+                        output = f.Data ?? "null";
 
-                            MatchCollection values = Regex.Matches(output, @"([^\s]+)");
-                            if (values.Count > 4)
+                        if (output != "null")
+                        {
+                            if (isNext)
                             {
-                                desc = values[1].ToString() + " (";
-                                if (values[2].ToString() == "audio")
+                                string code, desc;
+
+                                MatchCollection values = Regex.Matches(output, @"([^\s]+)");
+                                if (values.Count > 4)
                                 {
-                                    code = values[0].ToString();
-                                    desc += "audio";
-                                    if(values.Count > 5)
+                                    desc = values[1].ToString() + " (";
+                                    if (values[2].ToString() == "audio")
                                     {
-                                        desc += values[5].ToString() != "audio" ? " " + values[5].ToString() + ")" : ")";
+                                        code = values[0].ToString();
+                                        desc += "audio";
+                                        if (values.Count > 5)
+                                        {
+                                            desc += values[5].ToString() != "audio" ? " " + values[5].ToString() + ")" : ")";
+                                        }
+                                        else
+                                        {
+                                            desc += ")";
+                                        }
                                     }
                                     else
                                     {
-                                        desc += ")";
+                                        code = values[0].ToString() + ' ' + values[1].ToString();
+                                        desc += values[2].ToString() + ' ' + values[3].ToString() + ')';
                                     }
                                 }
                                 else
                                 {
-                                    code = values[0].ToString() + ' ' + values[1].ToString();
-                                    desc += values[2].ToString() + ' ' + values[3].ToString() + ')';
+                                    code = values[0].ToString();
+                                    desc = values[1].ToString();
                                 }
-                            }
-                            else
-                            {
-                                code = values[0].ToString();
-                                desc = values[1].ToString();
-                            }
 
-                            formats.Add(code, desc);
+                                formats.Add(code, desc);
+                            }
+                            else if (output.IndexOf(" ") > 0) { isNext = output.Substring(0, output.IndexOf(" ")) == "format"; }
                         }
-                        else if (output.IndexOf(" ") > 0) { isNext = output.Substring(0, output.IndexOf(" ")) == "format"; }
-                    }
-                });
+                    });
 
-            ytbDL.Start();
-            ytbDL.BeginOutputReadLine();
-            ytbDL.WaitForExit();
-            ytbDL.CancelOutputRead();
-
+                ytbDL.Start();
+                ytbDL.BeginOutputReadLine();
+                ytbDL.WaitForExit();
+                ytbDL.CancelOutputRead();
+            
             if (formats.Count > 0)
             {
-                formats.Add("default", "default (mp4)");
+                formats.Add("default", "default");
+                formats.Add("mp3", "mp3");
+                formats.Add("flac", "flac");
+            }
+            } else
+            {
+                formats.Add("default", "default");
                 formats.Add("mp3", "mp3");
                 formats.Add("flac", "flac");
             }

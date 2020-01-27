@@ -132,33 +132,33 @@
         <StackPanel Grid.Row="5" Margin="220,2,16,0">
             <StackPanel Orientation="Horizontal">
             <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left" 
-                       Content="URL" Width="70"></Label>
+                       Content="URL" Width="100"></Label>
                 <TextBlock Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left"
-                       Name="UrlLabel" VerticalAlignment="Center" TextTrimming="WordEllipsis" Width="520"></TextBlock>
+                       Name="UrlLabel" VerticalAlignment="Center" TextTrimming="WordEllipsis" Width="490"></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
             <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left" 
-                       Content="{x:Static localization:Strings.VideoTitle}" Width="70"></Label>
+                       Content="{x:Static localization:Strings.VideoTitle}" Width="100"></Label>
                 <TextBlock Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left"
-                       Name="TitleLabel" VerticalAlignment="Center" TextTrimming="WordEllipsis" Width="520"></TextBlock>
+                       Name="TitleLabel" VerticalAlignment="Center" TextTrimming="WordEllipsis" Width="490"></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                     <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left" 
-                       Content="{x:Static localization:Strings.Filename}" Width="70"></Label>
+                       Content="{x:Static localization:Strings.Filename}" Width="100"></Label>
                 <TextBlock Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left"
-                       Name="FilenameLabel" VerticalAlignment="Center" TextTrimming="WordEllipsis" Width="520"></TextBlock>
+                       Name="FilenameLabel" VerticalAlignment="Center" TextTrimming="WordEllipsis" Width="490"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
             <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left" 
-                       Content="{x:Static localization:Strings.DownloadLocation}" Width="70"></Label>
+                       Content="{x:Static localization:Strings.DownloadLocation}" Width="100"></Label>
                 <TextBlock Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left"
-                       Name="PathLabel" VerticalAlignment="Center" TextTrimming="WordEllipsis" Width="520"></TextBlock>
+                       Name="PathLabel" VerticalAlignment="Center" TextTrimming="WordEllipsis"></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
             <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left" 
-                       Content="{x:Static localization:Strings.Filetype}" Width="70"></Label>
+                       Content="{x:Static localization:Strings.Filetype}" Width="100"></Label>
                 <TextBlock TextTrimming="WordEllipsis" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Left"
-                       Name="FiletypeLabel" VerticalAlignment="Center" Width="520"></TextBlock>
+                       Name="FiletypeLabel" VerticalAlignment="Center"></TextBlock>
             </StackPanel>
         </StackPanel>
 

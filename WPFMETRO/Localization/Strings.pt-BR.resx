@@ -124,7 +124,7 @@
     <value>Cor de Destaque</value>
   </data>
   <data name="AccentTextColor" xml:space="preserve">
-    <value>Cor do Texto de Destaque</value>
+    <value>Cor do Texto</value>
   </data>
   <data name="AddFromTextFile" xml:space="preserve">
     <value>Adicionar de Arquivo</value>
