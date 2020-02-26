@@ -311,7 +311,7 @@ namespace WPFMETRO
         private void AddToQueueButton_Click(object sender, RoutedEventArgs e)
         {
             string ID = UrlBox.Text;
-            string filename = UseVideoTitleBox.IsChecked == true ? "%(title)s.%(ext)s" : FilenameBox.Text; //Get around nullable bool state
+            string filename = UseVideoTitleBox.IsChecked == true ? "%(title)s.%(ext)s" : FilenameBox.Text + ".%(ext)s"; //Get around nullable bool state
             string path = PathBox.Text + @"\";
             string filetype = formats.FirstOrDefault(x => x.Value == FiletypeBox.Text).Key;
 
