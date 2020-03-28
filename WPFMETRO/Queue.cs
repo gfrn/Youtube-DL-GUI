@@ -36,6 +36,52 @@ namespace WPFMETRO
             FileName = "youtube-dl.exe"
         };
 
+        public List<string> GetInfo(string url)
+        {
+            string[] args = { "--skip-download --get-title --no-warnings " + url, "--skip-download --list-thumbnails --no-warnings " + url };
+            List<string> response = new List<string>();
+            string info = "N.A.";
+            bool isThumb = false;
+            bool isNext = false;
+
+            foreach (string argument in args)
+            {
+                ytbDLInfo.Arguments = argument;
+                ytbDL = Process.Start(ytbDLInfo);
+
+                ytbDL.OutputDataReceived += new DataReceivedEventHandler(
+                    (s, f) =>
+                    {
+                        string output = f.Data ?? "null";
+                        if (isThumb)
+                        {
+                            if(isNext)
+                            {
+                                info = output == "null" ? info : output.Substring(output.LastIndexOf(' ')+1);
+                            }
+                            else
+                            {
+                                isNext = output == null ? false : output.Contains("width");
+                            }
+                        }
+                        else
+                        {
+                            info = output == "null" ? info : output;
+                        }
+                    });
+
+                ytbDL.Start();
+                ytbDL.BeginOutputReadLine();
+                ytbDL.WaitForExit();
+                ytbDL.CancelOutputRead();
+
+                response.Add(info);
+                isThumb = true;
+            }
+
+            return response;
+        }
+
         public Dictionary<string, string> GetFormats(string url)
         {
             Dictionary<string, string> formats = new Dictionary<string, string>();
@@ -87,7 +133,7 @@ namespace WPFMETRO
                                 else
                                 {
                                     code = values[0].ToString();
-                                    desc = values[1].ToString();
+                                    desc = values[1].ToString() + " (" + values[2].ToString() + ")";
                                 }
 
                                 formats.Add(code, desc);
@@ -100,19 +146,14 @@ namespace WPFMETRO
                 ytbDL.BeginOutputReadLine();
                 ytbDL.WaitForExit();
                 ytbDL.CancelOutputRead();
-            
-            if (formats.Count > 0)
-            {
-                formats.Add("default", "default");
-                formats.Add("mp3", "mp3");
-                formats.Add("flac", "flac");
+
+                if (formats.Count > 3)
+                {
+                    formats.Add("mp3", "mp3");
+                    formats.Add("flac", "flac");
+                }
             }
-            } else
-            {
-                formats.Add("default", "default");
-                formats.Add("mp3", "mp3");
-                formats.Add("flac", "flac");
-            }
+            formats.Add("default", "default");
 
             return formats;
         }
@@ -157,7 +198,7 @@ namespace WPFMETRO
 
         }
 
-        public void ModifyQueue(string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
+        public async void ModifyQueue(string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
             if (ID.Contains("youtu.be/") || ID.Contains("youtube.com/"))
             {
@@ -218,27 +259,16 @@ namespace WPFMETRO
                     case 0:
                         throw new QueueException(Localization.Strings.InvalidURL);
                     default:
-                        string HTML = "";
-
-                        using (WebClient client = new WebClient())
-                        {
-                            try
-                            {
-                                HTML = client.DownloadString(ID);
-                            }
-                            catch (Exception)
-                            {
-                                HTML = "<title>?</title>";
-                            }
-                        }
+                        List<string> videoInfo = new List<string>();
+                        await Task.Run(() => videoInfo=GetInfo(ID));
 
                         Video videoNonYoutube = new Video();
                         videoNonYoutube.ID = ID;
                         videoNonYoutube.Name = filename;
                         videoNonYoutube.Path = path;
                         videoNonYoutube.SelectedFormat = filetype;
-                        videoNonYoutube.ThumbURL = null;
-                        videoNonYoutube.Title = Regex.Match(HTML, @"\<title\b[^>]*\>\s*(?<Title>[\s\S]*?)\</title\>", RegexOptions.IgnoreCase).Groups["Title"].Value;
+                        videoNonYoutube.ThumbURL = videoInfo[1] == "N.A" ? null : videoInfo[1];
+                        videoNonYoutube.Title = videoInfo[0];
                         videoNonYoutube.AvailableFormats = formats.ToList();
 
                         Videos.Add(videoNonYoutube);

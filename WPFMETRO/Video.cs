@@ -13,6 +13,7 @@ using System.Threading;
 using System.Windows.Media.Imaging;
 using MahApps.Metro.Controls;
 
+
 namespace WPFMETRO
 {
     public class Video
