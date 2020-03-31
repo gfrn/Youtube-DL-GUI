@@ -325,8 +325,12 @@ namespace WPFMETRO
         }
         private void Videos_CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            UpdateCard();
             DownloadButton.IsEnabled = queue.Videos.Count > 0;
+        }
+
+        private void VideoGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateCard();
         }
 
         private void MetroWindow_Closing(object sender, CancelEventArgs e)
