@@ -17,6 +17,7 @@ using Microsoft.Win32;
 using MahApps.Metro.Controls;
 using System.ComponentModel;
 using System.Drawing.Imaging;
+using System.Collections.Specialized;
 
 namespace WPFMETRO
 {
@@ -38,6 +39,7 @@ namespace WPFMETRO
             InitializeComponent();
 
             VideoGrid.ItemsSource = queue.Videos;
+            queue.Videos.CollectionChanged += Videos_CollectionChanged;
             PathBox.Text = Properties.Settings.Default.DefaultPath == "" ? AppDomain.CurrentDomain.BaseDirectory : Properties.Settings.Default.DefaultPath;
             DownloadVideoWorker.DoWork += new DoWorkEventHandler(DownloadVideoWorker_DoWork);
         }
@@ -321,8 +323,7 @@ namespace WPFMETRO
             formats.Clear();
             FiletypeBox.IsEnabled = false;
         }
-
-        private void VideoGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Videos_CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             UpdateCard();
             DownloadButton.IsEnabled = queue.Videos.Count > 0;

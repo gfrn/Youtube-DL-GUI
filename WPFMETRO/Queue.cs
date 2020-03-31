@@ -3,6 +3,7 @@ using Google.Apis.YouTube.v3;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -198,7 +199,7 @@ namespace WPFMETRO
 
         }
 
-        public async void ModifyQueue(string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
+            public async void ModifyQueue(string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
             if (ID.Contains("youtu.be/") || ID.Contains("youtube.com/"))
             {
