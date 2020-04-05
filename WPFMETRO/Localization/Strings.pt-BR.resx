@@ -210,6 +210,9 @@
   <data name="General Style" xml:space="preserve">
     <value>Estilo Geral</value>
   </data>
+  <data name="GettingTitle" xml:space="preserve">
+    <value>Buscando Título...</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Informações</value>
   </data>

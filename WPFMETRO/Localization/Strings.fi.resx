@@ -210,6 +210,9 @@
   <data name="GeneralStyle" xml:space="preserve">
     <value>Yleinen tyyli</value>
   </data>
+  <data name="GettingTitle" xml:space="preserve">
+    <value>Haetaan otsikkoa...</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Tiedot</value>
   </data>

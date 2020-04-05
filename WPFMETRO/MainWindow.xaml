@@ -89,12 +89,12 @@
         <StackPanel Grid.Row="4" Margin="13,2">
             <DataGrid x:Name="VideoGrid" HorizontalAlignment="Left" BorderBrush="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
                           BorderThickness="2" Height="280" Width="795" AlternationCount = "2" ItemsSource="{Binding queue}" CanUserAddRows="false" AutoGenerateColumns = "False" 
-                          PresentationTraceSources.TraceLevel="High" SelectionChanged="VideoGrid_SelectionChanged">
+                          PresentationTraceSources.TraceLevel="High" SelectionChanged="VideoGrid_SelectionChanged" Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="260" Header="{x:Static localization:Strings.Title}" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock  Text="{Binding Title, Mode=TwoWay}" TextTrimming="WordEllipsis"/>
+                                <TextBlock Text="{Binding Title, Mode=TwoWay}" TextTrimming="WordEllipsis"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

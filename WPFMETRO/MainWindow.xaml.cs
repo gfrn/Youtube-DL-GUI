@@ -317,6 +317,8 @@ namespace WPFMETRO
             string path = PathBox.Text + @"\";
             string filetype = formats.FirstOrDefault(x => x.Value == FiletypeBox.Text).Key;
 
+            DownloadStatus.Text = Localization.Strings.GettingTitle;
+
             queue.ModifyQueue(ID, filename, path, filetype, formats);
 
             UrlBox.Clear();
@@ -325,6 +327,7 @@ namespace WPFMETRO
         }
         private void Videos_CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
+            DownloadStatus.Text = Localization.Strings.NoDownload;
             DownloadButton.IsEnabled = queue.Videos.Count > 0;
         }
 

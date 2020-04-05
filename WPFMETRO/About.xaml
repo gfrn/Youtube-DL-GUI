@@ -13,25 +13,25 @@
 
     <Grid>
         <StackPanel Margin="5">
-            <Label Content="Youtube-DL GUI" FontSize="35" MouseDoubleClick="Label_MouseDoubleClick"></Label>
-            <Label Content="v. x.x.x.x " FontSize="15" Name="VersionLabel"/>
-            <Label Content="Random quote!" Name="QuoteText" HorizontalAlignment="Center"/>
+            <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Content="Youtube-DL GUI" FontSize="35" MouseDoubleClick="Label_MouseDoubleClick"></Label>
+            <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Content="v. x.x.x.x " FontSize="15" Name="VersionLabel"/>
+            <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Content="Random quote!" Name="QuoteText" HorizontalAlignment="Center"/>
             <Separator/>
             <StackPanel Orientation="Horizontal"  Margin="0, 10">
-                <iconPacks:PackIconModern Width="24" Height="24" Kind="SocialGithubOctocatSolid" VerticalAlignment="Center"/>
+                <iconPacks:PackIconModern Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Width="24" Height="24" Kind="SocialGithubOctocatSolid" VerticalAlignment="Center"/>
                 <TextBlock Margin="5">
-                    <Hyperlink Foreground="White" TextDecorations="None" FontSize="15" NavigateUri="https://github.com/ntanck/" RequestNavigate="Hyperlink_RequestNavigate">
+                    <Hyperlink Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" TextDecorations="None" FontSize="15" NavigateUri="https://github.com/ntanck/" RequestNavigate="Hyperlink_RequestNavigate">
                         ntanck
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Margin="227,5,5,0">
-                    <Hyperlink Foreground="White" TextDecorations="None" FontSize="15" NavigateUri="http://gfrancisco.info" RequestNavigate="Hyperlink_RequestNavigate">
+                    <Hyperlink Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" TextDecorations="None" FontSize="15" NavigateUri="http://gfrancisco.info" RequestNavigate="Hyperlink_RequestNavigate">
                         Website
                     </Hyperlink>
                 </TextBlock>
-                <iconPacks:PackIconModern HorizontalAlignment="Right" Width="24" Height="24" Kind="Globe" VerticalAlignment="Center"/>
+                <iconPacks:PackIconModern Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Right" Width="24" Height="24" Kind="Globe" VerticalAlignment="Center"/>
             </StackPanel>
-            <Label Content="Guilherme Freitas - 2020" HorizontalAlignment="Center"/>
+            <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Content="Guilherme Freitas - 2020" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

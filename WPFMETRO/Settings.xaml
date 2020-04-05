@@ -25,44 +25,56 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Content="{x:Static localization:Strings.GeneralStyle}"/>
+                    <Label Content="{x:Static localization:Strings.GeneralStyle}" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"/>
                     <ComboBox Margin="100,0,0,0" Width="200" Height="20"  Name="StyleBox" HorizontalAlignment="Left" VerticalAlignment="Top"
                               SelectedValuePath="Key" DisplayMemberPath="Value"
                               SelectedValue="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True"
-                              SelectionChanged="StyleBox_SelectionChanged"/>
-                    <Label Content="{x:Static localization:Strings.AccentColor}" Grid.Row="1"/>
+                              SelectionChanged="StyleBox_SelectionChanged" Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"
+                              Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
+                                <Setter Property="BorderBrush" Value="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+                        <Label Content="{x:Static localization:Strings.AccentColor}" Grid.Row="1" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"/>
 
                     <ComboBox x:Name="ColorBox" Grid.Row="1" Margin="100,0,0,0" Width="80" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0"
                               SelectedIndex="{Binding Source={x:Static properties:Settings.Default}, Path=SelectedIndexAtColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              SelectionChanged="ColorBox_SelectionChanged">
-                        <ComboBoxItem>
+                              SelectionChanged="ColorBox_SelectionChanged" Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"
+                              Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}">
+                        <ComboBoxItem Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}">
                             <Rectangle Fill="#006bb3" Width="195" Height="20"></Rectangle>
                         </ComboBoxItem>
-                        <ComboBoxItem>
+                        <ComboBoxItem Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}">
                             <Rectangle Fill="#009999" Width="195" Height="20"></Rectangle>
                         </ComboBoxItem>
-                        <ComboBoxItem>
+                        <ComboBoxItem Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}">
                             <Rectangle Fill="#990000" Width="195" Height="20"></Rectangle>
                         </ComboBoxItem>
-                        <ComboBoxItem>
+                        <ComboBoxItem Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}">
                             <Rectangle Fill="#669900" Width="195" Height="20"></Rectangle>
                         </ComboBoxItem>
-                        <ComboBoxItem>
+                        <ComboBoxItem Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}">
                             <Rectangle Fill="#999900" Width="195" Height="20"></Rectangle>
                         </ComboBoxItem>
-                        <ComboBoxItem>
+                        <ComboBoxItem Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}">
                             <Rectangle Fill="#800080" Width="195" Height="20"></Rectangle>
                         </ComboBoxItem>
-                        <ComboBoxItem>
+                        <ComboBoxItem Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}">
                             <Rectangle Fill="#4d4d4d" Width="195" Height="20"></Rectangle>
                         </ComboBoxItem>
-                        <ComboBoxItem>
-                            <TextBlock Text="{x:Static localization:Strings.Custom}"/>
+                        <ComboBoxItem Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}">
+                            <TextBlock Text="{x:Static localization:Strings.Custom}"
+                                       Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"/>
                         </ComboBoxItem>
                     </ComboBox>
 
                     <TextBox Grid.Row="1" Margin="190,0,0,0" Width="80" Height="26" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="HexColorBox" VerticalContentAlignment="Center"
-                             Text="{Binding Source={x:Static properties:Settings.Default}, Path=AccentColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                             Text="{Binding Source={x:Static properties:Settings.Default}, Path=AccentColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"
+                             Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}">
                         <TextBox.Style>
                             <Style TargetType="{x:Type TextBox}">
                                 <Setter Property="Visibility" Value="Hidden"/>
@@ -87,10 +99,19 @@
                         </Rectangle.Style>
                     </Rectangle>
 
-                    <Label Content="{x:Static localization:Strings.AccentTextColor}" Grid.Row="2"/>
+                    <Label Content="{x:Static localization:Strings.AccentTextColor}" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Grid.Row="2"/>
                     <ComboBox Margin="100,0,0,0" Width="200" Height="20"  Name="AccentTextBox" SelectedValuePath="Key"
                               HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" DisplayMemberPath="Value" IsSynchronizedWithCurrentItem="True"
-                              SelectedValue="{Binding Source={x:Static properties:Settings.Default}, Path=TextColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              SelectedValue="{Binding Source={x:Static properties:Settings.Default}, Path=TextColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"
+                              Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}">
+                        <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
+                            <Setter Property="BorderBrush" Value="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
+                        </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
                 </Grid>
             </GroupBox>
             <GroupBox Height="65" Header="{x:Static localization:Strings.Language}" Margin="5">
@@ -98,9 +119,20 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox Grid.Row="0" Content="{x:Static localization:Strings.UseCustomLocale}" x:Name="UseLocaleBox" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=UseCustomLocale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Grid.Row="0" Content="{x:Static localization:Strings.UseCustomLocale}" x:Name="UseLocaleBox" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=UseCustomLocale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
+                              Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
                     <ComboBox Name="LocaleNameBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Source={x:Static properties:Settings.Default}, Path=CustomLocale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Visibility="{Binding IsChecked,ElementName=UseLocaleBox,Converter={StaticResource b2v}}" Grid.Row="0" Height="30" Margin="110, 0, 0, 0" Width="150" Padding="0"/>
+                              Visibility="{Binding IsChecked,ElementName=UseLocaleBox,Converter={StaticResource b2v}}" Grid.Row="0" Height="30" Margin="110, 0, 0, 0" Width="150" Padding="0"
+                              Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"
+                              Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="ComboBoxItem">
+                                <Setter Property="Background" Value="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
+                                <Setter Property="BorderBrush" Value="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
                 </Grid>
             </GroupBox>
             <GroupBox Height="100" Header="{x:Static localization:Strings.Preferences}" Margin="5">
@@ -110,9 +142,12 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <CheckBox Grid.Row="0" Content="{x:Static localization:Strings.PrioritizePlaylists}"/>
-                    <CheckBox Grid.Row="1" Content="{x:Static localization:Strings.UseVerboseStatus}"/>
-                    <CheckBox Grid.Row="2"  Content="{x:Static localization:Strings.AlertOnFinish}"/>
+                    <CheckBox Grid.Row="0" Content="{x:Static localization:Strings.PrioritizePlaylists}" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
+                              Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
+                    <CheckBox Grid.Row="1" Content="{x:Static localization:Strings.UseVerboseStatus}" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
+                              Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
+                    <CheckBox Grid.Row="2"  Content="{x:Static localization:Strings.AlertOnFinish}" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
+                              Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
                 </Grid>
             </GroupBox>
         </StackPanel>

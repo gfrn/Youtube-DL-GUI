@@ -340,6 +340,15 @@ namespace WPFMETRO.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting Title....
+        /// </summary>
+        public static string GettingTitle {
+            get {
+                return ResourceManager.GetString("GettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string Information {
