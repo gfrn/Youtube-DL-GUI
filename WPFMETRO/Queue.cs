@@ -92,6 +92,7 @@ namespace WPFMETRO
                 string output = "";
                 string arguments = "-F " + url;
                 bool isNext = false;
+                bool hasAudio = false;
 
                 ytbDLInfo.Arguments = arguments;
 
@@ -136,6 +137,7 @@ namespace WPFMETRO
                                     code = values[0].ToString();
                                     desc = values[1].ToString() + " (" + values[2].ToString() + ")";
                                 }
+                                hasAudio = !hasAudio && values[1].ToString() == "mp4" || values[1].ToString() == "webm" || values[1].ToString() == "m4a" ? true : hasAudio;
 
                                 formats.Add(code, desc);
                             }
@@ -148,13 +150,17 @@ namespace WPFMETRO
                 ytbDL.WaitForExit();
                 ytbDL.CancelOutputRead();
 
-                if (formats.Count > 3)
+                if(formats.Count > 1)
                 {
-                    formats.Add("mp3", "mp3");
-                    formats.Add("flac", "flac");
+                    formats.Add("default", "default");
+                    if (formats.Count > 1 && hasAudio)
+                    {
+                        formats.Add("mp3", "mp3");
+                        formats.Add("flac", "flac");
+                    }
                 }
+                
             }
-            formats.Add("default", "default");
 
             return formats;
         }
