@@ -1,6 +1,8 @@
 ﻿using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,6 +69,25 @@ namespace WPFMETRO
             {
                 Properties.Settings.Default.AccentColor = AvailableAccentColors[ColorBox.SelectedIndex];
             }
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+             MessageBoxResult userDialogResult = MessageBox.Show(Localization.Strings.AreYouSure, "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                                if (userDialogResult == MessageBoxResult.Yes)
+                                {
+                                    try
+                                    {
+                                        File.Delete(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
+                                    }
+                                    catch (Exception eee)
+                                    {
+                                            MessageBox.Show(eee.Message);
+                                    }
+
+                                    Application.Current.Shutdown();
+                                }
+            
         }
     }
 }

@@ -124,6 +124,15 @@ namespace WPFMETRO.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        public static string AreYouSure {
+            get {
+                return ResourceManager.GetString("AreYouSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New version detected. Would you like to update? .
         /// </summary>
         public static string AskToUpdateGUI {
@@ -507,6 +516,15 @@ namespace WPFMETRO.Localization {
         public static string PrioritizePlaylists {
             get {
                 return ResourceManager.GetString("PrioritizePlaylists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Configurations.
+        /// </summary>
+        public static string ResetConfig {
+            get {
+                return ResourceManager.GetString("ResetConfig", resourceCulture);
             }
         }
         

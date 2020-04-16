@@ -138,6 +138,9 @@
   <data name="AlertOnFinish" xml:space="preserve">
     <value>Ilmoita, kun valmis</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Oletko varma</value>
+  </data>
   <data name="AskToUpdateGUI" xml:space="preserve">
     <value>Uusi versio saatavilla. Haluatko päivittää? </value>
   </data>
@@ -266,6 +269,9 @@
   </data>
   <data name="PrioritizePlaylists" xml:space="preserve">
     <value>Lataa soittolistat ennen videoita</value>
+  </data>
+  <data name="ResetConfig" xml:space="preserve">
+    <value>Palauta kokoonpano</value>
   </data>
   <data name="RetrevingFormats" xml:space="preserve">
     <value>Haetaan muotoja...</value>

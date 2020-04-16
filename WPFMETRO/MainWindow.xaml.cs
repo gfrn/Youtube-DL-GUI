@@ -69,7 +69,6 @@ namespace WPFMETRO
                     else
                     {
                         lastVersionYoutubeDL = client.DownloadString("https://rg3.github.io/youtube-dl/update/LATEST_VERSION");
-
                         if (lastVersionYoutubeDL != Properties.Settings.Default.YoutubeDLVersion)
                         {
                             if (!IsRunningAsAdmin())

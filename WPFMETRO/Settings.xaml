@@ -10,7 +10,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="{x:Static localization:Strings.Settings}" Height="390" Width="400">
+        Title="{x:Static localization:Strings.Settings}" Height="400" Width="400">
     
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="b2v" />
@@ -135,9 +135,10 @@
                     </ComboBox>
                 </Grid>
             </GroupBox>
-            <GroupBox Height="100" Header="{x:Static localization:Strings.Preferences}" Margin="5">
+            <GroupBox Height="140" Header="{x:Static localization:Strings.Preferences}" Margin="5">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -148,6 +149,7 @@
                               Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
                     <CheckBox Grid.Row="2"  Content="{x:Static localization:Strings.AlertOnFinish}" Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}"
                               Background="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundColor}"/>
+                    <Button Name="ResetButton" Grid.Row="3" Content="{x:Static localization:Strings.ResetConfig}" Click="ResetButton_Click"/>
                 </Grid>
             </GroupBox>
         </StackPanel>

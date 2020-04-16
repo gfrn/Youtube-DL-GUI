@@ -138,6 +138,9 @@
   <data name="AlertOnFinish" xml:space="preserve">
     <value>Alert on Finish</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
   <data name="AskToUpdateGUI" xml:space="preserve">
     <value>New version detected. Would you like to update? </value>
   </data>
@@ -266,6 +269,9 @@
   </data>
   <data name="PrioritizePlaylists" xml:space="preserve">
     <value>Prioritize Playlists Over Videos</value>
+  </data>
+  <data name="ResetConfig" xml:space="preserve">
+    <value>Reset Configurations</value>
   </data>
   <data name="RetrevingFormats" xml:space="preserve">
     <value>Retrieving Formats...</value>
