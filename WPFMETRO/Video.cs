@@ -29,6 +29,7 @@ namespace WPFMETRO
         Process ytbDL = new Process();
         ProcessStartInfo ytbDLInfo = new ProcessStartInfo
         {
+            RedirectStandardInput = false,
             UseShellExecute = false,
             RedirectStandardOutput = true,
             CreateNoWindow = true,
@@ -129,7 +130,7 @@ namespace WPFMETRO
 
                 ytbDL.Start();
                 ytbDL.BeginOutputReadLine();
-                ytbDL.WaitForExit();
+                ytbDL.WaitForExit(1000);
                 ytbDL.CancelOutputRead();
 
                 if (!completedDownload)

@@ -24,6 +24,7 @@ namespace WPFMETRO
     public partial class MainWindow : MetroWindow
     {
         Dictionary<string, string> formats = new Dictionary<string, string>();
+        List<string> videoInfo = new List<string>();
         Queue queue = new Queue();
         private BackgroundWorker DownloadVideoWorker = new BackgroundWorker();
         public MainWindow()
@@ -151,6 +152,7 @@ namespace WPFMETRO
                 DownloadStatus.Text = Localization.Strings.RetrevingFormats;
 
                 await Task.Run(() => formats=queue.GetFormats(Url));
+                await Task.Run(() => videoInfo = queue.GetInfo(Url));
 
                     if (formats.Count > 0)
                 {
@@ -236,7 +238,7 @@ namespace WPFMETRO
             File.WriteAllText(exportDialog.FileName, queueString);
         }
 
-        private void AddFromTextButton_Click(object sender, RoutedEventArgs e)
+        private async void AddFromTextButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openText = new OpenFileDialog();
             openText.ShowDialog();
@@ -244,11 +246,15 @@ namespace WPFMETRO
             string filename = "%(title)s.%(ext)s";
             string path = PathBox.Text + "/";
             string filetype = "default";
+            string title = videoInfo[0];
+            string thumbURL = videoInfo[1] == "N.A" ? null : videoInfo[1];
             formats.Add("default", "default (mp4)");
 
             foreach (string video in videos)
             {
-                queue.ModifyQueue(video, filename, path, filetype, formats);
+                await Task.Run(() => formats = queue.GetFormats(video));
+                await Task.Run(() => videoInfo = queue.GetInfo(video));
+                queue.ModifyQueue(title, thumbURL,video, filename, path, filetype, formats);
             }
         }
         public void UpdateCard()
@@ -315,10 +321,12 @@ namespace WPFMETRO
             string filename = UseVideoTitleBox.IsChecked == true ? "%(title)s.%(ext)s" : FilenameBox.Text + ".%(ext)s"; //Get around nullable bool state
             string path = PathBox.Text + @"\";
             string filetype = formats.FirstOrDefault(x => x.Value == FiletypeBox.Text).Key;
+            string title = videoInfo[0];
+            string thumbURL = videoInfo[1] == "N.A" ? null : videoInfo[1];
 
             DownloadStatus.Text = Localization.Strings.GettingTitle;
 
-            queue.ModifyQueue(ID, filename, path, filetype, formats);
+            queue.ModifyQueue(title, thumbURL, ID, filename, path, filetype, formats);
 
             UrlBox.Clear();
             formats.Clear();

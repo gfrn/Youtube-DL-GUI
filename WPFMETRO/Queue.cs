@@ -180,7 +180,23 @@ namespace WPFMETRO
 
                 foreach (var playlistItem in playlistItemsListResponse.Items)
                 {
-                    ModifyQueue("https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId, filename, path, filetype, formats);
+                    var videoRequest = yt.Videos.List("snippet,status");
+
+                    videoRequest.Id = playlistItem.Id;
+
+                    var videoListResponse = videoRequest.Execute();
+
+                    if (videoListResponse.Items.Count < 1)
+                    {
+                        throw new QueueException(Localization.Strings.InvalidURL);
+                    }
+                    foreach (var videoItem in videoListResponse.Items)
+                    {
+                        if (videoItem.Status != null)
+                        {
+                            ModifyQueue(videoItem.Snippet.Title, videoItem.Snippet.Thumbnails.Default__.Url, "https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId, filename, path, filetype, formats);
+                        }
+                    }
                 }
 
                 nextPageToken = playlistItemsListResponse.NextPageToken;
@@ -205,7 +221,7 @@ namespace WPFMETRO
 
         }
 
-            public async void ModifyQueue(string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
+            public void ModifyQueue(string title, string thumbURL, string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
             if (ID.Contains("youtu.be/") || ID.Contains("youtube.com/"))
             {
@@ -249,8 +265,8 @@ namespace WPFMETRO
                                 video.Name = filename;
                                 video.Path = path;
                                 video.SelectedFormat = filetype;
-                                video.ThumbURL = videoItem.Snippet.Thumbnails.Default__.Url;
-                                video.Title = videoItem.Snippet.Title;
+                                video.ThumbURL = thumbURL;
+                                video.Title = title;
                                 video.AvailableFormats = formats.ToList();
 
                                 Videos.Add(video);
@@ -266,16 +282,14 @@ namespace WPFMETRO
                     case 0:
                         throw new QueueException(Localization.Strings.InvalidURL);
                     default:
-                        List<string> videoInfo = new List<string>();
-                        await Task.Run(() => videoInfo=GetInfo(ID));
 
                         Video videoNonYoutube = new Video();
                         videoNonYoutube.ID = ID;
                         videoNonYoutube.Name = filename;
                         videoNonYoutube.Path = path;
                         videoNonYoutube.SelectedFormat = filetype;
-                        videoNonYoutube.ThumbURL = videoInfo[1] == "N.A" ? null : videoInfo[1];
-                        videoNonYoutube.Title = videoInfo[0];
+                        videoNonYoutube.ThumbURL = thumbURL;
+                        videoNonYoutube.Title = title;
                         videoNonYoutube.AvailableFormats = formats.ToList();
 
                         Videos.Add(videoNonYoutube);
