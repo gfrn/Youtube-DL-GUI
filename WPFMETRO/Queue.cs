@@ -235,31 +235,6 @@ namespace WPFMETRO
                 }
                 else
                 {
-                    var videoRequest = yt.Videos.List("snippet,status");
-                    string procID = ID.Contains("youtu.be/") ? ID.Substring(ID.LastIndexOf("/") + 1) : ID.Substring(ID.IndexOf("=") + 1);
-                    if (procID.Contains("&"))
-                    {
-                        procID = procID.Substring(0, procID.IndexOf("&"));
-                    }
-                    else if (procID.Contains("?"))
-                    {
-                        procID = procID.Substring(0, procID.IndexOf("?"));
-                    }
-
-                    videoRequest.Id = procID;
-
-                    var videoListResponse = videoRequest.Execute();
-
-                    if (videoListResponse.Items.Count < 1)
-                    {
-                        throw new QueueException(Localization.Strings.InvalidURL);
-                    }
-                    else
-                    {
-                        foreach (var videoItem in videoListResponse.Items)
-                        {
-                            if (videoItem.Status != null)
-                            {
                                 Video video = new Video();
                                 video.ID = ID;
                                 video.Name = filename;
@@ -270,9 +245,6 @@ namespace WPFMETRO
                                 video.AvailableFormats = formats.ToList();
 
                                 Videos.Add(video);
-                            }
-                        }
-                    }
                 }
             }
             else

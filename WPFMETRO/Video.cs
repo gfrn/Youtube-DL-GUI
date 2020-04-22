@@ -29,7 +29,6 @@ namespace WPFMETRO
         Process ytbDL = new Process();
         ProcessStartInfo ytbDLInfo = new ProcessStartInfo
         {
-            RedirectStandardInput = false,
             UseShellExecute = false,
             RedirectStandardOutput = true,
             CreateNoWindow = true,
@@ -101,7 +100,7 @@ namespace WPFMETRO
                             progress = output.Substring(output.LastIndexOf("[download]") + 11, output.LastIndexOf("%") - 11);
                             progress = progress.Contains(".") ? progress.Substring(0, progress.IndexOf(".")) : progress;
                         }
-                        
+
                         mw.BeginInvoke((Action)(() =>
                         {
                             mw.DownloadStatus.Text = Localization.Strings.Downloading;
@@ -130,7 +129,7 @@ namespace WPFMETRO
 
                 ytbDL.Start();
                 ytbDL.BeginOutputReadLine();
-                ytbDL.WaitForExit(1000);
+                ytbDL.WaitForExit();
                 ytbDL.CancelOutputRead();
 
                 if (!completedDownload)
