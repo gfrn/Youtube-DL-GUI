@@ -201,6 +201,9 @@
   <data name="File" xml:space="preserve">
     <value>Tiedosto:</value>
   </data>
+  <data name="FileExists" xml:space="preserve">
+    <value>File already exists. Overwrite?</value>
+  </data>
   <data name="Filename" xml:space="preserve">
     <value>Tiedostonimi</value>
   </data>

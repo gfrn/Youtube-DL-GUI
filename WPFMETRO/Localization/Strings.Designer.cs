@@ -313,6 +313,15 @@ namespace WPFMETRO.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File already exists. Overwrite?.
+        /// </summary>
+        public static string FileExists {
+            get {
+                return ResourceManager.GetString("FileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filename.
         /// </summary>
         public static string Filename {

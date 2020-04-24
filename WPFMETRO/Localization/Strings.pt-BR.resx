@@ -201,6 +201,9 @@
   <data name="File" xml:space="preserve">
     <value>Arquivo:</value>
   </data>
+  <data name="FileExists" xml:space="preserve">
+    <value>Arquivo já existe. Substituir?</value>
+  </data>
   <data name="Filename" xml:space="preserve">
     <value>Nome</value>
   </data>

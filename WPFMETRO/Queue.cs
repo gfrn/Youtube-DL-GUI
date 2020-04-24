@@ -36,13 +36,13 @@ namespace WPFMETRO
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             CreateNoWindow = true,
-            StandardOutputEncoding = Encoding.GetEncoding(850),
+            StandardOutputEncoding = Encoding.GetEncoding(65001),
             FileName = "youtube-dl.exe"
         };
 
         public List<string> GetInfo(string url)
         {
-            string[] args = { "--skip-download --get-title --no-warnings " + url, "--skip-download --list-thumbnails --no-warnings " + url };
+            string[] args = { "--encoding utf-8 --skip-download --get-title --no-warnings " + url, "--encoding utf-8 --skip-download --list-thumbnails --no-warnings " + url };
             List<string> response = new List<string>();
             string info = "N.A.";
             bool isThumb = false;
@@ -226,9 +226,18 @@ namespace WPFMETRO
 
             public void ModifyQueue(string title, string thumbURL, string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
-            if(File.Exists(path+filename+"."+formats[filetype]) || (filename == "%(title)s.%(ext)s" && File.Exists(path + title + "." + formats[filetype])))
+            string fullpath = filename == "%(title)s.%(ext)s" ? path + title + "." + formats[filetype] : path + filename + "." + formats[filetype];
+            if (File.Exists(fullpath))
             {
-                MessageBox.Show("File exists");
+                MessageBoxResult userDialogResult = MessageBox.Show(Localization.Strings.FileExists, Localization.Strings.Error, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if(userDialogResult == MessageBoxResult.Yes)
+                {
+                    File.Delete(fullpath);
+                }
+                else
+                {
+                    return;
+                }
             }
             if (ID.Contains("youtu.be/") || ID.Contains("youtube.com/"))
             {
