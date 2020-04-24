@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WPFMETRO
 {
@@ -32,8 +34,9 @@ namespace WPFMETRO
 
             UseShellExecute = false,
             RedirectStandardOutput = true,
+            RedirectStandardError = true,
             CreateNoWindow = true,
-            StandardOutputEncoding = Encoding.UTF8,
+            StandardOutputEncoding = Encoding.GetEncoding(850),
             FileName = "youtube-dl.exe"
         };
 
@@ -223,6 +226,10 @@ namespace WPFMETRO
 
             public void ModifyQueue(string title, string thumbURL, string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
+            if(File.Exists(path+filename+"."+formats[filetype]) || (filename == "%(title)s.%(ext)s" && File.Exists(path + title + "." + formats[filetype])))
+            {
+                MessageBox.Show("File exists");
+            }
             if (ID.Contains("youtu.be/") || ID.Contains("youtube.com/"))
             {
                 if (ID.Contains("playlist"))
