@@ -73,21 +73,20 @@ namespace WPFMETRO
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-             MessageBoxResult userDialogResult = MessageBox.Show(Localization.Strings.AreYouSure, "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                                if (userDialogResult == MessageBoxResult.Yes)
-                                {
-                                    try
-                                    {
-                                        File.Delete(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
-                                    }
-                                    catch (Exception eee)
-                                    {
-                                            MessageBox.Show(eee.Message);
-                                    }
+            MessageBoxResult userDialogResult = MessageBox.Show(Localization.Strings.AreYouSure, "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (userDialogResult == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        File.Delete(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
+                    }
+                    catch (Exception ex)
+                    {
+                            MessageBox.Show(ex.Message);
+                    }
 
-                                    Application.Current.Shutdown();
-                                }
-            
+                    Application.Current.Shutdown();
+                }
         }
     }
 }

@@ -141,6 +141,7 @@ namespace WPFMETRO
                                     desc = values[1].ToString() + " (" + values[2].ToString() + ")";
                                 }
                                 hasAudio = !hasAudio && values[1].ToString() == "mp4" || values[1].ToString() == "webm" || values[1].ToString() == "m4a" ? true : hasAudio;
+                                code += output.Contains("video only") ? "-y" : "-n";
 
                                 formats.Add(code, desc);
                             }
