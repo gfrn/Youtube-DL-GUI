@@ -120,14 +120,7 @@ namespace WPFMETRO
                                     {
                                         code = values[0].ToString();
                                         desc += "audio";
-                                        if (values.Count > 5)
-                                        {
-                                            desc += values[5].ToString() != "audio" ? " " + values[5].ToString() + ")" : ")";
-                                        }
-                                        else
-                                        {
-                                            desc += ")";
-                                        }
+                                        desc += values.Count > 5 && values[5].ToString() != "audio" ? " " + values[5].ToString() + ")" : ")";
                                     }
                                     else
                                     {

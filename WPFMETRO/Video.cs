@@ -69,7 +69,7 @@ namespace WPFMETRO
                             }
                             else
                             {
-                                arguments += SelectedFormat;
+                                arguments += SelectedFormat.Substring(0,SelectedFormat.Length-2);
                             }
 
                             break;
