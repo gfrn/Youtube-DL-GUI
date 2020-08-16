@@ -276,6 +276,12 @@
   <data name="ResetConfig" xml:space="preserve">
     <value>Resetar Configurações</value>
   </data>
+  <data name="ResetError" xml:space="preserve">
+    <value>Um erro ocorreu ao deletar o arquivo de configuração. Você tem permissões suficientes para deletar o arquivo?</value>
+  </data>
+  <data name="RestartChanges" xml:space="preserve">
+    <value>Para aplicar as mudanças de idioma, reinicie o programa</value>
+  </data>
   <data name="RetrievingFormats" xml:space="preserve">
     <value>Buscando Formatos...</value>
   </data>

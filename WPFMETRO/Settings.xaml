@@ -10,7 +10,8 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="{x:Static localization:Strings.Settings}" Height="400" Width="400">
+        Title="{x:Static localization:Strings.Settings}" Height="400" Width="400"
+        Closing="MetroWindow_Closing">
     
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="b2v" />

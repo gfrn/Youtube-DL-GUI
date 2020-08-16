@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -80,13 +82,22 @@ namespace WPFMETRO
                     {
                         File.Delete(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                            MessageBox.Show(ex.Message);
+                        MessageBox.Show(Localization.Strings.Error, Localization.Strings.ResetError);
                     }
 
                     Application.Current.Shutdown();
                 }
+        }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            string newLocale = LocaleNameBox.SelectedValue.ToString();
+            if (newLocale != Properties.Settings.Default.CustomLocale || UseLocaleBox.IsChecked == Properties.Settings.Default.UseCustomLocale)
+            {
+                MessageBox.Show(Localization.Strings.RestartChanges);
+            }
         }
     }
 }

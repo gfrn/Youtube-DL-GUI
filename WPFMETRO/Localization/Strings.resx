@@ -276,6 +276,12 @@
   <data name="ResetConfig" xml:space="preserve">
     <value>Reset Configurations</value>
   </data>
+  <data name="ResetError" xml:space="preserve">
+    <value>An error has ocurred while resetting the configuration file. Do you have the necessary permissions to access the file?</value>
+  </data>
+  <data name="RestartChanges" xml:space="preserve">
+    <value>Restart the program to apply language changes</value>
+  </data>
   <data name="RetrevingFormats" xml:space="preserve">
     <value>Retrieving Formats...</value>
   </data>

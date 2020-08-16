@@ -538,6 +538,24 @@ namespace WPFMETRO.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error has ocurred while resetting the configuration file. Do you have the necessary permissions to access the file?.
+        /// </summary>
+        public static string ResetError {
+            get {
+                return ResourceManager.GetString("ResetError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart the program to apply language changes.
+        /// </summary>
+        public static string RestartChanges {
+            get {
+                return ResourceManager.GetString("RestartChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Retrieving Formats....
         /// </summary>
         public static string RetrevingFormats {
