@@ -154,7 +154,7 @@ namespace WPFMETRO
                 await Task.Run(() => formats=queue.GetFormats(Url));
                 await Task.Run(() => videoInfo = queue.GetInfo(Url));
 
-                    if (formats.Count > 0)
+                if (formats.Count > 0)
                 {
                     FiletypeBox.IsEnabled = AddToQueueButton.IsEnabled = true;
                     UrlBox.Background = Brushes.DarkGreen;
@@ -246,8 +246,8 @@ namespace WPFMETRO
             string filename = "%(title)s.%(ext)s";
             string path = PathBox.Text + "/";
             string filetype = "default";
-            string title = videoInfo[0];
-            string thumbURL = videoInfo[1] == "N.A" ? null : videoInfo[1];
+            string title = videoInfo[0] ?? "N.A.";
+            string thumbURL = videoInfo[1];
             formats.Add("default", "default (mp4)");
 
             foreach (string video in videos)
@@ -283,10 +283,13 @@ namespace WPFMETRO
 
                     if (video.ThumbURL != null)
                     {
-                        image.BeginInit();
-                        image.UriSource = new Uri(video.ThumbURL);
-                        image.DecodePixelWidth = 600;
-                        image.EndInit();
+                        var imageData = new WebClient().DownloadData(new Uri(video.ThumbURL + ".jpg"));
+                        var bitmapImage = new BitmapImage { CacheOption = BitmapCacheOption.OnLoad };
+                        bitmapImage.BeginInit();
+                        bitmapImage.StreamSource = new MemoryStream(imageData);
+                        bitmapImage.EndInit();
+
+                        image = bitmapImage;
                     }
                     else
                     {

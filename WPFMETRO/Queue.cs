@@ -44,7 +44,6 @@ namespace WPFMETRO
         {
             string[] args = { "--encoding utf-8 --skip-download --get-title --no-warnings " + url, "--encoding utf-8 --skip-download --list-thumbnails --no-warnings " + url };
             List<string> response = new List<string>();
-            string info = "N.A.";
             bool isThumb = false;
             bool isNext = false;
 
@@ -52,6 +51,7 @@ namespace WPFMETRO
             {
                 ytbDLInfo.Arguments = argument;
                 ytbDL = Process.Start(ytbDLInfo);
+                string info = null;
 
                 ytbDL.OutputDataReceived += new DataReceivedEventHandler(
                     (s, f) =>
@@ -59,9 +59,9 @@ namespace WPFMETRO
                         string output = f.Data ?? "null";
                         if (isThumb)
                         {
-                            if(isNext)
+                            if(isNext && info == null)
                             {
-                                info = output == "null" ? info : output.Substring(output.LastIndexOf(' ')+1);
+                                info = output == "null" || output.Contains("No thumbnail") ? info : output.Substring(output.LastIndexOf(' ')+1);
                             }
                             else
                             {
@@ -218,8 +218,14 @@ namespace WPFMETRO
 
         }
 
-            public void ModifyQueue(string title, string thumbURL, string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
+        public void ModifyQueue(string title, string thumbURL, string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
+            if(filetype == null)
+            {
+                MessageBox.Show("Please select a filetype");
+                return;
+            }
+
             string fullpath = filename == "%(title)s.%(ext)s" ? path + title + "." + formats[filetype] : path + filename + "." + formats[filetype];
             if (File.Exists(fullpath))
             {
@@ -245,16 +251,16 @@ namespace WPFMETRO
                 }
                 else
                 {
-                                Video video = new Video();
-                                video.ID = ID;
-                                video.Name = filename;
-                                video.Path = path;
-                                video.SelectedFormat = filetype;
-                                video.ThumbURL = thumbURL;
-                                video.Title = title;
-                                video.AvailableFormats = formats.ToList();
+                        Video video = new Video();
+                        video.ID = ID;
+                        video.Name = filename;
+                        video.Path = path;
+                        video.SelectedFormat = filetype;
+                        video.ThumbURL = thumbURL;
+                        video.Title = title;
+                        video.AvailableFormats = formats.ToList();
 
-                                Videos.Add(video);
+                        Videos.Add(video);
                 }
             }
             else
@@ -264,7 +270,6 @@ namespace WPFMETRO
                     case 0:
                         throw new QueueException(Localization.Strings.InvalidURL);
                     default:
-
                         Video videoNonYoutube = new Video();
                         videoNonYoutube.ID = ID;
                         videoNonYoutube.Name = filename;
@@ -278,7 +283,6 @@ namespace WPFMETRO
                         break;
                 }
             }
-
         }
     }
 }
