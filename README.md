@@ -11,4 +11,4 @@ and much more!
 
 ## Image
 
-![Current appearance of Y-DL GUI v1.4.0.0](https://i.imgur.com/uD96yTd.png)
+![Current appearance of Y-DL GUI v1.4.0.0](https://i.imgur.com/RvwyS9A.png)
