@@ -267,6 +267,9 @@
   <data name="Overwrite" xml:space="preserve">
     <value>Et voi valita samaa nimeä ja tiedostopäätettä kuin alkuperäisellä tiedostolla. Valitse jokin toinen nimi.</value>
   </data>
+  <data name="PleaseSelectFormat" xml:space="preserve">
+    <value>Please select a file format</value>
+  </data>
   <data name="Preferences" xml:space="preserve">
     <value>Asetukset</value>
   </data>

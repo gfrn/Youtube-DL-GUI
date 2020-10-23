@@ -222,7 +222,7 @@ namespace WPFMETRO
         {
             if(filetype == null)
             {
-                MessageBox.Show("Please select a filetype");
+                MessageBox.Show(Localization.Strings.PleaseSelectFormat);
                 return;
             }
 

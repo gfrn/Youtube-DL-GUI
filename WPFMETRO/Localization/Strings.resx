@@ -267,6 +267,9 @@
   <data name="Overwrite" xml:space="preserve">
     <value>You cannot choose the same name and extension as the original file. Please pick another name.</value>
   </data>
+  <data name="PleaseSelectFormat" xml:space="preserve">
+    <value>Please select a file format</value>
+  </data>
   <data name="Preferences" xml:space="preserve">
     <value>Preferences</value>
   </data>

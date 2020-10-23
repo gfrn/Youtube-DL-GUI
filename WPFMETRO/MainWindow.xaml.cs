@@ -158,6 +158,7 @@ namespace WPFMETRO
                 {
                     FiletypeBox.IsEnabled = AddToQueueButton.IsEnabled = true;
                     UrlBox.Background = Brushes.DarkGreen;
+                    FiletypeBox.SelectedIndex = 0;
                 }
                 else
                 {

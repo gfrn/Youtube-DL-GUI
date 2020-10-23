@@ -511,6 +511,15 @@ namespace WPFMETRO.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select a file format.
+        /// </summary>
+        public static string PleaseSelectFormat {
+            get {
+                return ResourceManager.GetString("PleaseSelectFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preferences.
         /// </summary>
         public static string Preferences {
