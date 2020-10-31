@@ -152,13 +152,13 @@ namespace WPFMETRO
                 DownloadStatus.Text = Localization.Strings.RetrevingFormats;
 
                 await Task.Run(() => formats=queue.GetFormats(Url));
-                await Task.Run(() => videoInfo = queue.GetInfo(Url));
+                await Task.Run(() => videoInfo=queue.GetInfo(Url));
 
                 if (formats.Count > 0)
                 {
                     FiletypeBox.IsEnabled = AddToQueueButton.IsEnabled = true;
                     UrlBox.Background = Brushes.DarkGreen;
-                    FiletypeBox.SelectedIndex = 0;
+                    FiletypeBox.SelectedItem = formats.First();
                 }
                 else
                 {
@@ -327,6 +327,27 @@ namespace WPFMETRO
             string filetype = formats.FirstOrDefault(x => x.Value == FiletypeBox.Text).Key;
             string title = videoInfo[0];
             string thumbURL = videoInfo[1] == "N.A" ? null : videoInfo[1];
+
+            if (filetype == null)
+            {
+                MessageBox.Show(Localization.Strings.PleaseSelectFormat);
+                return;
+            }
+
+            string fullpath = filename == "%(title)s.%(ext)s" ? path + title + "." : path + filename + ".";
+            fullpath += formats[filetype].Contains(' ') ? formats[filetype].Substring(0, formats[filetype].IndexOf(' ')) : formats[filetype];
+            if (File.Exists(fullpath))
+            {
+                MessageBoxResult userDialogResult = MessageBox.Show(Localization.Strings.FileExists, Localization.Strings.Error, MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (userDialogResult == MessageBoxResult.Yes)
+                {
+                    File.Delete(fullpath);
+                }
+                else
+                {
+                    return;
+                }
+            }
 
             DownloadStatus.Text = Localization.Strings.GettingTitle;
 

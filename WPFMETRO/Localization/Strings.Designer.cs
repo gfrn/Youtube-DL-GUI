@@ -124,6 +124,15 @@ namespace WPFMETRO.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File has already been downloaded under this file name.
+        /// </summary>
+        public static string AlreadyDownloaded {
+            get {
+                return ResourceManager.GetString("AlreadyDownloaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure?.
         /// </summary>
         public static string AreYouSure {

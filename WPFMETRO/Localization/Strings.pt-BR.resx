@@ -138,6 +138,9 @@
   <data name="AlertOnFinish" xml:space="preserve">
     <value>Alertar ao Fim</value>
   </data>
+  <data name="AlreadyDownloaded" xml:space="preserve">
+    <value>Este vídeo já foi baixado com este nome de arquivo</value>
+  </data>
   <data name="AreYouSure" xml:space="preserve">
     <value>Você tem certeza?</value>
   </data>

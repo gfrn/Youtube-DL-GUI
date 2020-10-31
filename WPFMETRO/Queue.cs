@@ -220,25 +220,6 @@ namespace WPFMETRO
 
         public void ModifyQueue(string title, string thumbURL, string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
-            if(filetype == null)
-            {
-                MessageBox.Show(Localization.Strings.PleaseSelectFormat);
-                return;
-            }
-
-            string fullpath = filename == "%(title)s.%(ext)s" ? path + title + "." + formats[filetype] : path + filename + "." + formats[filetype];
-            if (File.Exists(fullpath))
-            {
-                MessageBoxResult userDialogResult = MessageBox.Show(Localization.Strings.FileExists, Localization.Strings.Error, MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if(userDialogResult == MessageBoxResult.Yes)
-                {
-                    File.Delete(fullpath);
-                }
-                else
-                {
-                    return;
-                }
-            }
             if (ID.Contains("youtu.be/") || ID.Contains("youtube.com/"))
             {
                 if (ID.Contains("playlist"))

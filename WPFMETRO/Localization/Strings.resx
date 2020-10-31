@@ -138,6 +138,9 @@
   <data name="AlertOnFinish" xml:space="preserve">
     <value>Alert on Finish</value>
   </data>
+  <data name="AlreadyDownloaded" xml:space="preserve">
+    <value>File has already been downloaded under this file name</value>
+  </data>
   <data name="AreYouSure" xml:space="preserve">
     <value>Are you sure?</value>
   </data>

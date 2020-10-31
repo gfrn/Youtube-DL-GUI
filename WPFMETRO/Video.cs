@@ -86,6 +86,12 @@ namespace WPFMETRO
                 {
                     output = f.Data ?? "null";
 
+                    if(output.Contains("has already been downloaded"))
+                    {
+                        MessageBox.Show(Localization.Strings.AlreadyDownloaded, Localization.Strings.Error);
+                        completedDownload = true;
+                    }
+
                     if (output.Contains("[download]") && output.Contains("of"))
                     {
                         if (output.Contains("at") && output.Contains("MiB") && !output.Contains("Destination"))
