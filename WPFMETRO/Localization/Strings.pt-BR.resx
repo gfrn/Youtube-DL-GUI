@@ -232,7 +232,7 @@
     <value>Destino do download inválido selecionado! Selecione um caminho existente e tente novamente!</value>
   </data>
   <data name="InvalidURL" xml:space="preserve">
-    <value>Adicione um URL válido!</value>
+    <value>URL inválido! Esse vídeo pode estar indisponível para download ou o vídeo pode não existir</value>
   </data>
   <data name="InvalidVideo" xml:space="preserve">
     <value>Vídeo inválido/indisponível!</value>

@@ -403,7 +403,7 @@ namespace WPFMETRO.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add a valid URL!.
+        ///   Looks up a localized string similar to Invalid URL! This video might not be available for download or doesn&apos;t exist.
         /// </summary>
         public static string InvalidURL {
             get {
