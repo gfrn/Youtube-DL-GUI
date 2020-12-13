@@ -25,7 +25,7 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Margin="227,5,5,0">
-                    <Hyperlink Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" TextDecorations="None" FontSize="15" NavigateUri="http://gfrancisco.info" RequestNavigate="Hyperlink_RequestNavigate">
+                    <Hyperlink Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" TextDecorations="None" FontSize="15" NavigateUri="http://gf.dev.br" RequestNavigate="Hyperlink_RequestNavigate">
                         Website
                     </Hyperlink>
                 </TextBlock>
