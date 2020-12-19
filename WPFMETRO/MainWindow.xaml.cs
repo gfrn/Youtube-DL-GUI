@@ -137,7 +137,7 @@ namespace WPFMETRO
             UrlBox.Background = Brushes.Transparent;
             formats.Clear();
             string Url = UrlBox.Text;
-            if (Properties.Settings.Default.PrioritizePlaylists && UrlBox.Text.Contains(@"&list="))
+            if (Properties.Settings.Default.PrioritizePlaylists && UrlBox.Text.Contains(@"playlist?list="))
             {
                 formats.Add("default", "default (mp4)");
                 formats.Add("mp3", "mp3");
@@ -325,8 +325,14 @@ namespace WPFMETRO
             string filename = UseVideoTitleBox.IsChecked == true ? "%(title)s.%(ext)s" : FilenameBox.Text + ".%(ext)s"; //Get around nullable bool state
             string path = PathBox.Text + @"\";
             string filetype = formats.FirstOrDefault(x => x.Value == FiletypeBox.Text).Key;
-            string title = videoInfo[0];
-            string thumbURL = videoInfo[1] == "N.A" ? null : videoInfo[1];
+            string thumbURL = "";
+            string title = "";
+
+            if (videoInfo.Count > 0)
+            {
+                title = videoInfo[0];
+                thumbURL = videoInfo[1] == "N.A" ? null : videoInfo[1];
+            }
 
             if (filetype == null)
             {
