@@ -574,7 +574,7 @@ namespace WPFMETRO.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Retrieving Formats....
+        ///   Looks up a localized string similar to Retrieving Video Metadata....
         /// </summary>
         public static string RetrevingFormats {
             get {

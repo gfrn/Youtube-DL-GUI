@@ -289,7 +289,7 @@
     <value>Restart the program to apply language changes</value>
   </data>
   <data name="RetrevingFormats" xml:space="preserve">
-    <value>Retrieving Formats...</value>
+    <value>Retrieving Video Metadata...</value>
   </data>
   <data name="SaveChanges" xml:space="preserve">
     <value>Save Changes</value>

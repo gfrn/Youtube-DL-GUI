@@ -134,6 +134,7 @@ namespace WPFMETRO
 
         private async void SelectButton_Click(object sender, RoutedEventArgs e)
         {
+            DownloadStatus.Text = Localization.Strings.RetrevingFormats;
             UrlBox.Background = Brushes.Transparent;
             formats.Clear();
             string Url = UrlBox.Text;
@@ -145,11 +146,12 @@ namespace WPFMETRO
                 FiletypeBox.ItemsSource = formats;
                 FiletypeBox.IsEnabled = AddToQueueButton.IsEnabled = true;
                 UrlBox.Background = Brushes.DarkGreen;
+
+
             }
             else
             {
                 UrlBox.Text = UrlBox.Text.Contains(@"&list=") ? UrlBox.Text.Substring(0, UrlBox.Text.IndexOf(@"&list=")) : UrlBox.Text;
-                DownloadStatus.Text = Localization.Strings.RetrevingFormats;
 
                 await Task.Run(() => formats=queue.GetFormats(Url));
                 await Task.Run(() => videoInfo=queue.GetInfo(Url));
@@ -284,7 +286,9 @@ namespace WPFMETRO
 
                     if (video.ThumbURL != null)
                     {
-                        var imageData = new WebClient().DownloadData(new Uri(video.ThumbURL + ".jpg"));
+                        string extension = video.ThumbURL.Substring(video.ThumbURL.LastIndexOf("."));
+                        video.ThumbURL = extension == ".jpg" ? video.ThumbURL : video.ThumbURL + ".jpg";
+                        var imageData = new WebClient().DownloadData(new Uri(video.ThumbURL));
                         var bitmapImage = new BitmapImage { CacheOption = BitmapCacheOption.OnLoad };
                         bitmapImage.BeginInit();
                         bitmapImage.StreamSource = new MemoryStream(imageData);

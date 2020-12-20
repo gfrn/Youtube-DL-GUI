@@ -289,7 +289,7 @@
     <value>Para aplicar as mudanças de idioma, reinicie o programa</value>
   </data>
   <data name="RetrievingFormats" xml:space="preserve">
-    <value>Buscando Formatos...</value>
+    <value>Buscando Dados...</value>
   </data>
   <data name="SaveChanges" xml:space="preserve">
     <value>Salvar</value>

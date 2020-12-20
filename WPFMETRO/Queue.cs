@@ -101,7 +101,7 @@ namespace WPFMETRO
                     {
                         output = f.Data ?? "null";
 
-                        if (output != "null")
+                        if (output != "null" && !output.Contains("["))
                         {
                             if (isNext)
                             {
@@ -172,23 +172,7 @@ namespace WPFMETRO
 
                 foreach (var playlistItem in playlistItemsListResponse.Items)
                 {
-                    var videoRequest = yt.Videos.List("snippet,status");
-
-                    videoRequest.Id = playlistItem.Id;
-
-                    var videoListResponse = videoRequest.Execute();
-
-                    if (videoListResponse.Items.Count < 1)
-                    {
-                        throw new QueueException(Localization.Strings.InvalidURL);
-                    }
-                    foreach (var videoItem in videoListResponse.Items)
-                    {
-                        if (videoItem.Status != null)
-                        {
-                            ModifyQueue(videoItem.Snippet.Title, videoItem.Snippet.Thumbnails.Default__.Url, "https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId, filename, path, filetype, formats);
-                        }
-                    }
+                    ModifyQueue(playlistItem.Snippet.Title, playlistItem.Snippet.Thumbnails.Default__.Url, "https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId, filename, path, filetype, formats);
                 }
 
                 nextPageToken = playlistItemsListResponse.NextPageToken;
