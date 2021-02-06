@@ -10,7 +10,7 @@
         xmlns:local="clr-namespace:WPFMETRO"
                       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                       mc:Ignorable="d"
-        Title="{x:Static localization:Strings.Converter}" Height="463" Width="440">
+        Title="{x:Static localization:Strings.Converter}" Height="463" Width="480">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.00085*" />
@@ -59,12 +59,11 @@
         </StackPanel>
         
         <StackPanel Margin="13,6, 0, 0" Grid.Column = "0" Grid.Row = "3" Orientation = "Horizontal">
-            <Label  Content = "{x:Static localization:Strings.Other}"  VerticalAlignment = "Center" Width = "75"/>
-            <Button IsEnabled="False" x:Name="JoinVideosButton" Content = "{x:Static localization:Strings.JoinVideos}" MinWidth="203" MaxWidth="210"/>
-            <Button Margin="10,0,0,0" x:Name="CancelJoinButton" Click="ImportButton_Click" MinWidth="150" MaxWidth="160" Content="{x:Static localization:Strings.Cancel}" Visibility="Hidden"/>
+            <Button Name="MergeButton" Click="MergeButton_Click" Content="{x:Static localization:Strings.MergeAV}" HorizontalAlignment="Left" MinWidth="203" MaxWidth="210" Margin="75,0,0,0"/>
+            <Button Name="CancelMergeButton" Margin="10,0,0,0" Click="CancelMergeButton_Click" MinWidth="150" MaxWidth="160" HorizontalAlignment="Left" Content="{x:Static localization:Strings.Cancel}" Visibility="Hidden"/>
         </StackPanel>
-        
-        <StackPanel Margin="13,2" Orientation="Vertical" Grid.Row = "4" >
+
+            <StackPanel Margin="13,2" Orientation="Vertical" Grid.Row = "4" >
             <StackPanel Grid.Column = "0" Grid.Row = "4" Orientation = "Horizontal">
                 <Button IsEnabled="False" Name="AddSubsButton" Content="{x:Static localization:Strings.AddSubtitles}" HorizontalAlignment="Left" MinWidth="203" MaxWidth="210" Margin="75,2"/>
                 <Button Margin="10,0,0,0" x:Name="CancelSubsButton" Click="ImportButton_Click" MinWidth="150" MaxWidth="160" Content="{x:Static localization:Strings.Cancel}" Visibility="Hidden"/>
@@ -73,10 +72,6 @@
                 <Label Content = "{x:Static localization:Strings.SnagEvery}"  VerticalAlignment = "Center" MinWidth = "105"/>
                 <TextBox Name="IntervalSnagBox" Width = "50" IsEnabled="False" TextInput="IntervalSnagBox_TextInput"/>
                 <Label  Content = "{x:Static localization:Strings.Seconds}" VerticalAlignment = "Center" Width = "75"/>
-            </StackPanel>
-            <StackPanel Grid.Column = "0" Grid.Row = "4" Orientation = "Horizontal">
-                <Button IsEnabled="False" Name="MergeButton" Content="{x:Static localization:Strings.MergeAV}" HorizontalAlignment="Left" MinWidth="203" MaxWidth="210" Margin="75,2"/>
-                <Button Margin="10,0,0,0" x:Name="CancelMergeButton" Click="ImportButton_Click" MinWidth="150" MaxWidth="160" Content="{x:Static localization:Strings.Cancel}" Visibility="Hidden"/>
             </StackPanel>
         </StackPanel>
 

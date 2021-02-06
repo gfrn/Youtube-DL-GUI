@@ -48,8 +48,6 @@ namespace WPFMETRO
 
         private void ImportButton_Click(object sender, RoutedEventArgs e)
         {
-            JoinVideosButton.IsEnabled = false;
-
             importAVDialog.ShowDialog();
             if (importAVDialog.CheckFileExists)
             {
@@ -97,32 +95,26 @@ namespace WPFMETRO
         private void ConvertButton_Click(object sender, RoutedEventArgs e)
         {
             string args = "";
-            if (JoinVideosButton.IsEnabled)
+
+            args = "-i \"" + inputFile + "\"";
+            string output = Path.GetExtension(outputFile) == ".png" ? "\"" + outputFile.Substring(0, outputFile.LastIndexOf('.')) + "_%03d.png\"" : " \"" + saveAVDialog.FileName + "\"";
+            if (Path.GetExtension(outputFile) == ".png") { args += " -vf fps=" + IntervalSnagBox.Text + " "; }
+            if (CutStartTextbox.Text == "00:00:00.0" && EndOfVideoCheckbox.IsChecked == true)
             {
-                args = "-f concat -i file -list.txt -c copy " + saveAVDialog.FileName;
+                if (openMergeDialog.FileName != "" && openSubtitlesDialog.FileName != "") { System.Windows.Forms.MessageBox.Show(""); }
+                else if (openSubtitlesDialog.FileName != "") { args += " -i \"" + openSubtitlesDialog.FileName + "\" - map 0 - map 1 - c copy - c:v"; }
+                else if (openMergeDialog.FileName != "") { args += " -i \"" + openMergeDialog.FileName + "\" -c:v copy -c:a aac -map 0:v:0 -map 1:a:0"; }
             }
             else
             {
-                args = "-i \"" + inputFile + "\"";
-                string output = Path.GetExtension(outputFile) == ".png" ? "\"" + outputFile.Substring(0, outputFile.LastIndexOf('.')) + "_%03d.png\"" : " \"" + saveAVDialog.FileName + "\"";
-                if (Path.GetExtension(outputFile) == ".png") { args += " -vf fps=" + IntervalSnagBox.Text + " "; }
-                if (CutStartTextbox.Text == "00:00:00.0" && EndOfVideoCheckbox.IsChecked == true)
-                {
-                    if (openMergeDialog.FileName != "" && openSubtitlesDialog.FileName != "") { System.Windows.Forms.MessageBox.Show(""); }
-                    else if (openSubtitlesDialog.FileName != "") { args += "-i " + openSubtitlesDialog.FileName + " - map 0 - map 1 - c copy - c:v"; }
-                    else if (openMergeDialog.FileName != "") { args += "-i " + openMergeDialog.FileName + " -c:v copy -c:a aac -strict experimental"; }
-                }
+                if (openMergeDialog.FileName != "" || openSubtitlesDialog.FileName != "") { System.Windows.Forms.MessageBox.Show(""); }
                 else
                 {
-                    if (openMergeDialog.FileName != "" || openSubtitlesDialog.FileName != "") { System.Windows.Forms.MessageBox.Show(""); }
-                    else
-                    {
-                        args += " -ss " + CutStartTextbox.Text;
-                        args += EndOfVideoCheckbox.IsChecked == true ? "" : " -to " + CutEndTextbox.Text + " ";
-                    }
+                    args += " -ss " + CutStartTextbox.Text;
+                    args += EndOfVideoCheckbox.IsChecked == true ? "" : " -to " + CutEndTextbox.Text + " ";
                 }
-                args += output;
             }
+            args += output;
 
             ffMpegProc.StartInfo.Arguments = args;
             ffMpegProc.StartInfo.UseShellExecute = false;
@@ -136,7 +128,7 @@ namespace WPFMETRO
 
             ffMpegProc.Start();
 
-            CancelButton.Visibility = CancelJoinButton.Visibility = CancelMergeButton.Visibility = CancelSubsButton.Visibility = Visibility.Hidden;
+            CancelButton.Visibility = CancelMergeButton.Visibility = CancelSubsButton.Visibility = Visibility.Hidden;
 
             EndOfVideoCheckbox.IsEnabled = ConvertButton.IsEnabled = ExportButton.IsEnabled = ImportButton.IsEnabled = false;
             MergeButton.IsEnabled = CutStartTextbox.IsEnabled = EndOfVideoCheckbox.IsEnabled = AddSubsButton.IsEnabled = false;
@@ -155,7 +147,7 @@ namespace WPFMETRO
                 ConvertFromLabel.Content = "";
                 ConvertToLabel.Content = "";
 
-                ImportButton.IsEnabled = CutStartTextbox.IsEnabled = EndOfVideoCheckbox.IsEnabled = JoinVideosButton.IsEnabled = true;
+                ImportButton.IsEnabled = CutStartTextbox.IsEnabled = EndOfVideoCheckbox.IsEnabled = true;
 
                 StatusLabel.Content = Localization.Strings.Done;
             }));
@@ -167,22 +159,6 @@ namespace WPFMETRO
             CutEndTextbox.Text = "0000000";
         }
 
-        private void JoinVideosButton_Click(object sender, EventArgs e)
-        {
-            ImportButton.IsEnabled = false;
-            AddSubsButton.IsEnabled = false;
-            IntervalSnagBox.IsEnabled = false;
-            MergeButton.IsEnabled = false;
-            CancelJoinButton.Visibility = Visibility.Visible;
-
-            /*openVideoListDialog.ShowDialog();
-
-            if (openVideoListDialog.CheckFileExists)
-            {
-                ExportButton.IsEnabled = true;
-            }*/
-        }
-
         private void CancelImportButton_Click(object sender, EventArgs e)
         {
             importAVDialog.FileName = "";
@@ -190,18 +166,7 @@ namespace WPFMETRO
 
             OriginalFileLabel.Content = "";
 
-            JoinVideosButton.IsEnabled = true;
             CancelButton.Visibility = Visibility.Hidden;
-        }
-
-        private void CancelJoinButton_Click(object sender, EventArgs e)
-        {
-            ConvertButton.IsEnabled = false;
-            ImportButton.IsEnabled = true;
-
-            //openVideoListDialog.FileName = ""; Will implement later
-
-            CancelJoinButton.Visibility = Visibility.Hidden;
         }
 
         private void AddSubsButton_Click(object sender, EventArgs e)
@@ -218,20 +183,9 @@ namespace WPFMETRO
 
         private void MergeButton_Click(object sender, EventArgs e)
         {
-            if (videoFormats.Any(Path.GetExtension(inputFile).Contains))
-            {
-                CancelMergeButton.Visibility = Visibility.Visible;
-                AddSubsButton.IsEnabled = false;
-                openMergeDialog.Filter = videoFilter;
-                openMergeDialog.ShowDialog();
-            }
-            else if (audioFormats.Any(Path.GetExtension(inputFile).Contains))
-            {
-                AddSubsButton.IsEnabled = false;
-                CancelMergeButton.Visibility = Visibility.Visible;
-                openMergeDialog.FileName = audioFilter;
-                openMergeDialog.ShowDialog();
-            }
+            CancelMergeButton.Visibility = Visibility.Visible;
+            AddSubsButton.IsEnabled = false;
+            openMergeDialog.ShowDialog();
         }
 
         private void CancelMergeButton_Click(object sender, EventArgs e)
