@@ -32,9 +32,6 @@ namespace WPFMETRO
         private readonly string videoFilter = "Video (*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm)|*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm";
         private readonly string audioFilter = "Audio (*.ogg;*.mp3;*.m4a;*.flac; *.mpeg) |*.ogg;*.mp3;*.m4a;*.flac;*.mpeg";
 
-        private string[] videoFormats = { ".m4a", ".mp4", ".3gp", ".m4v", ".mov", ".webm" };
-        private string[] audioFormats = { ".ogg", ".mp3", ".m4a", ".flac", ".mpeg" };
-
         private string inputFile = "";
         private string outputFile = "";
 
