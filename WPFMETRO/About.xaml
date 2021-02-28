@@ -31,7 +31,7 @@
                 </TextBlock>
                 <iconPacks:PackIconModern Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" HorizontalAlignment="Right" Width="24" Height="24" Kind="Globe" VerticalAlignment="Center"/>
             </StackPanel>
-            <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Content="Guilherme Freitas - 2020" HorizontalAlignment="Center"/>
+            <Label Foreground="{Binding Source={x:Static properties:Settings.Default}, Path=GeneralTextColor}" Content="Guilherme Freitas - 2021" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>
