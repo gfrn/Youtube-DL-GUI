@@ -56,15 +56,14 @@ namespace WPFMETRO
                             break;
                         default:
                             arguments += "-f ";
-
-                            if (SelectedFormat.Contains(" "))
+                            if (SelectedFormat.Contains(" ") && AvailableFormats[AvailableFormats.Count - 1].Value == "flac")
                             {
                                 arguments += SelectedFormat.Substring(0, SelectedFormat.IndexOf(" "));
                                 if (SelectedFormat.Substring(SelectedFormat.Length - 1) == "y")
                                 {
                                     int spaceIndex = SelectedFormat.IndexOf(" ");
                                     arguments += SelectedFormat.Contains("mp4") ? "+bestaudio[ext!=webm]" : "+bestaudio[ext=webm]‌";
-                                    arguments += " --merge-output-format" + SelectedFormat.Substring(spaceIndex, SelectedFormat.Length - spaceIndex - 2);
+                                    arguments += " --merge-output-format" + SelectedFormat.Substring(spaceIndex, SelectedFormat.Length - spaceIndex - 2); 
                                 }
                             }
                             else
@@ -75,8 +74,11 @@ namespace WPFMETRO
                             break;
                     }
                 }
-                arguments += SelectedFormat == "default" ? "-o \"" + Path + Name + "\"" : " -o \"" + Path + Name + "\"";
-                arguments += " -i " + ID;
+                   
+                string formatAndID = SelectedFormat == "default" ? "" : " ";
+                formatAndID += "-o \"" + Path + Name + "\"" + " -i " + ID;
+
+                arguments += formatAndID;
 
                 ytbDLInfo.Arguments = arguments;
                 ytbDL = Process.Start(ytbDLInfo);

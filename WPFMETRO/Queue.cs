@@ -113,6 +113,7 @@ namespace WPFMETRO
                                     desc = values[1].ToString() + " (";
                                     if (values[2].ToString() == "audio")
                                     {
+                                        hasAudio = true;
                                         code = values[0].ToString();
                                         desc += "audio";
                                         desc += values.Count > 5 && values[5].ToString() != "audio" ? " " + values[5].ToString() + ")" : ")";
@@ -128,7 +129,7 @@ namespace WPFMETRO
                                     code = values[0].ToString();
                                     desc = values[1].ToString() + " (" + values[2].ToString() + ")";
                                 }
-                                hasAudio = !hasAudio && values[1].ToString() == "mp4" || values[1].ToString() == "webm" || values[1].ToString() == "m4a" ? true : hasAudio;
+
                                 code += output.Contains("video only") ? "-y" : "-n";
 
                                 formats.Add(code, desc);
