@@ -108,29 +108,21 @@ namespace WPFMETRO
                                 string code, desc;
 
                                 MatchCollection values = Regex.Matches(output, @"([^\s]+)");
+                                code = values[0].ToString();
                                 if (values.Count > 4)
                                 {
-                                    desc = values[1].ToString() + " (";
                                     if (values[2].ToString() == "audio")
                                     {
                                         hasAudio = true;
-                                        code = values[0].ToString();
-                                        desc += "audio";
-                                        desc += values.Count > 5 && values[5].ToString() != "audio" ? " " + values[5].ToString() + ")" : ")";
                                     }
                                     else
                                     {
-                                        code = values[0].ToString() + ' ' + values[1].ToString();
-                                        desc += values[2].ToString() + ' ' + values[3].ToString() + ')';
+                                        code += ' ' + values[1].ToString();
                                     }
-                                }
-                                else
-                                {
-                                    code = values[0].ToString();
-                                    desc = values[1].ToString() + " (" + values[2].ToString() + ")";
                                 }
 
                                 code += output.Contains("video only") ? "-y" : "-n";
+                                desc = output.Substring(output.IndexOf(" ")).Replace("only", "").TrimStart();
 
                                 formats.Add(code, desc);
                             }
