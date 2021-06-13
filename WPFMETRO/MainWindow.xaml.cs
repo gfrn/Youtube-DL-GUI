@@ -80,9 +80,9 @@ namespace WPFMETRO
                                     WorkingDirectory = Environment.CurrentDirectory,
                                     FileName = Assembly.GetExecutingAssembly().Location,
                                     Verb = "runas"
-                                }; 
+                                };
 
-                                MessageBoxResult userDialogResult = MessageBox.Show(Localization.Strings.AskToUpdateYoutubeDL + "\n" + Localization.Strings.CurrentVersion + 
+                                MessageBoxResult userDialogResult = MessageBox.Show(Localization.Strings.AskToUpdateYoutubeDL + "\n" + Localization.Strings.CurrentVersion +
                                     Properties.Settings.Default.YoutubeDLVersion + "\n" + Localization.Strings.NewVersion + lastVersionYoutubeDL, "", MessageBoxButton.YesNo,
                                     MessageBoxImage.Question); //Asks user if he wants to update the y-dl binary
 
@@ -103,7 +103,7 @@ namespace WPFMETRO
                             else
                             {
                                 if (lastVersionYoutubeDL != Properties.Settings.Default.YoutubeDLVersion)
-                                { 
+                                {
                                     if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"\youtube-dl.exe"))
                                     {
                                         File.Delete(AppDomain.CurrentDomain.BaseDirectory + @"\youtube-dl.exe");
@@ -138,7 +138,7 @@ namespace WPFMETRO
             UrlBox.Background = Brushes.Transparent;
             formats.Clear();
             string Url = UrlBox.Text;
-            if (Properties.Settings.Default.PrioritizePlaylists && UrlBox.Text.Contains(@"playlist?list="))
+            if (Properties.Settings.Default.PrioritizePlaylists && (UrlBox.Text.Contains(@"?list=") || UrlBox.Text.Contains(@"&list=") || UrlBox.Text.Contains(@"channel")))
             {
                 formats.Add("default", "default (mp4)");
                 formats.Add("mp3", "mp3");
@@ -146,15 +146,13 @@ namespace WPFMETRO
                 FiletypeBox.ItemsSource = formats;
                 FiletypeBox.IsEnabled = AddToQueueButton.IsEnabled = true;
                 UrlBox.Background = Brushes.DarkGreen;
-
-
             }
             else
             {
                 UrlBox.Text = UrlBox.Text.Contains(@"&list=") ? UrlBox.Text.Substring(0, UrlBox.Text.IndexOf(@"&list=")) : UrlBox.Text;
 
-                await Task.Run(() => formats=queue.GetFormats(Url));
-                await Task.Run(() => videoInfo=queue.GetInfo(Url));
+                await Task.Run(() => formats = queue.GetFormats(Url));
+                await Task.Run(() => videoInfo = queue.GetInfo(Url));
 
                 if (formats.Count > 0)
                 {
@@ -167,7 +165,7 @@ namespace WPFMETRO
                     UrlBox.Clear();
                     MessageBox.Show(Localization.Strings.InvalidURL, Localization.Strings.Error);
                 }
-                
+
                 DownloadStatus.Text = Localization.Strings.NoDownload;
             }
 
@@ -257,7 +255,7 @@ namespace WPFMETRO
             {
                 await Task.Run(() => formats = queue.GetFormats(video));
                 await Task.Run(() => videoInfo = queue.GetInfo(video));
-                queue.ModifyQueue(title, thumbURL,video, filename, path, filetype, formats);
+                queue.ModifyQueue(title, thumbURL, video, filename, path, filetype, formats);
             }
         }
         public void UpdateCard()
@@ -271,9 +269,9 @@ namespace WPFMETRO
 
                     TitleLabel.Text = video.Title;
                     UrlLabel.Text = video.ID;
-                    foreach(var kvp in video.AvailableFormats)
+                    foreach (var kvp in video.AvailableFormats)
                     {
-                        if(kvp.Key == video.SelectedFormat)
+                        if (kvp.Key == video.SelectedFormat)
                         {
                             FiletypeLabel.Text = kvp.Value;
                             break;

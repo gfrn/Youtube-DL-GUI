@@ -1,5 +1,4 @@
-﻿using Google.Apis.Services;
-using Google.Apis.YouTube.v3;
+﻿using System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +6,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+
+class VideoJSON
+{
+    public string id { get; set; }
+    public string title { get; set; }
+}
+class Playlist
+{
+    public List<VideoJSON> entries { get; set; }
+}
 
 namespace WPFMETRO
 {
@@ -21,7 +30,6 @@ namespace WPFMETRO
     {
         public ObservableCollection<Video> Videos = new ObservableCollection<Video>();
 
-        YouTubeService yt = new YouTubeService(new BaseClientService.Initializer() { ApiKey = "" });
         private Process ytbDL = new Process();
 
         private ProcessStartInfo ytbDLInfo = new ProcessStartInfo
@@ -54,9 +62,9 @@ namespace WPFMETRO
                         string output = f.Data ?? "null";
                         if (isThumb)
                         {
-                            if(isNext && info == null)
+                            if (isNext && info == null)
                             {
-                                info = output == "null" || output.Contains("No thumbnail") ? info : output.Substring(output.LastIndexOf(' ')+1);
+                                info = output == "null" || output.Contains("No thumbnail") ? info : output.Substring(output.LastIndexOf(' ') + 1);
                             }
                             else
                             {
@@ -135,7 +143,7 @@ namespace WPFMETRO
                 ytbDL.WaitForExit();
                 ytbDL.CancelOutputRead();
 
-                if(formats.Count > 1)
+                if (formats.Count > 1)
                 {
                     formats.Add("default", "default");
                     if (formats.Count > 1 && hasAudio)
@@ -144,7 +152,7 @@ namespace WPFMETRO
                         formats.Add("flac", "flac");
                     }
                 }
-                
+
             }
 
             return formats;
@@ -153,48 +161,63 @@ namespace WPFMETRO
 
         public void DownloadPlaylist(string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
-            var nextPageToken = "";
-            while (nextPageToken != null)
+            ytbDLInfo.Arguments = String.Format("-J --flat-playlist \"{0}\"", ID);
+            ytbDL = Process.Start(ytbDLInfo);
+            Playlist playlist = null;
+
+            ytbDL.OutputDataReceived += new DataReceivedEventHandler(
+            (s, f) =>
             {
-                var playlistItemsListRequest = yt.PlaylistItems.List("snippet");
-                playlistItemsListRequest.PlaylistId = ID.Substring(ID.IndexOf("=") + 1);
-                playlistItemsListRequest.MaxResults = 50;
-                playlistItemsListRequest.PageToken = nextPageToken;
-
-                var playlistItemsListResponse = playlistItemsListRequest.Execute();
-
-                foreach (var playlistItem in playlistItemsListResponse.Items)
+                if (f.Data != null)
                 {
-                    ModifyQueue(playlistItem.Snippet.Title, playlistItem.Snippet.Thumbnails.Default__.Url, "https://www.youtube.com/watch?v=" + playlistItem.Snippet.ResourceId.VideoId, filename, path, filetype, formats);
+                    playlist = JsonSerializer.Deserialize<Playlist>(f.Data);
                 }
+            });
 
-                nextPageToken = playlistItemsListResponse.NextPageToken;
+            ytbDL.Start();
+            ytbDL.BeginOutputReadLine();
+            ytbDL.WaitForExit();
+            ytbDL.CancelOutputRead();
+
+            foreach (VideoJSON v in playlist.entries)
+            {
+                string url = "https://www.youtube.com/watch?v=" + v.id;
+                ModifyQueue(v.title, null, url, filename, path, filetype, formats);
             }
         }
 
         public void DownloadChannel(string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
-            var channelItemsRequest = yt.Channels.List("contentDetails");
-            channelItemsRequest.Id = ID.Substring(ID.IndexOf("channel/") + 8);
-            channelItemsRequest.MaxResults = 50;
+            ytbDLInfo.Arguments = String.Format("-J --flat-playlist \"{0}\"/videos", ID);
+            ytbDL = Process.Start(ytbDLInfo);
+            Playlist playlist = null;
 
-            var channelsListResponse = channelItemsRequest.Execute();
-
-            foreach (var item in channelsListResponse.Items)
+            ytbDL.OutputDataReceived += new DataReceivedEventHandler(
+            (s, f) =>
             {
-                string uploadsListID = item.ContentDetails.RelatedPlaylists.Uploads;
+                if (f.Data != null)
+                {
+                    playlist = JsonSerializer.Deserialize<Playlist>(f.Data);
+                }
+            });
 
-                DownloadPlaylist(uploadsListID, filename, path, filetype, formats);
+            ytbDL.Start();
+            ytbDL.BeginOutputReadLine();
+            ytbDL.WaitForExit();
+            ytbDL.CancelOutputRead();
+
+            foreach (VideoJSON v in playlist.entries)
+            {
+                string url = "https://www.youtube.com/watch?v=" + v.id;
+                ModifyQueue(v.title, null, url, filename, path, filetype, formats);
             }
-
-
         }
 
         public void ModifyQueue(string title, string thumbURL, string ID, string filename, string path, string filetype, Dictionary<string, string> formats)
         {
             if (ID.Contains("youtu.be/") || ID.Contains("youtube.com/"))
             {
-                if (ID.Contains("playlist"))
+                if (ID.Contains("list="))
                 {
                     DownloadPlaylist(ID, filename, path, filetype, formats);
                 }
@@ -204,16 +227,18 @@ namespace WPFMETRO
                 }
                 else
                 {
-                        Video video = new Video();
-                        video.ID = ID;
-                        video.Name = filename;
-                        video.Path = path;
-                        video.SelectedFormat = filetype;
-                        video.ThumbURL = thumbURL;
-                        video.Title = title;
-                        video.AvailableFormats = formats.ToList();
+                    Video video = new Video
+                    {
+                        ID = ID,
+                        Name = filename,
+                        Path = path,
+                        SelectedFormat = filetype,
+                        ThumbURL = thumbURL,
+                        Title = title,
+                        AvailableFormats = formats.ToList()
+                    };
 
-                        Videos.Add(video);
+                    Videos.Add(video);
                 }
             }
             else
@@ -223,14 +248,16 @@ namespace WPFMETRO
                     case 0:
                         throw new QueueException(Localization.Strings.InvalidURL);
                     default:
-                        Video videoNonYoutube = new Video();
-                        videoNonYoutube.ID = ID;
-                        videoNonYoutube.Name = filename;
-                        videoNonYoutube.Path = path;
-                        videoNonYoutube.SelectedFormat = filetype;
-                        videoNonYoutube.ThumbURL = thumbURL;
-                        videoNonYoutube.Title = title;
-                        videoNonYoutube.AvailableFormats = formats.ToList();
+                        Video videoNonYoutube = new Video
+                        {
+                            ID = ID,
+                            Name = filename,
+                            Path = path,
+                            SelectedFormat = filetype,
+                            ThumbURL = thumbURL,
+                            Title = title,
+                            AvailableFormats = formats.ToList()
+                        };
 
                         Videos.Add(videoNonYoutube);
                         break;

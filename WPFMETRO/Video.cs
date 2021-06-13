@@ -20,6 +20,8 @@ namespace WPFMETRO
         public string ThumbURL { get; set; }
         public string Title { get; set; }
 
+        MainWindow mw;
+
         Process ytbDL = new Process();
         ProcessStartInfo ytbDLInfo = new ProcessStartInfo
         {
@@ -30,9 +32,7 @@ namespace WPFMETRO
             FileName = "youtube-dl.exe"
         };
 
-        MainWindow mw = Application.Current.Windows
-        .Cast<Window>()
-        .FirstOrDefault(window => window is MainWindow) as MainWindow;
+
 
         public void DownloadVideo()
         {
@@ -63,18 +63,18 @@ namespace WPFMETRO
                                 {
                                     int spaceIndex = SelectedFormat.IndexOf(" ");
                                     arguments += SelectedFormat.Contains("mp4") ? "+bestaudio[ext!=webm]" : "+bestaudio[ext=webm]‌";
-                                    arguments += " --merge-output-format" + SelectedFormat.Substring(spaceIndex, SelectedFormat.Length - spaceIndex - 2); 
+                                    arguments += " --merge-output-format" + SelectedFormat.Substring(spaceIndex, SelectedFormat.Length - spaceIndex - 2);
                                 }
                             }
                             else
                             {
-                                arguments += SelectedFormat.Substring(0,SelectedFormat.Length-2);
+                                arguments += SelectedFormat.Substring(0, SelectedFormat.Length - 2);
                             }
 
                             break;
                     }
                 }
-                   
+
                 string formatAndID = SelectedFormat == "default" ? "" : " ";
                 formatAndID += "-o \"" + Path + Name + "\"" + " -i " + ID;
 
@@ -83,12 +83,17 @@ namespace WPFMETRO
                 ytbDLInfo.Arguments = arguments;
                 ytbDL = Process.Start(ytbDLInfo);
 
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    mw = new MainWindow();
+                });
+
                 ytbDL.OutputDataReceived += new DataReceivedEventHandler(
                 (s, f) =>
                 {
                     output = f.Data ?? "null";
 
-                    if(output.Contains("has already been downloaded"))
+                    if (output.Contains("has already been downloaded"))
                     {
                         MessageBox.Show(Localization.Strings.AlreadyDownloaded, Localization.Strings.Error);
                         completedDownload = true;
@@ -99,20 +104,20 @@ namespace WPFMETRO
                         if (output.Contains("at") && output.Contains("MiB") && !output.Contains("Destination"))
                         {
                             string downloadSpeed = output.Substring(output.IndexOf("at") + 3, output.IndexOf("ETA") - output.IndexOf("at") - 3);
-                            mw.BeginInvoke((Action)(() =>
+                            mw.BeginInvoke(() =>
                             {
                                 mw.DownloadSpeed.Text = downloadSpeed;
-                            }));
+                            });
                             progress = output.Substring(output.LastIndexOf("[download]") + 11, output.LastIndexOf("%") - 11);
                             progress = progress.Contains(".") ? progress.Substring(0, progress.IndexOf(".")) : progress;
                         }
 
-                        mw.BeginInvoke((Action)(() =>
+                        mw.BeginInvoke(() =>
                         {
                             mw.DownloadStatus.Text = Localization.Strings.Downloading;
                             mw.DownloadPercentage.Text = progress + "%";
-                            mw.DownloadProgressBar.Value = progress != "" ? Int16.Parse(progress) : 0;
-                        }));
+                            mw.DownloadProgressBar.Value = progress != "" ? short.Parse(progress) : 0;
+                        });
                         completedDownload = true;
                     }
                     else
@@ -125,10 +130,10 @@ namespace WPFMETRO
 
                     if (output != "null" && Properties.Settings.Default.VerboseStatus)
                     {
-                        mw.BeginInvoke((Action)(() =>
+                        mw.BeginInvoke(() =>
                         {
                             mw.VerboseStatus.Text = output;
-                        }));
+                        });
                     }
                 }
                 );

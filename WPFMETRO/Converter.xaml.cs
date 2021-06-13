@@ -29,7 +29,7 @@ namespace WPFMETRO
 
         private Process ffMpegProc = new Process();
 
-        private readonly string videoFilter = "Video (*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm)|*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm";
+        private readonly string videoFilter = "Video (*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm;*.mkv)|*.m4a;*.mp4;*.3gp;*.m4v;*.mov;*.webm;*.mkv";
         private readonly string audioFilter = "Audio (*.ogg;*.mp3;*.m4a;*.flac; *.mpeg) |*.ogg;*.mp3;*.m4a;*.flac;*.mpeg";
 
         private string inputFile = "";
